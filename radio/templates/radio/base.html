@@ -7,35 +7,72 @@
     <title>Rádio IFRN - SPP</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link href="{% static 'radio/css/estilo.css' %}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <!-- Navegação -->
-    <header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <div class="navbar-brand">
-                    <img src="{% static 'radio/img/logoifrn.svg' %}" class="logo">
-                </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Menu">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item "><a class="nav-link ativo fw-semibold" href="{% url 'index' %}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link fw-semibold" href="{% url 'pedidos' %}">Pedidos</a></li>
-                        <li class="nav-item"><a class="nav-link fw-semibold" href="{% url 'programacao' %}">Programação</a></li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="{% url 'programas' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Programas</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'programas' %}">Programas</a></li>
-                                <li><a class="dropdown-item" href="{% url 'podcasts' %}">Podcasts</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+<!-- Navegação -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'radio/img/logoifrn.png' %}" class="logo" alt="Logo IFRN">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item ps-3 ">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'index' %}ativo{% endif %} fw-semibold" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item ps-3">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'pedidos' %}ativo{% endif %} fw-semibold" href="{% url 'pedidos' %}">Pedidos</a>
+                    </li>
+                    <li class="nav-item ps-3">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'programacao' %}ativo{% endif %} fw-semibold" href="{% url 'programacao' %}">Programação</a>
+                    </li>
+
+                    <li class="nav-item dropdown ps-3">
+                        {% if request.resolver_match.url_name == 'podcasts' %}
+                    <!-- Se estiver na página de podcasts -->
+                    <a class="nav-link dropdown-toggle ativo fw-semibold" href="{% url 'podcasts' %}" id="programasDropdown"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Podcasts
+                    </a>
+                <ul class="dropdown-menu" aria-labelledby="programasDropdown">
+                    <li><a class="dropdown-item fw-semibold"  href="{% url 'programas' %}">Programas</a></li>
+                    <li><a class="dropdown-item ativo fw-semibold" href="{% url 'podcasts' %}">Podcasts</a></li>
+                </ul>
+                    {% else %}
+            <!-- Caso contrário, exibe Programas -->
+                <a class="nav-link dropdown-toggle fw-semibold {% if request.resolver_match.url_name == 'programas' %}ativo{% endif %}" 
+                href="{% url 'programas' %}" id="programasDropdown"
+                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Programas
+                </a>
+            <ul class="dropdown-menu" aria-labelledby="programasDropdown">
+                <li><a class="dropdown-item fw-semibold {% if request.resolver_match.url_name == 'programas' %}ativo{% endif %}" href="{% url 'programas' %}">Programas</a></li>
+                <li><a class="dropdown-item fw-semibold {% if request.resolver_match.url_name == 'podcasts' %}ativo{% endif %}" href="{% url 'podcasts' %}">Podcasts</a></li>
+                </ul>
+        {% endif %}
+    </li>
+
+    <li class="nav-item ps-3">
+        <a class="nav-link fw-semibold {% if request.resolver_match.url_name == 'login' %}ativo{% endif %}" href="#">Login</a>
+    </li>
+            </ul>
+        </div>
             </div>
-        </nav>
-    </header>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+    </nav>
+</header>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+        crossorigin="anonymous"></script>
 </body>
 </html>
