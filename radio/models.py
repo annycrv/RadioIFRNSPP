@@ -9,9 +9,6 @@ class Home(models.Model):
     class Meta:
         verbose_name_plural = "Home"
 
-    def __str__ (self):
-        return self.titulo
-
 class Programacao(models.Model):
     bg_programação = models.ImageField(upload_to="radio/img_programacao/", blank=True)
     titulo_programacao = models.CharField(max_length=100)
