@@ -1,2 +1,40 @@
 {% extends "radio/base.html" %}
 {% load static %}
+{% block content %}
+
+<div class="text-center">
+  <h2 class="titulo mb-4 mt-4 text-center">Programação</h2>
+  <div class="dias-container rounded-pill d-inline-flex mx-auto">
+    <a href="{% url 'programacao' 'segunda' %}" class="dia {% if dia == 'Segunda' %}ativo{% endif %}">SEG</a>
+    <a href="{% url 'programacao' 'terca' %}" class="dia {% if dia == 'Terca' %}ativo{% endif %}">TER</a>
+    <a href="{% url 'programacao' 'quarta' %}" class="dia {% if dia == 'Quarta' %}ativo{% endif %}">QUA</a>
+    <a href="{% url 'programacao' 'quinta' %}" class="dia {% if dia == 'Quinta' %}ativo{% endif %}">QUI</a>
+    <a href="{% url 'programacao' 'sexta' %}" class="dia {% if dia == 'Sexta' %}ativo{% endif %}">SEX</a>
+</div>
+
+<div class="lista-programacao">
+  {% for item in programacao %}
+  <div class="card" style="width: 18rem;">
+    <img src="{{ item.bg_programacao.url }}" alt="imagem" class="card-img-top">
+    <div class="card-body">
+      <h4 class="card-title">{{ item.titulo_programacao }}</h4>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+      <p>{{ item.horario_programacao }}</p>
+      <a href="#" class="btn btn-primary">Ler mais</a>
+    </div>
+  </div>
+
+
+
+
+
+    {% comment %} <div class="card-programa">
+      <img src="{{ item.bg_programacao.url }}" alt="imagem">
+      <h3>{{ item.titulo_programacao }}</h3>
+      <p>{{ item.horario_programacao }}</p>
+    </div> {% endcomment %}
+  {% empty %}
+    <p>Não há programas cadastrados para este dia.</p>
+  {% endfor %}
+</div>
+{% endblock content %}

@@ -13,15 +13,23 @@ class Home(models.Model):
         return self.titulo
 
 class Programacao(models.Model):
-    bg_programação = models.ImageField(upload_to="radio/img_programacao/", blank=True)
+    DIAS_SEMANA = [
+        ('segunda', 'Segunda'),
+        ('terca', 'Terça'),
+        ('quarta', 'Quarta'),
+        ('quinta', 'Quinta'),
+        ('sexta', 'Sexta'),
+    ]
+    bg_programacao = models.ImageField(upload_to="radio/img_programacao/", blank=True)
     titulo_programacao = models.CharField(max_length=100)
     horario_programacao = models.TimeField()
+    dia_semana = models.CharField(max_length=10, choices=DIAS_SEMANA, blank=True)
 
     class Meta:
         verbose_name_plural = "Programações"
 
     def __str__ (self):
-        return self.titulo
+        return self.titulo_programacao
 
 class Programa(models.Model):
     banner_programa = models.ImageField(upload_to="radio/img_programa/", blank=True)

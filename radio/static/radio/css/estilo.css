@@ -47,3 +47,37 @@
     font-weight: 600;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+
+/* programação */
+.dias-container {
+  background-color: #C8E6C9;
+  border-radius: 20px;
+  padding: 5px 10px;
+  gap: 10px;
+}
+
+.dia {
+  font-weight: bold;
+  color: #000;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.dia:hover {
+  background-color: #147D3F;
+}
+
+.dia.ativo {
+  background-color: #147D3F;
+  color: #fff;
+}
+
+a{
+    text-decoration: none;
+}
+
+.titulo{
+    color: #34A853;
+}

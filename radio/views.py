@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Programa, Programacao
 
 def index(request):
     return render(request, "radio/index.html")
@@ -6,8 +7,17 @@ def index(request):
 def pedidos(request):
     return render(request, "radio/pedidos.html")
 
-def programacao(request):
-    return render(request, "radio/programacao.html")
+def programacao(request,dia):
+    dias_validos = ['segunda', 'terca', 'quarta', 'quinta', 'sexta']
+    if dia not in dias_validos:
+        dia = 'segunda' 
+
+    context = {
+        "programacao": Programacao.objects.filter(dia_semana=dia),
+        "programas": Programa.objects.all(),
+        "dia": dia.capitalize(),
+    }
+    return render(request, "radio/programacao.html", context)
 
 def programas(request):
     return render(request, "radio/programas.html")

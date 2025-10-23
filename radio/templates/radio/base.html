@@ -33,7 +33,7 @@
                         <a class="nav-link {% if request.resolver_match.url_name == 'pedidos' %}ativo{% endif %} fw-semibold" href="{% url 'pedidos' %}">Pedidos</a>
                     </li>
                     <li class="nav-item ps-3">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'programacao' %}ativo{% endif %} fw-semibold" href="{% url 'programacao' %}">Programação</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'programacao' %}ativo{% endif %} fw-semibold" href="{% url 'programacao' 'segunda' %}">Programação</a>
                     </li>
 
                     <li class="nav-item dropdown ps-3">
@@ -45,7 +45,7 @@
                     </a>
                 <ul class="dropdown-menu" aria-labelledby="programasDropdown">
                     <li><a class="dropdown-item fw-semibold"  href="{% url 'programas' %}">Programas</a></li>
-                    <li><a class="dropdown-item ativo fw-semibold" href="{% url 'podcasts' %}">Podcasts</a></li>
+
                 </ul>
                     {% else %}
             <!-- Caso contrário, exibe Programas -->
@@ -55,7 +55,6 @@
                 Programas
                 </a>
             <ul class="dropdown-menu" aria-labelledby="programasDropdown">
-                <li><a class="dropdown-item fw-semibold {% if request.resolver_match.url_name == 'programas' %}ativo{% endif %}" href="{% url 'programas' %}">Programas</a></li>
                 <li><a class="dropdown-item fw-semibold {% if request.resolver_match.url_name == 'podcasts' %}ativo{% endif %}" href="{% url 'podcasts' %}">Podcasts</a></li>
                 </ul>
         {% endif %}
@@ -76,3 +75,6 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
+{% block content %}
+<p>sla</p>
+{%endblock content %}
