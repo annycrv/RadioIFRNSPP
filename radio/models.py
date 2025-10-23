@@ -9,9 +9,6 @@ class Home(models.Model):
     class Meta:
         verbose_name_plural = "Home"
 
-    def __str__ (self):
-        return self.titulo
-
 class Programacao(models.Model):
     DIAS_SEMANA = [
         ('segunda', 'Segunda'),
