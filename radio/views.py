@@ -18,15 +18,22 @@ def programacao(request,dia):
     context = {
         "programacao": Programacao.objects.filter(dia_semana=dia),
         "programas": Programa.objects.all(),
+        "podcasts": Podcast.objects.all(),
         "dia": dia.capitalize(),
     }
     return render(request, "radio/programacao.html", context)
 
 def programas(request):
-    return render(request, "radio/programas.html")
+    context = {
+        "programas": Programa.objects.all()
+    }
+    return render(request, "radio/programas.html", context)
 
 def podcasts(request):
-    return render(request, "radio/podcasts.html")
+    context = {
+        "podcasts": Podcast.objects.all()
+    }
+    return render(request, "radio/podcasts.html", context)
 
 def sobre(request):
     return render(request, "radio/sobre.html")

@@ -63,6 +63,10 @@
     </li>
 
     <li class="nav-item ps-3">
+        <a class="nav-link {% if request.resolver_match.url_name == 'sobre' %}ativo{% endif %} fw-semibold" href="{% url 'sobre' %}">Sobre</a>
+    </li>
+
+    <li class="nav-item ps-3">
         <a class="nav-link fw-semibold {% if request.resolver_match.url_name == 'login' %}ativo{% endif %}" href="#">Login</a>
     </li>
             </ul>
@@ -121,6 +125,9 @@
               <li><a class="dropdown-item fw-semibold {% if request.resolver_match.url_name == 'podcasts' %}ativo{% endif %}" href="{% url 'podcasts' %}">Podcasts</a></li>
           </ul>
         {% endif %}
+      </li>
+      <li class="nav-item ps-3">
+        <a class="nav-link2 {% if request.resolver_match.url_name == 'sobre' %}ativo{% endif %} fw-semibold" href="{% url 'sobre' %}">Sobre</a>
       </li>
     </ul>
   </div>

@@ -9,24 +9,17 @@ class Home(models.Model):
     class Meta:
         verbose_name_plural = "Home"
 
-class Programacao(models.Model):
-    DIAS_SEMANA = [
-        ('segunda', 'Segunda'),
-        ('terca', 'Terça'),
-        ('quarta', 'Quarta'),
-        ('quinta', 'Quinta'),
-        ('sexta', 'Sexta'),
-    ]
-    bg_programacao = models.ImageField(upload_to="radio/img_programacao/", blank=True)
-    titulo_programacao = models.CharField(max_length=100)
-    horario_programacao = models.TimeField()
-    dia_semana = models.CharField(max_length=10, choices=DIAS_SEMANA, blank=True)
+class Podcast(models.Model):
+    banner_podcast = models.ImageField(upload_to="radio/img_podcast/", blank=True)
+    nome_podcast = models.CharField(max_length=100)
+    descricao_podcast = models.CharField(max_length=100)
+    host_podcast = models.CharField(max_length=100)
 
     class Meta:
-        verbose_name_plural = "Programações"
+        verbose_name_plural = "Podcasts"
 
-    def __str__ (self):
-        return self.titulo_programacao
+    def _str_ (self):
+        return self.nome_podcast
 
 class Programa(models.Model):
     banner_programa = models.ImageField(upload_to="radio/img_programa/", blank=True)
@@ -37,20 +30,29 @@ class Programa(models.Model):
     class Meta:
         verbose_name_plural = "Programas"
 
-    def __str__ (self):
+    def _str_ (self):
         return self.nome_programa
 
-class Podcast(models.Model):
-    banner_podcast = models.ImageField(upload_to="radio/img_podcast/", blank=True)
-    nome_podcast = models.CharField(max_length=100)
-    descricao_podcast = models.CharField(max_length=100)
-    host_podcast = models.CharField(max_length=100)
+class Programacao(models.Model):
+    DIAS_SEMANA = [
+        ('segunda', 'Segunda'),
+        ('terca', 'Terça'),
+        ('quarta', 'Quarta'),
+        ('quinta', 'Quinta'),
+        ('sexta', 'Sexta'),
+    ]
+    podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE, null=True)
+    programa = models.ForeignKey(Programa,on_delete=models.CASCADE, null=True)
+    bg_programacao = models.ImageField(upload_to="radio/img_programacao/", blank=True)
+    titulo_programacao = models.CharField(max_length=100)
+    horario_programacao = models.TimeField()
+    dia_semana = models.CharField(max_length=10, choices=DIAS_SEMANA, blank=True)
 
     class Meta:
-        verbose_name_plural = "Podcasts"
+        verbose_name_plural = "Programações"
 
-    def __str__ (self):
-        return self.nome_podcast
+    def _str_ (self):
+        return self.titulo_programacao
 
 class Sobre(models.Model):
     titulo_sobre = models.CharField(max_length=100)
@@ -61,5 +63,5 @@ class Sobre(models.Model):
     class Meta:
         verbose_name_plural = "Sobre"
 
-    def __str__ (self):
+    def _str_ (self):
         return self.titulo_sobre

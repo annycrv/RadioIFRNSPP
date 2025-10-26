@@ -1,2 +1,28 @@
 {% extends "radio/base.html" %}
 {% load static %}
+{% block content %}
+<div class="text-center">
+  <h2 class="titulo mb-4 mt-4 text-center">Programas</h2>
+</div>
+<div class="lista-programa d-flex flex-wrap justify-content-center gap-4 mt-4">
+  {% for item in programas %}
+    <div class="card shadow-sm border-0" style="width: 18rem;">
+
+      {% if item.banner_programa %}
+        <img src="{{ item.banner_programa.url }}" alt="{{ item.nome_programa }}" class="card-img-top rounded-top">
+      {% else %}
+        <img src="{% static 'img/placeholder.jpg' %}" alt="Sem imagem" class="card-img-top rounded-top">
+      {% endif %}
+
+      <div class="card-body text-center">
+        <h4 class="card-title fw-bold text-success">{{ item.nome_programa }}</h4>
+        <p class="card-text small text-muted mb-2">{{ item.descricao_programa|truncatewords:15 }}</p>
+        <p class="text-secondary mb-3">{{ item.artista_programa }}</p>
+        <a href="#" class="btn btn-outline-success btn-sm">Ler mais</a>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-center text-muted mt-4">Nenhum programa cadastrado ainda.</p>
+  {% endfor %}
+</div>
+{% endblock %}
