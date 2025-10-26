@@ -83,15 +83,16 @@
 {% block content %}
     sla
 {% endblock %}
-
-<footer class="footer d-flex flex-column justify-content-center align-items-center">
-    <div class="mt-2 mb-4">
-        <a href="http://www.instagram.com">
-            <img src="{% static 'radio/img/instagram.svg' %}" alt="Instagram" class="instagram">
-        </a>
+{% comment %} footer {% endcomment %}
+<footer class="footer justify-content-center align-items-center flex-column text-center">
+  <div class="mt-2 mb-3">
+    <a href="http://www.instagram.com">
+      <img src="{% static 'radio/img/instagram.svg' %}" alt="Instagram" class="instagram">
+    </a>
   </div>
-  <div id="navbarNav" class="d-flex justify-content-center mt-1">
-    <ul class="navbar-nav2 d-flex flex-row align-items-center">
+
+  <div class="justify-content-center mt-1">
+    <ul class="navbar-nav2 flex-row align-items-center flex-wrap justify-content-center">
       <li class="nav-item ps-3">
         <a class="nav-link2 {% if request.resolver_match.url_name == 'index' %}ativo{% endif %} fw-semibold" href="{% url 'index' %}">Home</a>
       </li>
@@ -106,33 +107,40 @@
 
       <li class="nav-item dropdown ps-3">
         {% if request.resolver_match.url_name == 'podcasts' %}
-          <!-- Se estiver na página de podcasts -->
           <a class="nav-link2 dropdown-toggle ativo fw-semibold" href="{% url 'podcasts' %}" id="programasDropdown"
               role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Podcasts
           </a>
           <ul class="dropdown-menu" aria-labelledby="programasDropdown">
               <li><a class="dropdown-item fw-semibold" href="{% url 'programas' %}">Programas</a></li>
+              <li><a class="dropdown-item fw-semibold" href="{% url 'podcasts' %}">Podcasts</a></li>
           </ul>
         {% else %}
-          <!-- Caso contrário, exibe Programas -->
           <a class="nav-link2 dropdown-toggle fw-semibold {% if request.resolver_match.url_name == 'programas' %}ativo{% endif %}"
               href="{% url 'programas' %}" id="programasDropdown"
               role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Programas
           </a>
           <ul class="dropdown-menu" aria-labelledby="programasDropdown">
-              <li><a class="dropdown-item fw-semibold {% if request.resolver_match.url_name == 'podcasts' %}ativo{% endif %}" href="{% url 'podcasts' %}">Podcasts</a></li>
+            <li><a class="dropdown-item fw-semibold {% if request.resolver_match.url_name == 'podcasts' %}ativo{% endif %}" href="{% url 'podcasts' %}">Podcasts</a></li>
+            <li><a class="dropdown-item fw-semibold {% if request.resolver_match.url_name == 'podcasts' %}ativo{% endif %}" href="{% url 'programas' %}">Programas</a></li>
+
+
           </ul>
         {% endif %}
       </li>
+
       <li class="nav-item ps-3">
         <a class="nav-link2 {% if request.resolver_match.url_name == 'sobre' %}ativo{% endif %} fw-semibold" href="{% url 'sobre' %}">Sobre</a>
       </li>
     </ul>
   </div>
-  <strong class="small text-center text-muted fst-italic py-3 mt-3">Copyright 2025 - Todos os direitos reservados</strong>
+
+  <strong class="small text-center text-muted fst-italic py-3 mt-3">
+    Copyright 2025 - Todos os direitos reservados
+  </strong>
 </footer>
+
 
 </body>
 </html>

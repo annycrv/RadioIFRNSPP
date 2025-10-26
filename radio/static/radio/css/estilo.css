@@ -82,6 +82,7 @@ a{
     color: #34A853;
 }
 
+/* footer */
 .footer {
     height: 200px;
     background-color: #9DC9AC;
@@ -93,7 +94,6 @@ a{
 
 /* Ícone Instagram */
 .footer img.instagram {
-    width: auto;
     height: 25px;
 }
 
