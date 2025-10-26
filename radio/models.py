@@ -38,7 +38,7 @@ class Programa(models.Model):
         verbose_name_plural = "Programas"
 
     def __str__ (self):
-        return self.titulo
+        return self.nome_programa
 
 class Podcast(models.Model):
     banner_podcast = models.ImageField(upload_to="radio/img_podcast/", blank=True)
@@ -50,7 +50,7 @@ class Podcast(models.Model):
         verbose_name_plural = "Podcasts"
 
     def __str__ (self):
-        return self.titulo
+        return self.nome_podcast
 
 class Sobre(models.Model):
     titulo_sobre = models.CharField(max_length=100)
@@ -62,4 +62,4 @@ class Sobre(models.Model):
         verbose_name_plural = "Sobre"
 
     def __str__ (self):
-        return self.titulo
+        return self.titulo_sobre

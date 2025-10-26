@@ -81,3 +81,48 @@ a{
 .titulo{
     color: #34A853;
 }
+
+.footer {
+    height: 200px;
+    background-color: #9DC9AC;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ícone Instagram */
+.footer img.instagram {
+    width: auto;
+    height: 25px;
+}
+
+/* Navegação */
+.navbar-nav2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Espaçamento entre os itens */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Links */
+.nav-link2 {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.8rem;
+    color: #000;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-link2.ativo {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.nav-link2:hover {
+    color: #fff;
+}
