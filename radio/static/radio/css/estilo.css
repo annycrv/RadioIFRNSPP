@@ -126,3 +126,22 @@ a{
 .nav-link2:hover {
     color: #fff;
 }
+/* pedidos */
+
+.card{
+    max-width: 700px;
+}
+
+.card-header{
+    background-color: #9DC9AC;
+}
+
+.enviar{
+    background-color: #9DC9AC;
+    border: #9DC9AC;
+}
+
+.card2{
+    max-width: 700px;
+    background-color: #9dc9ac81 ;
+}

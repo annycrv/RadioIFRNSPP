@@ -18,7 +18,7 @@ class Podcast(models.Model):
     class Meta:
         verbose_name_plural = "Podcasts"
 
-    def _str_ (self):
+    def __str__ (self):
         return self.nome_podcast
 
 class Programa(models.Model):
@@ -30,7 +30,7 @@ class Programa(models.Model):
     class Meta:
         verbose_name_plural = "Programas"
 
-    def _str_ (self):
+    def __str__ (self):
         return self.nome_programa
 
 class Programacao(models.Model):
@@ -51,7 +51,7 @@ class Programacao(models.Model):
     class Meta:
         verbose_name_plural = "Programações"
 
-    def _str_ (self):
+    def __str__ (self):
         return self.titulo_programacao
 
 class Sobre(models.Model):
@@ -63,5 +63,19 @@ class Sobre(models.Model):
     class Meta:
         verbose_name_plural = "Sobre"
 
-    def _str_ (self):
+    def __str__ (self):
         return self.titulo_sobre
+    
+class Pedido(models.Model):
+    nome = models.CharField("Seu nome",max_length=30)
+    musica = models.CharField("O que você gostaria de ouvir hoje?",max_length=100)
+    artista = models.CharField("Qual o nome do(a) artista ou banda dessa música?",max_length=100)
+    horario_desejado = models.TimeField("Qual o horário desejado?")
+    mensagem = models.TextField("Observações (opcional)",blank=True, null=True)
+    # horario_pedidos = models.TimeField()
+    class Meta:
+        verbose_name_plural = "Pedidos"
+
+    def __str__ (self):
+        return self.musica
+    

@@ -1,2 +1,54 @@
 {% extends "radio/base.html" %}
+{% load static crispy_forms_filters %}
 {% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="titulo mb-3 text-center">Pedidos</h2>
+    <h3 class="titulo mb-5 text-center">Peça sua música aqui!</h3>
+
+    <div class="card shadow-lg border-0 mx-auto mb-4">
+        <div class="card-header text-white">
+            <h6 class="mb-0">Preencha o formulário</h6>
+        </div>
+        <div class="card-body p-4">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                <div class="d-grid mt-3">
+                    <button type="submit" class="enviar rounded-pill">
+                        Enviar Pedido
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="card2 container mx-auto shadow-lg mb-5 mt-5 rounded-2">
+    <div class="card-body mt-3 p-4">
+        <h4 class="card-title mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock me-2 mb-1" viewBox="0 0 16 16">
+        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+        </svg>Horário de Pedidos</h4>
+        <p class="card-text text-muted">Você pode fazer seus pedidos durante os seguintes horários:</p>
+
+        <div class="card mb-3" style="max-width: 540px;">
+
+            <div class="card-body">
+                <h5 class="card-title">Segunda a Sexta-feira</h5>
+                <ul class="card-text text-muted">
+                   <li>Manhã: 08:00 às 10:00</li>
+                   <li>Intervalo: 08:00 às 10:00</li>
+                   <li>Tarde: 08:00 às 10:00</li>
+                </ul>
+            </div>
+        </div>
+        <p class="card-text text-muted">* Os pedidos são tocados por ordem cronológica e pela disponibilidade dos bolsistas.</p>
+  </div>
+</div>
+{% endblock %}
+
+
+

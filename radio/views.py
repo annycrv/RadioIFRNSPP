@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from .models import Home, Programacao,Programa, Podcast, Sobre
+from django.shortcuts import render,redirect
+from .models import Home, Programacao,Programa, Podcast, Sobre,Pedido
+from radio.forms import PedidoModelForm 
 
 def index(request):
     context = {
@@ -8,7 +9,20 @@ def index(request):
     return render(request, "radio/index.html", context)
 
 def pedidos(request):
-    return render(request, "radio/pedidos.html")
+    context = {
+        "pedido": Pedido.objects.first(),
+    }
+    if request.method == "POST":
+        form = PedidoModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("pedidos")
+        else:
+            context["form"] = form
+    else:
+        context["form"] = PedidoModelForm()
+    return render(request, "radio/pedidos.html", context)
+
 
 def programacao(request,dia):
     dias_validos = ['segunda', 'terca', 'quarta', 'quinta', 'sexta']
