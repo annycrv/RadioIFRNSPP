@@ -41,7 +41,7 @@ class Programacao(models.Model):
         ('quinta', 'Quinta'),
         ('sexta', 'Sexta'),
     ]
-    podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE, null=True)
+    podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE, null=True, blank=True)
     programa = models.ForeignKey(Programa,on_delete=models.CASCADE, null=True)
     bg_programacao = models.ImageField(upload_to="radio/img_programacao/", blank=True)
     titulo_programacao = models.CharField(max_length=100)

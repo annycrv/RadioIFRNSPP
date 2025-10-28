@@ -16,28 +16,30 @@
 </div>
 
 <!-- Cards da programação -->
-<div class="container my-4">
-  <div class="row justify-content-center px-3">
+<div class="container my-5">
+  <div class="row justify-content-center g-4">
     {% for item in programacao %}
-      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-5">
-        <div class="card" style="width: 18rem;">
-          <img src="{{ item.bg_programacao.url }}" class="card-img-top" alt="{{ item.titulo_programacao }}">
-          <div class="card-body">
-            <h5 class="card-title text-center">{{ item.titulo_programacao }}</h5>
-            <p class="card-text">{{ item.descricao_programa }}</p>
+      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+        <div class="programacao-card-dark">
+          <div class="programacao-img position-relative">
+            <img src="{{ item.bg_programacao.url }}" alt="{{ item.titulo_programacao }}">
+            <div class="overlay">
+              <button class="play-btn">
+                <i class="bi bi-play-fill"></i>
+              </button>
+            </div>
           </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{ item.artista_programa }}</li>
-            <li class="list-group-item">{{ item.horario_programacao }}</li>
-          </ul>
-          <div class="card-body text-center">
-            <a href="#" class="card-link">Ler mais</a>
+          <div class="programacao-info text-center p-3">
+            <h5 class="fw-bold text-white mb-1">{{ item.titulo_programacao }}</h5>
+            <p class="text-muted small mb-1">{{ item.artista_programa }}</p>
+            <p class="text-muted small">{{ item.programa.descricao_programa|truncatewords:10 }}</p>
           </div>
         </div>
       </div>
     {% empty %}
-      <p class="text-center">Não há programas cadastrados para este dia.</p>
+      <p class="text-center text-muted">Não há programas cadastrados para este dia.</p>
     {% endfor %}
   </div>
 </div>
+
 {% endblock content %}
