@@ -1,31 +1,11 @@
 {% extends "radio/base.html" %}
 {% load static crispy_forms_filters %}
+{% block title %}Pedidos{% endblock %}
 {% load static %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2 class="titulo mb-3 text-center">Pedidos</h2>
+    <h2 class="titulo mb-4 text-center mt-5">Pedidos</h2>
     <h3 class="titulo mb-5 text-center">Peça sua música aqui!</h3>
-
-    <div class="card shadow-lg border-0 mx-auto mb-4">
-        <div class="card-header text-white">
-            <h6 class="mb-0">Preencha o formulário</h6>
-        </div>
-        <div class="card-body p-4">
-            <form method="POST">
-                {% csrf_token %}
-                {{ form|crispy }}
-
-                <div class="d-grid mt-3">
-                    <button type="submit" class="enviar rounded-pill">
-                        Enviar Pedido
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 <div class="card2 container mx-auto shadow-lg mb-5 mt-5 rounded-2">
     <div class="card-body mt-3 p-4">
         <h4 class="card-title mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock me-2 mb-1" viewBox="0 0 16 16">
@@ -48,6 +28,31 @@
         <p class="card-text text-muted">* Os pedidos são tocados por ordem cronológica e pela disponibilidade dos bolsistas.</p>
   </div>
 </div>
+
+
+<div class="container mt-5">
+
+
+    <div class="card shadow-lg border-0 mx-auto mb-5">
+        <div class="card-header text-white">
+            <h6 class="mb-0">Preencha o formulário</h6>
+        </div>
+        <div class="card-body p-4">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                <div class="d-grid mt-3">
+                    <button type="submit" class="enviar rounded-pill">
+                        Enviar Pedido
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
 
 

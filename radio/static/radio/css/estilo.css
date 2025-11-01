@@ -1,3 +1,76 @@
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background: linear-gradient(90deg, #0b8457 0%, #16a34a 50%, #22c55e 100%);
+}
+
+/* Conteúdo de texto */
+.hero-content {
+  z-index: 2;
+  padding-right: 2rem;
+}
+
+.hero-content h1 {
+  line-height: 1.2;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.hero-content p {
+  max-width: 520px;
+  font-size: 1.25rem;
+  line-height: 1.7;
+}
+
+/* Botão */
+.hero-btn {
+  border-radius: 12px;
+  padding: 12px 28px;
+  transition: 0.3s ease;
+}
+
+.hero-btn:hover {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+/* Imagem */
+
+
+.hero-img {
+  max-width: 90%;
+  border-radius: 20px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hero-img:hover {
+  transform: scale(1.02);
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+  .hero {
+    text-align: center;
+  }
+  .hero-content {
+    padding: 2rem 1.5rem;
+  }
+  .hero-image-wrapper {
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  .hero-img {
+    max-width: 80%;
+  }
+}
+
+
 .navbar{
     padding: 0.4rem 1rem;
     background-color: #9DC9AC; /* ajuste conforme seu tema */
@@ -84,48 +157,20 @@ a{
 
 /* footer */
 .footer {
-    height: 200px;
+    height: 70px;
     background-color: #9DC9AC;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
 }
 
 /* Ícone Instagram */
-.footer img.instagram {
+/* .footer img.instagram {
     height: 25px;
-}
+} */
 
-/* Navegação */
-.navbar-nav2 {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* Espaçamento entre os itens */
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
 
-/* Links */
-.nav-link2 {
-    font-size: 0.95rem;
-    padding: 0.4rem 0.8rem;
-    color: #000;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.nav-link2.ativo {
-    color: #ffffff !important;
-    font-weight: 600;
-}
-
-.nav-link2:hover {
-    color: #fff;
-}
 /* pedidos */
 
 .card{

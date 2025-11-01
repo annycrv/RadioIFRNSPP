@@ -1,23 +1,28 @@
 {% extends "radio/base.html" %}
 {% load static %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
-<section class="secao py-5 text-center bg-success bg-gradient text-white">
-  <div class="header container">
+<section class="hero position-relative text-white overflow-hidden">
+  <div class="container-fluid p-0">
     <div class="row align-items-center">
-
-      <div class="col-lg-6 text-lg-start">
-        <h1 class="fw-bold">{{ home.titulo_home }}</h1>
-        <p class="lead">{{ home.subtitulo_home }}</p>
+      <!-- Coluna do texto -->
+      <div class="col-lg-5 col-md-5 col-12 text-start ps-5 hero-content">
+        <h1 class="fw-bold display-5 mb-3">{{ home.titulo_home }}</h1>
+        <p class="lead mb-4">{{ home.subtitulo_home }}</p>
+        <a href="{% url 'programas' %}" class="btn btn-light btn-lg fw-semibold hero-btn">
+          Conheça nossos programas
+        </a>
       </div>
 
-      <div class="col-lg-6">
-        {% if home.bg_home %}
-          <img src="{{ home.bg_home.url }}" alt="Imagem principal" class="img-fluid rounded">
-        {% endif %}
+      <!-- Coluna da imagem -->
+      <div class="col-lg-7 col-md-7 col-12 hero-image-wrapper">
+        <img src="{{ home.bg_home.url }}" 
+             alt="Estudantes Rádio IFRN" 
+             class="img-fluid hero-img">
       </div>
-
     </div>
   </div>
 </section>
 {% endblock %}
+
