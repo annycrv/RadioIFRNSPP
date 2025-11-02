@@ -1,9 +1,100 @@
-
-
-.text-shadow {
-  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+/* banner */
+.hero {
+  background: linear-gradient(90deg, #eef2ff 0%, #b3d5bf 100%);
+  overflow: hidden;
+  height: 600px;
+  margin-bottom: 130px;
+}
+.title-hero {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px; /* espaço para a linha */
 }
 
+.text{
+  color: #147D3F;
+}
+
+.title-hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 120px; /* tamanho da linha */
+  height: 4px;  /* espessura */
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+  border-radius: 2px;
+}
+
+
+.btn-primary {
+  background: linear-gradient(90deg, #147D3F, #34A853);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 30px;
+}
+
+.btn-light {
+  background-color: #b3f9cd;
+  border-radius: 50px;
+  padding: 10px 30px;
+  color: #000;
+}
+
+.hero-img {
+  max-width: 90%;
+  position: relative;
+}
+
+/* Etiqueta AO VIVO */
+.badge-live {
+  position: absolute;
+  bottom: 70%;
+  left: 5%;
+  background: white;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-live .dot {
+  width: 10px;
+  height: 10px;
+  background-color: #34A853;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #107137;
+}
+
+/* Etiqueta Tocando Agora */
+.badge-now-playing {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: white;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Animação de movimento */
+@keyframes upDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-up-down {
+  animation: upDown 2.5s ease-in-out infinite;
+}
+
+/* navegação */
 .navbar{
     padding: 0.4rem 1rem;
     background-color: #9DC9AC; /* ajuste conforme seu tema */
@@ -54,6 +145,12 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
+/* section2 */
+
+.section2{
+  margin-bottom: 130px;
+}
+
 .icon-circle {
   width: 120px;
   height: 120px;
@@ -79,6 +176,8 @@
   color: #fff;
 }
 
+/* section3 */
+
 .titulo3{
   color:#107137
 }
@@ -87,7 +186,43 @@
 }
 
 .quem-somos{
-  background-color:#9DC9AC;
+  background: linear-gradient(90deg, #b3d5bf 0%, #eef2ff 100%);
+  margin-bottom: 130px;
+}
+
+.titu{
+  color:#107137
+}
+
+.sugestao-section{
+  margin-bottom: 130px;
+}
+.sugestao-form{
+  border: 1.5px solid rgba(139, 92, 246, 0.25);
+  border-radius: 20px;
+  box-shadow: 0px 4px 15px rgba(139, 92, 246, 0.08);
+  transition: all 0.3s ease;
+}
+
+
+.campo-estilizado {
+  background-color: #f6fff9; /* fundo levemente esverdeado */
+  border: 1.5px solid #16a34a; /* verde IFRN */
+  color: #0b8457; /* texto */
+  border-radius: 10px;
+  padding: 10px 15px;
+  transition: 0.3s ease;
+}
+
+.campo-estilizado::placeholder {
+  color: #6b7280; /* cinza suave para placeholder */
+}
+
+.campo-estilizado:focus {
+  background-color: #ffffff;
+  border-color: #0b8457;
+  box-shadow: 0 0 0 0.2rem rgba(22, 163, 74, 0.25);
+  outline: none;
 }
 
 
@@ -124,6 +259,12 @@ a{
 .titulo{
     color: #34A853;
 }
+
+.waiting{
+  width: 330px;
+  height: 230px;
+}
+
 
 /* footer */
 .footer {

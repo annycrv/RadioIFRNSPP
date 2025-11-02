@@ -43,7 +43,13 @@
         </div>
       </div>
     {% empty %}
-      <p class="text-center text-muted">Não há programas cadastrados para este dia.</p>
+
+      <div class="text-center mb-4 p-5 ">
+        <img src="{% static 'radio/img/waiting2.png' %}" width="300" class="mb-3">
+        <h5>Sem programas cadastrados</h5>
+        <p class="text-muted">Volte em breve para conferir as novas atrações!</p>
+      </div>
+
     {% endfor %}
   </div>
 </div>

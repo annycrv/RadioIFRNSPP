@@ -1,38 +1,53 @@
 {% extends "radio/base.html" %}
+{% load static crispy_forms_filters %}
 {% load static %}
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<section class="hero position-relative text-white overflow-hidden">
 
-  <!-- Imagem de fundo -->
-  <img src="{{ home.bg_home.url }}" 
-       alt="Estudantes Rádio IFRN" 
-       class="img-fluid w-100 hero-img object-fit-cover">
 
-  <!-- Overlay escuro -->
-  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+{% load static %}
 
-  <!-- Conteúdo central -->
-  <div class="position-absolute top-50 start-50 translate-middle text-center container">
-    <div class="row justify-content-center">
-      <div class="col-11 col-md-10 col-lg-8">
-        <h1 class="fw-bold display-5 text-uppercase mb-3 text-shadow">
-          {{ home.titulo_home }}
+<section class="hero d-flex align-items-center py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      
+      <!-- Texto -->
+      <div class="col-lg-6 text-start">
+        <h1 class="fw-bold display-4 title-hero">
+          Sua escola<br>
+          <span>com você</span>
         </h1>
-        <p class="lead mb-4 fs-5 text-shadow">
-          {{ home.subtitulo_home }}
+        <p class="lead mt-3">
+          <strong class="text">Rádio IFRN:</strong> A voz dos alunos, o som da nossa escola,
+          conectando conhecimento, cultura, informação e música em um só lugar.
         </p>
-        <a href="{% url 'programas' %}" 
-           class="btn btn-light btn-lg fw-semibold px-4 py-2 rounded-pill shadow">
-          Conheça nossos programas
-        </a>
+        <div class="mt-4">
+          <a href="{%url 'programacao' 'segunda'%}" class="btn btn-primary btn-lg me-3">Ouvir Agora</a>
+          <a href="{% url 'sobre'%}" class="btn btn-light btn-lg">Sobre Nós</a>
+        </div>
       </div>
+
+      <!-- Imagem -->
+      <div class="col-lg-6 text-center position-relative">
+        <img src="{% static 'radio/img/index2.png' %}" alt="Rádio IFRN" class="img-fluid hero-img">
+
+        <!-- Etiquetas -->
+        <div class="badge-live shadow-sm animate-up-down">
+          <span class="dot"></span> AO VIVO
+        </div>
+
+        <div class="badge-now-playing shadow-sm animate-up-down">
+          🎵 Tocando Agora
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<section class="py-5 text-center bg-white">
+
+<section class="section2 py-5 mt-5 text-center bg-white">
   <div class="container">
     <div class="row justify-content-center">
 
@@ -119,7 +134,29 @@
 </div>
 </section>
 
-<section>
-  
+<section class="sugestao-section">
+  <div class="container-form">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-md-9 col-12">
+        <div class="sugestao-form p-5">
+          <h3 class="titu fw-bold mb-2">Sugira um Programa</h3>
+          <p class="text-muted mb-4">
+            Queremos ouvir você! Compartilhe suas ideias para novos programas na Rádio IFRN.
+          </p>
+
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                <div class="d-grid mt-3">
+                    <button type="submit" class="enviar rounded-pill">
+                        Enviar Pedido
+                    </button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 {% endblock %}

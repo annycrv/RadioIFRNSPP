@@ -1,11 +1,20 @@
 from django.shortcuts import render,redirect
 from .models import Home, Programacao,Programa, Podcast, Sobre,Pedido
-from radio.forms import PedidoModelForm 
+from radio.forms import PedidoModelForm, HomeModelForm
 
 def index(request):
     context = {
         "home": Home.objects.first()
     }
+    if request.method == "POST":
+        form = HomeModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("index")
+        else:
+            context["form"] = form
+    else:
+        context["form"] = HomeModelForm()
     return render(request, "radio/index.html", context)
 
 def pedidos(request):
