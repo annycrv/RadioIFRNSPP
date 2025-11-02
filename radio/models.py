@@ -42,8 +42,7 @@ class Programacao(models.Model):
         ('sexta', 'Sexta'),
     ]
     podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE, null=True, blank=True)
-    programa = models.ForeignKey(Programa,on_delete=models.CASCADE, null=True)
-    bg_programacao = models.ImageField(upload_to="radio/img_programacao/", blank=True)
+    programa = models.ForeignKey(Programa,on_delete=models.CASCADE, null=True, blank=True)
     titulo_programacao = models.CharField(max_length=100)
     horario_programacao = models.TimeField()
     dia_semana = models.CharField(max_length=10, choices=DIAS_SEMANA, blank=True)

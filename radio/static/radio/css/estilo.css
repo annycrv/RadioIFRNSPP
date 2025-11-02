@@ -215,11 +215,6 @@ a{
   transition: all 0.3s ease;
 }
 
-.programacao-card-dark:hover .play-btn {
-  opacity: 1;
-  transform: scale(1);
-}
-
 .programacao-info h5 {
   font-size: 1rem;
 }
@@ -227,4 +222,103 @@ a{
 .programacao-info p {
   margin: 0;
   line-height: 1.4;
+}
+
+/* Card Programação */
+.programacao-card {
+  background-color: #fefefe;
+  border-radius: 14px;
+  transition: all 0.25s ease;
+  font-size: 17px;
+}
+
+.programacao-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 12px 20px 20px rgba(0, 0, 0, 0.08);
+}
+
+.text-pink {
+  color: #ff66b3;
+}
+
+.programacao-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+  align-items: start;
+}
+
+.programacao-card {
+  width: 100%;
+  max-width: 340px;
+  border-radius: 16px;
+  background: #e8f2e5; /* tom verde claro */
+  transition: all 0.25s ease;
+}
+
+.programacao-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Card Programa */
+.programa-card {
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.programa-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Banner do programa */
+.programa-card .card-img-top {
+  object-fit: cover;
+  height: 150px; /* altura fixa para todos os cards */
+}
+
+/* Título com gradiente */
+.text-gradient {
+  background: black;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+/* Descrição */
+.programa-card p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+/* Rodapé (Artista) */
+.programa-card .card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-top: 1px solid #eee;
+  padding-top: 0.5rem;
+}
+
+.programa-card .card-footer i {
+  font-size: 1.2rem;
+  color: black;
+  margin-right: 0.5rem;
+}
+
+.programa-card .card-footer span {
+  font-weight: 600;
+  color: #333;
+}
+
+.botao:hover {
+  transform: translateY(-3px);
+  transition: all 0.3s ease;
 }
