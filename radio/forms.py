@@ -18,7 +18,8 @@ class PedidoModelForm(forms.ModelForm):
                 'class': 'form-control campo-estilizado2',
                 'placeholder': 'Ex: Artista,banda ou cantor',
             }),
-            'horario_desejado': forms.TextInput(attrs={
+            'horario_desejado': forms.TimeInput(attrs={
+                'type': 'time', 
                 'class': 'form-control campo-estilizado2',
                 'placeholder': 'Digite o horário do dia que deseja ouvir',
             }),

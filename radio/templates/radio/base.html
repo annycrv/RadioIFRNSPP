@@ -42,22 +42,22 @@
                     <!-- Se estiver na página de podcasts -->
                     <a class="nav-link dropdown-toggle ativo fw-semibold" href="{% url 'podcasts' %}" id="programasDropdown"
                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Programas
+                    Quadros
                     </a>
                 <ul class="dropdown-menu" aria-labelledby="programasDropdown">
-                    <li><a class="dropdown-item fw-semibold"  href="{% url 'programas' %}">Programas</a></li>
+                    <li><a class="dropdown-item fw-semibold"  href="{% url 'quadros' %}">Quadros</a></li>
                     <li><a class="fw-semibold dropdown-item" href="{% url 'podcasts' %}">Podcasts</a></li>
 
                 </ul>
                     {% else %}
             <!-- Caso contrário, exibe Programas -->
-                <a class="nav-link dropdown-toggle fw-semibold {% if request.resolver_match.url_name == 'programas' %}ativo{% endif %}" 
-                href="{% url 'programas' %}" id="programasDropdown"
+                <a class="nav-link dropdown-toggle fw-semibold {% if request.resolver_match.url_name == 'quadros' %}ativo{% endif %}" 
+                href="{% url 'quadros' %}" id="programasDropdown"
                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Programas
+                Quadros
                 </a>
             <ul class="dropdown-menu" aria-labelledby="programasDropdown">
-                <li><a class="dropdown-item fw-semibold {% if request.resolver_match.url_name == 'programas' %}ativo{% endif %}" href="{% url 'programas' %}">Programas</a></li>
+                <li><a class="dropdown-item fw-semibold {% if request.resolver_match.url_name == 'quadros' %}ativo{% endif %}" href="{% url 'quadros' %}">Quadros</a></li>
                 <li><a class="dropdown-item fw-semibold {% if request.resolver_match.url_name == 'podcasts' %}ativo{% endif %}" href="{% url 'podcasts' %}">Podcasts</a></li>
                 </ul>
         {% endif %}

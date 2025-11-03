@@ -4,8 +4,8 @@
 {% load static %}
 
 {% block content %}
-    <h2 class="titulo mb-4 text-center mt-5">Pedidos</h2>
-    <h3 class="titulo mb-5 text-center">Peça sua música aqui!</h3>
+   <h2 class="titulo mb-4 text-center mt-5 ">Pedidos</h2>
+    <hr class="decorativa mx-auto">
 <div class="card2 container mx-auto shadow-lg mb-5 mt-5 rounded-2">
     <div class="card-body mt-3 p-4">
         <h4 class="card-title mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock me-2 mb-1" viewBox="0 0 16 16">
@@ -31,8 +31,6 @@
 
 
 <div class="container mt-5">
-
-
     <div class="card shadow-lg border-0 mx-auto mb-5">
         <div class="card-header text-white">
             <h6 class="mb-0">Preencha o formulário</h6>
@@ -40,8 +38,20 @@
         <div class="card-body p-4">
             <form method="POST">
                 {% csrf_token %}
-                {{ form|crispy }}
+                    {{ form.nome|as_crispy_field }}
+                    {{ form.musica|as_crispy_field }}
+                    {{ form.artista|as_crispy_field }}
 
+        <div class="row">
+            <div class="col-md-8">
+                {{ form.horario_desejado|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+                {{ form.turno|as_crispy_field }}
+            </div>
+        </div>
+
+        {{ form.mensagem|as_crispy_field }}
                 <div class="d-grid mt-3">
                     <button type="submit" class="enviar rounded-pill">
                         Enviar Pedido
@@ -51,8 +61,6 @@
         </div>
     </div>
 </div>
-
-
 {% endblock %}
 
 

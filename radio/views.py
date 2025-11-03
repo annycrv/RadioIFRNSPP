@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Home, Programacao,Programa, Podcast, Sobre,Pedido
+from .models import Home, Programacao, Quadro, Podcast, Sobre,Pedido
 from radio.forms import PedidoModelForm, HomeModelForm
 
 def index(request):
@@ -40,17 +40,17 @@ def programacao(request,dia):
 
     context = {
         "programacao": Programacao.objects.filter(dia_semana=dia),
-        "programas": Programa.objects.all(),
+        "quadros": Quadro.objects.all(),
         "podcasts": Podcast.objects.all(),
         "dia": dia.capitalize(),
     }
     return render(request, "radio/programacao.html", context)
 
-def programas(request):
+def quadros(request):
     context = {
-        "programas": Programa.objects.all()
+        "quadros": Quadro.objects.all()
     }
-    return render(request, "radio/programas.html", context)
+    return render(request, "radio/quadros.html", context)
 
 def podcasts(request):
     context = {

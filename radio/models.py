@@ -23,17 +23,17 @@ class Podcast(models.Model):
     def __str__ (self):
         return self.nome_podcast
 
-class Programa(models.Model):
-    banner_programa = models.ImageField(upload_to="radio/img_programa/", blank=True)
-    nome_programa = models.CharField(max_length=100)
-    descricao_programa = models.CharField(max_length=100)
-    artista_programa = models.CharField(max_length=100)
+class Quadro(models.Model):
+    banner_quadro = models.ImageField(upload_to="radio/img_programa/", blank=True)
+    nome_quadro = models.CharField(max_length=100)
+    descricao_quadro = models.CharField(max_length=100)
+    artista_quadro = models.CharField(max_length=100)
 
     class Meta:
-        verbose_name_plural = "Programas"
+        verbose_name_plural = "Quadros"
 
     def __str__ (self):
-        return self.nome_programa
+        return self.nome_quadro
 
 class Programacao(models.Model):
     DIAS_SEMANA = [
@@ -44,7 +44,7 @@ class Programacao(models.Model):
         ('sexta', 'Sexta'),
     ]
     podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE, null=True, blank=True)
-    programa = models.ForeignKey(Programa,on_delete=models.CASCADE, null=True, blank=True)
+    quadro = models.ForeignKey(Quadro,on_delete=models.CASCADE, null=True, blank=True)
     titulo_programacao = models.CharField(max_length=100)
     horario_programacao = models.TimeField()
     dia_semana = models.CharField(max_length=10, choices=DIAS_SEMANA, blank=True)
