@@ -54,6 +54,6 @@ class QuadroModelForm(forms.ModelForm):
 
 class ProgramacaoModelForm(forms.ModelForm):
     class Meta:
-        model = Quadro
+        model = Programacao
         fields = '__all__'
 

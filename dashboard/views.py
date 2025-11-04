@@ -63,3 +63,50 @@ def quadro_remover(request, id_quadro):
         return redirect("dashboard:quadros")
     else:
         return render(request, "dashboard/quadro_remover.html", context)
+    
+# Programacao
+
+def programacao(request):
+    context = {
+        "programacao": Programacao.objects.all(),
+    }
+    return render(request, "dashboard/programacao.html", context)
+
+def programacao_novo(request):
+    context = {}
+    if request.method == "POST":
+        form = ProgramacaoModelForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("dashboard:programacao")
+        else:
+            context["form"] = form
+    else:
+        context["form"] = ProgramacaoModelForm()
+    return render(request, "dashboard/programacao_novo.html", context)
+
+def programacao_editar(request, id_item):
+    context = {
+        "programacao": get_object_or_404(Programacao, id=id_item),
+    }
+    if request.method == "POST":
+        form = ProgramacaoModelForm(request.POST, instance=context["programacao"])
+        if form.is_valid():
+            form.save()
+            return redirect("dashboard:programacao")
+        else:
+            context["form"] = form
+    else:
+        context["form"] = ProgramacaoModelForm(instance=context["programacao"])
+    return render(request, "dashboard/programacao_editar.html", context)
+
+def programacao_remover(request, id_item):
+    context = {
+        "programacao": get_object_or_404(Programacao, id=id_item),
+    }
+    if request.method == "POST":
+        context["programacao"].delete()
+        return redirect("dashboard:programacao")
+    else:
+        return render(request, "dashboard/programacao_remover.html", context)
+    
