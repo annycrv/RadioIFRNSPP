@@ -59,7 +59,7 @@ html, body {
 .hero {
   background: linear-gradient(90deg, #eef2ff 0%, #b3d5bf 100%);
   overflow: hidden;
-  height: 600px;
+  height: 650px;
   margin-bottom: 130px;
 }
 .title-hero {
@@ -113,8 +113,8 @@ html, body {
 /* Etiqueta AO VIVO */
 .badge-live { 
   position: absolute;
-  bottom: 70%;
-  left: 5%;
+  bottom: 80%;
+  left: 1px;
   background: white;
   border-radius: 20px;
   padding: 8px 16px;
@@ -137,6 +137,7 @@ html, body {
 .badge-now-playing {
   position: absolute;
   right: 5px;
+  bottom: 10px;
   background: white;
   border-radius: 20px;
   padding: 8px 16px;
@@ -145,6 +146,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 6px;
+  margin-bottom: 4px;
 }
 
 /* Animação de movimento */
@@ -241,7 +243,6 @@ html, body {
   display: flex;
   justify-content: center;
 }
-
 .semana-container {
   background-color: #9dc9ac4d;
   border-radius: 13px;
@@ -249,42 +250,62 @@ html, body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  max-width: 970px; /* largura máxima para não ocupar a tela toda */
+  max-width: 970px;
   width: 100%;
-  height: 70px;
+  gap: 10px;
+  flex-wrap: nowrap; /* mantém tudo na mesma linha */
 }
 
+/* Estilo dos dias */
 .dia-card {
   text-align: center;
-  text-decoration: none;
-  color: #42526e;
+  flex: 1; /* todos crescem igualmente */
+  min-width: 60px; /* limite mínimo para não sumirem */
   padding: 10px 35px;
   border-radius: 15px;
-  background-color: transparent;
+  color: #2b2b3a;
+  text-decoration: none;
   transition: all 0.3s ease;
   font-weight: 300;
 }
 
 .dia-card h6 {
   font-weight: 400;
-  margin-bottom: 4px;
+  margin-bottom:4px ;
+  line-height: 1.1;
 }
 
 .dia-card p {
-  margin: 0;
   font-size: 13px;
-}
-
-.dia-card:hover {
-  background-color: #e8f0f8;
-  transform: translateY(-2px);
+  margin: 0px;
 }
 
 .dia-card.ativo {
-  background-color: #ffffff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  color: #0b8457;
-  font-weight: 200;
+  background-color: #9dc9ac;
+  color: white;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .dia-card h6 {
+    font-size: 0.9rem;
+  }
+  .dia-card p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .semana-container {
+    padding: 10px;
+    gap: 5px;
+  }
+  .dia-card h6 {
+    font-size: 0.8rem;
+  }
+  .dia-card p {
+    font-size: 0.7rem;
+  }
 }
 
 
