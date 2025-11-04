@@ -137,3 +137,61 @@ main {
   box-shadow: 0 4px 10px rgba(0,0,0,0.06);
   transform: translateY(-3px);
 }
+
+.body-registration {
+  background-color: #f5f8fb;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+.auth-icon {
+  background: linear-gradient(135deg, #08945a, #088957);
+  color: white;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 28px;
+}
+
+.btn-success {
+  border: none;
+  transition: 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+a {
+  text-decoration: none;
+}
+
+.text-green{
+  color: green;
+}
+
+.text{
+  color: green;
+}

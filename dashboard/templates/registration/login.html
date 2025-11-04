@@ -1,0 +1,36 @@
+{% extends "registration/base.html" %}
+{% block title %}Login{% endblock %}
+{% block icon %}<i class="bi bi-lock-fill"></i>{% endblock %}
+{% block heading %}
+  <span class="text-green">Bem-vindo de volta 🎧</span>
+{% endblock %}
+{% block subheading %}Entre com suas credenciais para continuar{% endblock %}
+
+{% block form %}
+<form method="post" novalidate>
+  {% csrf_token %}
+
+  <div class="mb-3 text-start">
+    <label class="form-label">Email</label>
+    {{ form.username }}
+  </div>
+
+  <div class="mb-3 text-start">
+    <label class="form-label">Senha</label>
+    {{ form.password }}
+  </div>
+
+  <div class="text-end mb-3">
+    <a href="#" class="small text-success">Esqueceu a senha?</a>
+  </div>
+
+  <button type="submit" class="btn btn-success w-100">Entrar</button>
+
+  <hr class="my-4">
+
+  <p class="small mb-0">
+    Não tem uma conta?
+    <a href="{% url 'usuarios:cadastro' %}" class="text-success">Cadastre-se</a>
+  </p>
+</form>
+{% endblock %}

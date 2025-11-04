@@ -1,0 +1,41 @@
+{% extends "registration/base.html" %}
+
+{% block title %}Cadastro{% endblock %}
+{% block icon %}<i class="bi bi-person-plus-fill"></i>{% endblock %}
+{% block heading %}<span class="text">Crie sua conta</span>{% endblock %}
+{% block subheading %}Preencha os dados abaixo para começar{% endblock %}
+
+{% block form %}
+<form method="post" novalidate>
+  {% csrf_token %}
+
+  <div class="mb-3 text-start">
+    <label class="form-label">Nome</label>
+    {{ form.first_name }}
+  </div>
+
+  <div class="mb-3 text-start">
+    <label class="form-label">Email</label>
+    {{ form.email }}
+  </div>
+
+  <div class="mb-3 text-start">
+    <label class="form-label">Senha</label>
+    {{ form.password1 }}
+  </div>
+
+  <div class="mb-3 text-start">
+    <label class="form-label">Confirmar senha</label>
+    {{ form.password2 }}
+  </div>
+
+  <button type="submit" class="btn btn-success w-100">Cadastrar</button>
+
+  <hr class="my-4">
+
+  <p class="small mb-0">
+    Já tem uma conta?
+    <a href="{% url 'login' %}" class="text-success">Entrar</a>
+  </p>
+</form>
+{% endblock %}

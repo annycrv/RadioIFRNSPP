@@ -69,7 +69,7 @@
     </li>
 
     <li class="nav-item ps-3">
-        <a class="nav-link fw-semibold {% if request.resolver_match.url_name == 'login' %}ativo{% endif %}" href="#">Login</a>
+        <a class="nav-link fw-semibold {% if request.resolver_match.url_name == 'login' %}ativo{% endif %}" href="{% url 'login' %}">Login</a>
     </li>
             </ul>
         </div>
