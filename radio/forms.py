@@ -1,5 +1,5 @@
 from django import forms
-from .models import Pedido,Home
+from .models import Pedido,Home, Quadro, Programacao
 
 class PedidoModelForm(forms.ModelForm):
     class Meta:
@@ -45,3 +45,15 @@ class HomeModelForm(forms.ModelForm):
                 'rows': 4,
             }),
                }
+        
+class QuadroModelForm(forms.ModelForm):
+    class Meta:
+        model = Quadro
+        fields = '__all__'
+
+
+class ProgramacaoModelForm(forms.ModelForm):
+    class Meta:
+        model = Quadro
+        fields = '__all__'
+

@@ -30,6 +30,7 @@
                     <li class="nav-item ps-3 ">
                         <a class="nav-link {% if request.resolver_match.url_name == 'index' %}ativo{% endif %} fw-semibold" href="{% url 'index' %}">Home</a>
                     </li>
+                    
                     <li class="nav-item ps-3">
                         <a class="nav-link {% if request.resolver_match.url_name == 'pedidos' %}ativo{% endif %} fw-semibold" href="{% url 'pedidos' %}">Pedidos</a>
                     </li>

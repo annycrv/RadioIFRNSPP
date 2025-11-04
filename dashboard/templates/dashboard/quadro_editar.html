@@ -1,0 +1,20 @@
+{% extends "dashboard/base.html" %}
+{% load static crispy_forms_filters %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow-sm p-4 rounded-4">
+    <h3 class="fw-bold mb-4">Editar Quadro</h3>
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form|crispy }}
+
+      <div class="d-flex gap-2 mt-3">
+        <button type="submit" class="salvar px-4">Salvar</button>
+        <a href="{% url 'dashboard:quadros' %}" class="btn btn-outline-secondary px-4">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

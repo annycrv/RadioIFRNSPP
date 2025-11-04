@@ -24,10 +24,10 @@ class Podcast(models.Model):
         return self.nome_podcast
 
 class Quadro(models.Model):
-    banner_quadro = models.ImageField(upload_to="radio/img_programa/", blank=True)
-    nome_quadro = models.CharField(max_length=100)
-    descricao_quadro = models.CharField(max_length=100)
-    artista_quadro = models.CharField(max_length=100)
+    banner_quadro = models.ImageField("Banner do quadro",upload_to="radio/img_programa/", blank=True)
+    nome_quadro = models.CharField("Nome do quadro",max_length=100)
+    descricao_quadro = models.CharField("Descrição do quadro",max_length=100)
+    artista_quadro = models.CharField("Artista do quadro",max_length=100)
 
     class Meta:
         verbose_name_plural = "Quadros"
