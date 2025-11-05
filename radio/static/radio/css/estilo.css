@@ -56,11 +56,16 @@ html, body {
 }
 
 /* banner */
+.container-index{
+  margin-left: 50px;
+  margin-right: 50px;
+}
 .hero {
   background: linear-gradient(90deg, #eef2ff 0%, #b3d5bf 100%);
   overflow: hidden;
   height: 650px;
   margin-bottom: 130px;
+  padding: 0px;
 }
 .title-hero {
   position: relative;
@@ -113,7 +118,7 @@ html, body {
 /* Etiqueta AO VIVO */
 .badge-live { 
   position: absolute;
-  bottom: 80%;
+  bottom: 85%;
   left: 1px;
   background: white;
   border-radius: 20px;
@@ -136,8 +141,8 @@ html, body {
 /* Etiqueta Tocando Agora */
 .badge-now-playing {
   position: absolute;
-  right: 5px;
-  bottom: 10px;
+  right: 40px;
+  bottom: 0px;
   background: white;
   border-radius: 20px;
   padding: 8px 16px;
@@ -239,10 +244,11 @@ html, body {
 
 
 /* programação */
-.semana-wrapper {
+.semana-wrapper { 
   display: flex;
   justify-content: center;
 }
+
 .semana-container {
   background-color: #9dc9ac4d;
   border-radius: 13px;
@@ -253,15 +259,15 @@ html, body {
   max-width: 970px;
   width: 100%;
   gap: 10px;
-  flex-wrap: nowrap; /* mantém tudo na mesma linha */
+  flex-wrap: wrap; /* permite quebrar linha */
 }
 
 /* Estilo dos dias */
 .dia-card {
   text-align: center;
-  flex: 1; /* todos crescem igualmente */
-  min-width: 60px; /* limite mínimo para não sumirem */
-  padding: 10px 35px;
+  flex: 1 1 100px; /* cresce e encolhe, mínimo 100px */
+  min-width: 80px;
+  padding: 8px 20px;
   border-radius: 15px;
   color: #2b2b3a;
   text-decoration: none;
@@ -271,13 +277,13 @@ html, body {
 
 .dia-card h6 {
   font-weight: 400;
-  margin-bottom:4px ;
-  line-height: 1.1;
+  margin-bottom: 4px;
+  line-height: 1.0;
 }
 
 .dia-card p {
   font-size: 13px;
-  margin: 0px;
+  margin: 0;
 }
 
 .dia-card.ativo {
@@ -287,9 +293,21 @@ html, body {
 
 /* Responsividade */
 @media (max-width: 768px) {
+  .semana-container {
+    flex-wrap: nowrap;
+    padding: 12px 15px;
+    gap: 8px;
+  }
+
+  .dia-card {
+    flex: 1 1 45%; /* duas colunas */
+    padding: 10px;
+  }
+
   .dia-card h6 {
     font-size: 0.9rem;
   }
+
   .dia-card p {
     font-size: 0.8rem;
   }
@@ -297,17 +315,25 @@ html, body {
 
 @media (max-width: 480px) {
   .semana-container {
+    flex-direction: column;
+    align-items: stretch;
     padding: 10px;
-    gap: 5px;
+    gap: 6px;
   }
+
+  .dia-card {
+    flex: 1 1 100%;
+    padding: 8px 12px;
+  }
+
   .dia-card h6 {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
+
   .dia-card p {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
 }
-
 
 a{
     text-decoration: none;
