@@ -16,11 +16,9 @@
   {% for item in programacao %}
     <div class="col-md-4">
       <div class="program-card p-3 border rounded shadow-sm h-100">
-        <h5 class="mb-2">{{ item.nome_programacao }}</h5>
+        <h5 class="mb-2">{{ item.titulo_programacao }}</h5>
         <p class="text-muted mb-1"><strong>Horário:</strong> {{ item.horario_programacao }}</p>
-        <p class="mb-1">{{ item.descricao_programacao }}</p>
         <p class="mb-0"><strong>Artista:</strong> {{ item.artista_programacao }}</p>
-
         <div class="d-flex gap-2 mt-3">
           <a href="{% url 'dashboard:programacao_editar' item.id %}" class="btn btn-outline-secondary btn-sm">
             <i class="bi bi-pencil-square"></i>

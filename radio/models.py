@@ -4,8 +4,8 @@ class Home(models.Model):
     titulo_home = models.CharField(max_length=100)
     subtitulo_home = models.CharField(max_length=200)
     bg_home = models.ImageField(upload_to="radio/banner_home/", blank=True)
-    quemsomos_home = models.CharField(max_length=200)
-    nome = models.CharField("Seu nome",max_length=30, blank=True)
+    quemsomos_home = models.CharField(max_length=1000)
+    nome = models.CharField("Seu nome",max_length=50, blank=True)
     comentario = models.TextField("Quais programas você gostaria de encontrar na nossa rádio?", max_length=1000, blank=True)
 
     class Meta:
@@ -14,8 +14,8 @@ class Home(models.Model):
 class Podcast(models.Model):
     banner_podcast = models.ImageField(upload_to="radio/img_podcast/", blank=True)
     nome_podcast = models.CharField(max_length=100)
-    descricao_podcast = models.CharField(max_length=100)
-    host_podcast = models.CharField(max_length=100)
+    descricao_podcast = models.CharField(max_length=1000)
+    host_podcast = models.CharField(max_length=1000)
 
     class Meta:
         verbose_name_plural = "Podcasts"
@@ -26,8 +26,8 @@ class Podcast(models.Model):
 class Quadro(models.Model):
     banner_quadro = models.ImageField("Banner do quadro",upload_to="radio/img_programa/", blank=True)
     nome_quadro = models.CharField("Nome do quadro",max_length=100)
-    descricao_quadro = models.CharField("Descrição do quadro",max_length=100)
-    artista_quadro = models.CharField("Artista do quadro",max_length=100)
+    descricao_quadro = models.CharField("Descrição do quadro",max_length=1000)
+    artista_quadro = models.CharField("Artista do quadro",max_length=1000)
 
     class Meta:
         verbose_name_plural = "Quadros"
@@ -57,8 +57,8 @@ class Programacao(models.Model):
 
 class Sobre(models.Model):
     titulo_sobre = models.CharField(max_length=100)
-    subtitulo_sobre = models.CharField(max_length=150)
-    conteudo_sobre = models.CharField(max_length=150)
+    subtitulo_sobre = models.CharField(max_length=1000)
+    conteudo_sobre = models.CharField(max_length=1000)
     banner_sobre = models.ImageField(upload_to="banner_sobre/")
 
     class Meta:
@@ -73,11 +73,11 @@ class Pedido(models.Model):
         ('tarde', 'Tarde'),
     ]
 
-    nome = models.CharField("Seu nome",max_length=30)
-    musica = models.CharField("O que você gostaria de ouvir hoje?",max_length=100)
-    artista = models.CharField("Qual o nome do(a) artista ou banda dessa música?",max_length=100)
+    nome = models.CharField("Seu nome",max_length=1000)
+    musica = models.CharField("O que você gostaria de ouvir hoje?",max_length=1000)
+    artista = models.CharField("Qual o nome do(a) artista ou banda dessa música?",max_length=1000)
     horario_desejado = models.TimeField("Qual o horário desejado?")
-    mensagem = models.TextField("Observações (opcional)",blank=True, null=True)
+    mensagem = models.TextField("Observações (opcional)",blank=True, null=True, max_length=1000)
     turno = models.CharField("Turno", max_length=10, choices=TURNO, blank=True, null=True)
     # horario_pedidos = models.TimeField()
     class Meta:
