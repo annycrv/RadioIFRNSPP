@@ -7,26 +7,21 @@
 
 <!-- Card Programa -->
 <div class="container my-3">
-  <div class="programa-grid">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"> <!-- ✔ controla as colunas -->
     {% for quadro in quadros %}
-      <div class="col-12 col-md-6 col-lg-3">
-        <div class="card programa-card shadow-sm border-0 h-100 d-flex flex-column">
+      <div class="col d-flex"> <!-- d-flex ajuda os cards a terem mesma altura -->
+        <div class="card programa-card shadow-sm border-0 w-100 d-flex flex-column">
           
-          <!-- Banner do programa -->
           {% if quadro.banner_quadro %}
             <img src="{{ quadro.banner_quadro.url }}" class="card-img-top" alt="Banner {{ quadro.nome_quadro }}">
           {% else %}
             <img src="https://via.placeholder.com/300x150" class="card-img-top" alt="Banner padrão">
           {% endif %}
-          
+
           <div class="card-body d-flex flex-column">
-            <!-- Título com gradiente -->
-            <h5 class="fw-bold mb-2 text-gradient">{{ quadro.nome_quadro}}</h5>
-            
-            <!-- Descrição -->
+            <h5 class="fw-bold mb-2 mt-3 text-gradient">{{ quadro.nome_quadro }}</h5>
             <p class="mb-3">{{ quadro.descricao_quadro|truncatewords:12 }}</p>
-            
-            <!-- Rodapé com artista -->
+
             <div class="d-flex align-items-center mt-auto pt-2 border-top">
               <i class="bi bi-person-circle text-pink fs-6 me-2"></i>
               <div>
@@ -39,8 +34,11 @@
         </div>
       </div>
     {% empty %}
-      <p class="text-center text-muted">Não há programas cadastrados.</p>
+      <div class="col">
+        <p class="text-center text-muted">Não há programas cadastrados.</p>
+      </div>
     {% endfor %}
   </div>
-</div> 
+</div>
+
 {% endblock %}
