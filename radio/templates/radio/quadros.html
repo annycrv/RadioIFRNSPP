@@ -3,21 +3,15 @@
 {% load static %}
 {% block content %}
    <h2 class="titulo mb-4 text-center mt-5 ">Quadros</h2>
-    <hr class="decorativa mx-auto">
+    <hr class="decorativa mx-auto mb-5">
 
 <!-- Card Programa -->
 <div class="container my-3">
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"> <!-- ✔ controla as colunas -->
     {% for quadro in quadros %}
       <div class="col d-flex"> <!-- d-flex ajuda os cards a terem mesma altura -->
-        <div class="card programa-card shadow-sm border-0 w-100 d-flex flex-column">
-          
-          {% if quadro.banner_quadro %}
+        <div class="card programa-card shadow-sm w-100 d-flex flex-column">          
             <img src="{{ quadro.banner_quadro.url }}" class="card-img-top" alt="Banner {{ quadro.nome_quadro }}">
-          {% else %}
-            <img src="https://via.placeholder.com/300x150" class="card-img-top" alt="Banner padrão">
-          {% endif %}
-
           <div class="card-body d-flex flex-column">
             <h5 class="fw-bold mb-2 mt-3 text-gradient">{{ quadro.nome_quadro }}</h5>
             <p class="mb-3">{{ quadro.descricao_quadro|truncatewords:12 }}</p>

@@ -1,0 +1,24 @@
+{% extends "dashboard/base.html" %}
+{% block title %}{{ titulo_pagina }}{% endblock title %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h2 class="fw-bold mb-1">
+        {{ titulo_pagina }}
+        {% comment %} {% if perms.blog.create_postagem %} {% endcomment %}
+    </h2>
+    <p class="text-muted">
+        {{ subtitulo_pagina }}
+    </p>
+  </div>
+  <a href="{% url url_novo %}" class=" px-4 py-2 novo_programa">
+    <i class="bi bi-plus-lg me-2"></i> {{ texto_botao_novo }}
+  </a>
+</div>
+        {% comment %} {% endif %} {% endcomment %}
+
+    <div>
+        {% include partial_tabela %}
+    </div>
+
+{% endblock content %}

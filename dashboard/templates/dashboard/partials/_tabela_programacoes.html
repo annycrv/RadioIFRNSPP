@@ -1,17 +1,3 @@
-{% extends "dashboard/base.html" %}
-{% load static %}
-{% block content %}
-
-<div class="d-flex justify-content-between align-items-center mb-4">
-  <div>
-    <h2 class="fw-bold mb-1">Programação</h2>
-    <p class="text-muted">Gerencie a programação da rádio</p>
-  </div>
-  <a href="{% url 'dashboard:programacao_novo' %}" class=" px-4 py-2 novo_programa">
-    <i class="bi bi-plus-lg me-2"></i>Adicionar Programação
-  </a>
-</div>
-
 <div class="row g-4">
   {% for item in programacao %}
     <div class="col-md-4">
@@ -36,5 +22,3 @@
     <p class="text-muted">Nenhuma programação cadastrada ainda.</p>
   {% endfor %}
 </div>
-
-{% endblock %}

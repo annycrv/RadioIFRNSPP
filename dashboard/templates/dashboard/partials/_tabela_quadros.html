@@ -1,17 +1,3 @@
-{% extends "dashboard/base.html" %}
-{% load static %}
-{% block content %}
-
-<div class="d-flex justify-content-between align-items-center mb-4">
-  <div>
-    <h2 class="fw-bold mb-1">Quadros</h2>
-    <p class="text-muted">Gerencie os quadros da rádio</p>
-  </div>
-  <a href="{% url 'dashboard:quadro_novo' %}" class=" px-4 py-2 novo_programa">
-    <i class="bi bi-plus-lg me-2"></i>Novo Quadro
-  </a>
-</div>
-
 <div class="row g-4">
   {% for quadro in quadros %}
     <div class="col-md-4">
@@ -20,15 +6,19 @@
         <p class="text-muted mb-1">{{ quadro.descricao_quadro|truncatewords:12  }}</p>
         <p><strong>Apresentador:</strong> {{ quadro.artista_quadro }}</p>
         <div class="d-flex gap-2 mt-2">
+            {% comment %} {% if perms.blog.view_postagem %} {% endcomment %}
           <a href="{% url 'dashboard:quadro_editar' quadro.id %}" class="btn btn-outline-secondary btn-sm">
             <i class="bi bi-pencil-square"></i>
           </a>
+            {% comment %} {% endif %} {% endcomment %}
+            {% comment %} {% if perms.blog.change_postagem %} {% endcomment %}
           <form method="post" action="{% url 'dashboard:quadro_remover' quadro.id %}" style="display:inline;">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger btn-sm">
               <i class="bi bi-trash"></i>
             </button>
           </form>
+          {% comment %} {% endif %} {% endcomment %}
         </div>
       </div>
     </div>
@@ -36,5 +26,3 @@
     <p class="text-muted">Nenhum programa cadastrado ainda.</p>
   {% endfor %}
 </div>
-
-{% endblock %}
