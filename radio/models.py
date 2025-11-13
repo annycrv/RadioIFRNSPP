@@ -6,7 +6,7 @@ class Home(models.Model):
     bg_home = models.ImageField(upload_to="radio/banner_home/", blank=True)
     quemsomos_home = models.CharField(max_length=1000)
     nome = models.CharField("Seu nome",max_length=50, blank=True)
-    comentario = models.TextField("Quais programas você gostaria de encontrar na nossa rádio?", max_length=1000, blank=True)
+    comentario = models.TextField("Quais os quadros você gostaria de encontrar na nossa rádio?", max_length=1000, blank=True)
 
     class Meta:
         verbose_name_plural = "Home"

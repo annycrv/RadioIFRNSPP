@@ -136,3 +136,5 @@ LOGIN_REDIRECT_URL = "dashboard:index"
 LOGOUT_REDIRECT_URL = "index"
 
 AUTH_USER_MODEL = "usuarios.Usuario"
+
+LOGIN_URL = "/accounts/login"

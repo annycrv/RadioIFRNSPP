@@ -1,0 +1,32 @@
+<div class="row g-4">
+  {% for usuario in usuarios %}
+    <div class="col-md-4">
+      <div class="program-card p-3 shadow-sm rounded-3">
+        <h5 class="mb-2">{{ usuario.username }}</h5>
+        <p class="text-muted mb-1">
+          <strong>Nome:</strong> {{ usuario.first_name }} {{ usuario.last_name }}
+        </p>
+        <p class="text-muted mb-3">
+          <strong>Email:</strong> {{ usuario.email }}
+        </p>
+
+        <div class="d-flex gap-2 mt-2">
+          <!-- Botão Editar -->
+          <a href="{% url 'usuarios:usuarios_editar' usuario.id %}" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-pencil-square"></i>
+          </a>
+
+          <!-- Botão Excluir -->
+          <form method="post" action="{% url 'usuarios:usuarios_remover' usuario.id %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">
+              <i class="bi bi-trash"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-muted">Nenhum usuário cadastrado ainda.</p>
+  {% endfor %}
+</div>

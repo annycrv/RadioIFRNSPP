@@ -1,14 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Usuario
-from .forms import UsuarioForm
+from .forms import UsuarioForm, UsuarioCreationForm
 
 def cadastro(request):
     if request.method == "POST":
         form = UsuarioForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('/accounts/login')
     else:
         form = UsuarioForm()
     
@@ -16,3 +16,56 @@ def cadastro(request):
         "form": form,
     }
     return render(request, "usuarios/cadastro.html", context)
+
+def usuarios(request):
+    context = {
+        "usuarios": Usuario.objects.all(),
+        "titulo_pagina": "Usuários",
+        "url_novo": "usuarios:usuarios_novo",
+        "partial_tabela": "dashboard/partials/_tabela_usuarios.html",
+        "texto_botao_novo": "Adicionar Usuário",
+    }
+    return render(request, "dashboard/listar.html", context)
+
+def usuarios_novo(request):
+    context = {
+        "titulo_pagina": "Novo Usuário",
+        "url_cancelar": "dashboard:usuarios"
+    }
+    if request.method == "POST":
+        form = UsuarioCreationForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("usuarios:usuarios")
+        else:
+            context["form"] = form
+    else:
+        context["form"] = UsuarioCreationForm()
+    return render(request, "dashboard/novo.html", context)
+
+def usuarios_editar(request, id_post):
+    context = {
+        "usuario": get_object_or_404(Usuario, id=id_post),
+        "titulo_pagina": "Editar Usuario",
+    }
+    if request.method == "POST":
+        form = UsuarioForm(request.POST, request.FILES, instance=context["usuario"])
+        if form.is_valid():
+            form.save()
+            return redirect("dashboard:usuarios")
+        else:
+            context["form"] = form
+    else:
+        context["form"] = UsuarioForm(instance=context["usuario"])
+    return render(request, "dashboard/editar.html", context)
+
+def usuarios_remover(request, id_id):
+    context = {
+        "programacao": get_object_or_404(Usuario, id=id_id),
+        "titulo_pagina": "Remover Usuario",
+    }
+    if request.method == "POST":
+        context["object"].delete()
+        return redirect("dashboard:usuarios")
+    else:
+        return render(request, "dashboard/remover.html", context)

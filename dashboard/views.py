@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 from radio.models import Home, Programacao, Quadro, Podcast, Sobre
 from radio.forms import QuadroModelForm, ProgramacaoModelForm 
+from usuarios.models import Usuario
 
 def index(request):
     context = {
@@ -11,7 +12,7 @@ def index(request):
         "sobre": Sobre.objects.all,
         "total_quadros": Quadro.objects.count(),
         "total_programacoes": Programacao.objects.count(),
-        # "total_usuarios": User.objects.count(),
+        "total_usuarios": Usuario.objects.count(),
     }
     return render(request, "dashboard/index.html", context)
 
