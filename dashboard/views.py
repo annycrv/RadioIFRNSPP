@@ -73,7 +73,7 @@ def quadro_remover(request, id_quadro):
         context["quadro"].delete()
         return redirect("dashboard:quadros")
     else:
-        return render(request, "dashboard/quadro_remover.html", context)
+        return render(request, "dashboard/remover.html", context)
     
 # Programacao
 
@@ -131,5 +131,5 @@ def programacao_remover(request, id_item):
         context["programacao"].delete()
         return redirect("dashboard:programacao")
     else:
-        return render(request, "dashboard/programacao_remover.html", context)
+        return render(request, "dashboard/remover.html", context)
     

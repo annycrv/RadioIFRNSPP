@@ -133,8 +133,8 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 LOGIN_REDIRECT_URL = "dashboard:index"
-LOGOUT_REDIRECT_URL = "index"
+LOGOUT_REDIRECT_URL = "dashboard:index"
 
 AUTH_USER_MODEL = "usuarios.Usuario"
 
-LOGIN_URL = "/accounts/login"
+LOGIN_URL = "login"

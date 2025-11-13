@@ -8,7 +8,7 @@ def cadastro(request):
         form = UsuarioForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/accounts/login')
+            return redirect('login')
     else:
         form = UsuarioForm()
     
@@ -43,29 +43,30 @@ def usuarios_novo(request):
         context["form"] = UsuarioCreationForm()
     return render(request, "dashboard/novo.html", context)
 
-def usuarios_editar(request, id_post):
+def usuarios_editar(request, id_usuario):
     context = {
-        "usuario": get_object_or_404(Usuario, id=id_post),
+        "usuario": get_object_or_404(Usuario, id=id_usuario),
         "titulo_pagina": "Editar Usuario",
+        "url_cancelar": "dashboard:usuarios"
     }
     if request.method == "POST":
         form = UsuarioForm(request.POST, request.FILES, instance=context["usuario"])
         if form.is_valid():
             form.save()
-            return redirect("dashboard:usuarios")
+            return redirect("usuarios:usuarios")
         else:
             context["form"] = form
     else:
         context["form"] = UsuarioForm(instance=context["usuario"])
     return render(request, "dashboard/editar.html", context)
 
-def usuarios_remover(request, id_id):
+def usuarios_remover(request, id_usuario):
     context = {
-        "programacao": get_object_or_404(Usuario, id=id_id),
+        "usuario": get_object_or_404(Usuario, id=id_usuario),
         "titulo_pagina": "Remover Usuario",
     }
     if request.method == "POST":
-        context["object"].delete()
-        return redirect("dashboard:usuarios")
+        context["usuario"].delete()
+        return redirect("usuarios:usuarios")
     else:
         return render(request, "dashboard/remover.html", context)
