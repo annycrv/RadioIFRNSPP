@@ -1,18 +1,18 @@
 <div class="row g-4">
-  {% for quadro in quadros %}
+  {% for programa in programas %}
     <div class="col-md-4">
       <div class="program-card">
-        <h5>{{ quadro.nome_quadro }}</h5>
-        <p class="text-muted mb-1">{{ quadro.descricao_quadro|truncatewords:12  }}</p>
-        <p><strong>Apresentador:</strong> {{ quadro.artista_quadro }}</p>
+        <h5>{{ programa.nome_programa }}</h5>
+        <p class="text-muted mb-1">{{ programa.descricao_programa|truncatewords:12  }}</p>
+        <p><strong>Apresentador:</strong> {{ programa.apresentador_programa }}</p>
         <div class="d-flex gap-2 mt-2">
             {% comment %} {% if perms.blog.view_postagem %} {% endcomment %}
-          <a href="{% url 'dashboard:quadro_editar' quadro.id %}" class="btn btn-outline-secondary btn-sm">
+          <a href="{% url 'dashboard:programa_editar' programa.id %}" class="btn btn-outline-secondary btn-sm">
             <i class="bi bi-pencil-square"></i>
           </a>
             {% comment %} {% endif %} {% endcomment %}
             {% comment %} {% if perms.blog.change_postagem %} {% endcomment %}
-          <form method="post" action="{% url 'dashboard:quadro_remover' quadro.id %}" style="display:inline;">
+          <form method="post" action="{% url 'dashboard:programa_remover' programa.id %}" style="display:inline;">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger btn-sm">
               <i class="bi bi-trash"></i>

@@ -1,10 +1,10 @@
 from django import forms
-from .models import Pedido,Home, Quadro, Programacao
+from .models import Pedido,Home, Programa, Programacao
 
 class PedidoModelForm(forms.ModelForm):
     class Meta:
         model = Pedido
-        exclude = ["horario_pedidos"]
+        fields = '__all__'
         widgets = {
             'nome': forms.TextInput(attrs={
                 'class': 'form-control campo-estilizado2',
@@ -18,12 +18,10 @@ class PedidoModelForm(forms.ModelForm):
                 'class': 'form-control campo-estilizado2',
                 'placeholder': 'Ex: Artista,banda ou cantor',
             }),
-            'horario_desejado': forms.TimeInput(attrs={
-                'type': 'time', 
-                'class': 'form-control campo-estilizado2',
-                'placeholder': 'Digite o horário do dia que deseja ouvir',
-            }),
+            'horario_desejado': forms.Select(attrs={'class': 'form-select'}),
+
             'turno': forms.Select(attrs={'class': 'form-select'}),
+
             'mensagem': forms.TextInput(attrs={
                 'class': 'form-control campo-estilizado2',
                 'placeholder': 'Digite alguma observação',
@@ -46,9 +44,9 @@ class HomeModelForm(forms.ModelForm):
             }),
                }
         
-class QuadroModelForm(forms.ModelForm):
+class ProgramaModelForm(forms.ModelForm):
     class Meta:
-        model = Quadro
+        model = Programa
         fields = '__all__'
 
 

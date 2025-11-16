@@ -12,23 +12,18 @@
   <div class="semana-container d-flex justify-content-between align-items-center px-3 py-2">
     <a href="{% url 'programacao' 'segunda' %}" class="dia-card {% if dia == 'Segunda' %}ativo{% endif %}">
       <h6>Seg</h6>
-      <p>Segunda</p>
     </a>
     <a href="{% url 'programacao' 'terca' %}" class="dia-card {% if dia == 'Terca' %}ativo{% endif %}">
       <h6>Ter</h6>
-      <p>Terça</p>
     </a>
     <a href="{% url 'programacao' 'quarta' %}" class="dia-card {% if dia == 'Quarta' %}ativo{% endif %}">
       <h6>Qua</h6>
-      <p>Quarta</p>
     </a>
     <a href="{% url 'programacao' 'quinta' %}" class="dia-card {% if dia == 'Quinta' %}ativo{% endif %}">
       <h6>Qui</h6>
-      <p>Quinta</p>
     </a>
     <a href="{% url 'programacao' 'sexta' %}" class="dia-card {% if dia == 'Sexta' %}ativo{% endif %}">
       <h6>Sex</h6>
-      <p>Sexta</p>
     </a>
   </div>
 </div>
@@ -39,15 +34,15 @@
   <div class="programacao-grid">
     {% for item in programacao %}
       <div class="card programacao-card shadow-sm border-0 h-100 p-3 body-card">
-        <h5 class="fw-bold mb-2 text-gradient">{{ item.titulo_programacao }}</h5>
-        <p class="mb-3">{{ item.quadro.descricao_quadro|truncatewords:12 }}</p>
+        <h5 class="fw-bold mb-2 text-gradient">{{ item.programa.nome_programa }}</h5>
+        <p class="mb-3">{{ item.programa.descricao_programa|truncatewords:12 }}</p>
 
         <div class="d-flex justify-content-between border-top pt-2 mt-auto">
           <div class="d-flex align-items-center">
             <i class="bi bi-clock-history text-warning fs-6 me-2"></i>
             <div>
               <small class="text-muted d-block lh-1">Horário</small>
-              <span class="fw-semibold small">{{ item.horario_programacao }}</span>
+              <span class="fw-semibold small">{{ item.horario }}</span>
             </div>
           </div>
 
@@ -55,7 +50,7 @@
             <i class="bi bi-person-circle text-pink fs-6 me-2"></i>
             <div>
               <small class="text-muted d-block lh-1">Artista</small>
-              <span class="fw-semibold small">{{ item.quadro.artista_quadro }}</span>
+              <span class="fw-semibold small">{{ item.programa.apresentador_programa }}</span>
             </div>
           </div>
         </div>
@@ -64,7 +59,7 @@
 
       <div class="text-center mb-4 p-5 mx-auto">
         <img src="{% static 'radio/img/waiting2.png' %}" width="300" class="mb-3">
-        <h5>Sem quadros cadastrados</h5>
+        <h5>Sem programas cadastrados</h5>
         <p class="text-muted">Volte em breve para conferir as novas atrações!</p>
       </div>
 

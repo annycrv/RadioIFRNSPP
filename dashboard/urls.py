@@ -4,10 +4,10 @@ from . import views
 app_name = "dashboard"
 urlpatterns = [
     path('', views.index, name='index'),
-    path('quadros/', views.quadros, name='quadros'),
-    path('quadros/novo/', views.quadro_novo, name='quadro_novo'),
-    path('quadros/<int:id_quadro>/editar/', views.quadro_editar, name='quadro_editar'),
-    path('quadros/<int:id_quadro>/remover/', views.quadro_remover, name='quadro_remover'),
+    path('programas/', views.programas, name='programas'),
+    path('programas/novo/', views.programa_novo, name='programa_novo'),
+    path('programas/<int:id_programa>/editar/', views.programa_editar, name='programa_editar'),
+    path('programas/<int:id_programa>/remover/', views.programa_remover, name='programa_remover'),
     path('programacao/', views.programacao, name='programacao'),
     path('programacao/novo/', views.programacao_novo, name='programacao_novo'),
     path('programacao/<int:id_item>/editar/', views.programacao_editar, name='programacao_editar'),

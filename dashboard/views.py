@@ -1,77 +1,76 @@
 from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
-from radio.models import Home, Programacao, Quadro, Podcast, Sobre
-from radio.forms import QuadroModelForm, ProgramacaoModelForm 
+from radio.models import Home, Programa, Sobre, Programacao
+from radio.forms import ProgramaModelForm
+from radio.forms import ProgramacaoModelForm
 from usuarios.models import Usuario
 
 def index(request):
     context = {
         "home": Home.objects.all,
         "programacao": Programacao.objects.all,
-        "quadros": Quadro.objects.all,
-        "podcast": Podcast.objects.all,
+        "programas": Programa.objects.all,
+        # "podcast": Podcast.objects.all,
         "sobre": Sobre.objects.all,
-        "total_quadros": Quadro.objects.count(),
+        "total_programas": Programa.objects.count(),
         "total_programacoes": Programacao.objects.count(),
         "total_usuarios": Usuario.objects.count(),
     }
     return render(request, "dashboard/index.html", context)
 
-def quadros(request):
+def programas(request):
     context = {
-        "quadros": Quadro.objects.all(),
-        "titulo_pagina": "Quadros",
-        "subtitulo_pagina": "Gerencie os quadros da rádio",
-        "url_novo": "dashboard:quadro_novo",
-        "partial_tabela": "dashboard/partials/_tabela_quadros.html",
-        "texto_botao_novo": "Adicionar Quadro", 
+        "programas": Programa.objects.all(),
+        "titulo_pagina": "Programas",
+        "subtitulo_pagina": "Gerencie os programas da rádio",
+        "url_novo": "dashboard:programa_novo",
+        "partial_tabela": "dashboard/partials/_tabela_programas.html",
+        "texto_botao_novo": "Adicionar Programa", 
     }
     return render(request, "dashboard/listar.html", context)
 
 
-def quadro_novo(request):
+def programa_novo(request):
     context = { 
-        "titulo_pagina": "Adicionar quadro",
-        "url_cancelar": "dashboard:quadros",
+        "titulo_pagina": "Adicionar programa",
+        "url_cancelar": "dashboard:programas",
     }
     if request.method == "POST":
-        form = QuadroModelForm(request.POST,request.FILES)
+        form = ProgramaModelForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            return redirect("dashboard:quadros")
+            return redirect("dashboard:programas")
         else:
             context["form"] = form
     else:
-        context["form"] = QuadroModelForm()
+        context["form"] = ProgramaModelForm()
     return render(request, "dashboard/novo.html", context)
 
-# def quadro_detalhar(request, id_post):
-#     return render(request,"dashboard/quadro_detalhar.html",{"post": get_object_or_404(Quadro, id=id_post)})
 
-def quadro_editar(request, id_quadro):
+def programa_editar(request, id_programa):
     context = {
-        "quadro": get_object_or_404(Quadro, id=id_quadro),
-        "titulo_pagina": "Editar quadro",
-        "url_cancelar": "dashboard:quadros",
+        "programa": get_object_or_404(Programa, id=id_programa),
+        "titulo_pagina": "Editar programa",
+        "url_cancelar": "dashboard:programas",
     }
     if request.method == "POST":
-        form = QuadroModelForm(request.POST, instance=context["quadro"])
+        form = ProgramaModelForm(request.POST, instance=context["programa"])
         if form.is_valid():
             form.save()
-            return redirect("dashboard:quadros")
+            return redirect("dashboard:programas")
         else:
             context["form"] = form
     else:
-        context["form"] = QuadroModelForm(instance=context["quadro"])
+        context["form"] = ProgramaModelForm(instance=context["programa"])
     return render(request, "dashboard/editar.html", context)
 
 
-def quadro_remover(request, id_quadro):
+def programa_remover(request, id_programa):
     context = {
-        "quadro": get_object_or_404(Quadro, id=id_quadro),
+        "programa": get_object_or_404(Programa, id=id_programa),
     }
     if request.method == "POST":
-        context["quadro"].delete()
-        return redirect("dashboard:quadros")
+        context["programa"].delete()
+        return redirect("dashboard:programas")
     else:
         return render(request, "dashboard/remover.html", context)
     

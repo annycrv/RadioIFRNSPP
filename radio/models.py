@@ -6,54 +6,53 @@ class Home(models.Model):
     bg_home = models.ImageField(upload_to="radio/banner_home/", blank=True)
     quemsomos_home = models.CharField(max_length=1000)
     nome = models.CharField("Seu nome",max_length=50, blank=True)
-    comentario = models.TextField("Quais os quadros você gostaria de encontrar na nossa rádio?", max_length=1000, blank=True)
+    comentario = models.TextField("Quais os programas você gostaria de encontrar na nossa rádio?", max_length=1000, blank=True)
 
     class Meta:
         verbose_name_plural = "Home"
 
-class Podcast(models.Model):
-    banner_podcast = models.ImageField(upload_to="radio/img_podcast/", blank=True)
-    nome_podcast = models.CharField(max_length=100)
-    descricao_podcast = models.CharField(max_length=1000)
-    host_podcast = models.CharField(max_length=1000)
+
+
+class Programa(models.Model):
+    banner_programa = models.ImageField("Banner do programa",upload_to="radio/img_programa/", blank=True)
+    nome_programa = models.CharField("Nome do programa",max_length=100)
+    descricao_programa = models.CharField("Descrição do programa",max_length=1000)
+    apresentador_programa = models.CharField("Apresentador do programa",max_length=1000)
+
 
     class Meta:
-        verbose_name_plural = "Podcasts"
+        verbose_name_plural = "programas"
 
     def __str__ (self):
-        return self.nome_podcast
-
-class Quadro(models.Model):
-    banner_quadro = models.ImageField("Banner do quadro",upload_to="radio/img_programa/", blank=True)
-    nome_quadro = models.CharField("Nome do quadro",max_length=100)
-    descricao_quadro = models.CharField("Descrição do quadro",max_length=1000)
-    artista_quadro = models.CharField("Artista do quadro",max_length=1000)
-
-    class Meta:
-        verbose_name_plural = "Quadros"
-
-    def __str__ (self):
-        return self.nome_quadro
+        return self.nome_programa
 
 class Programacao(models.Model):
     DIAS_SEMANA = [
-        ('segunda', 'Segunda'),
-        ('terca', 'Terça'),
-        ('quarta', 'Quarta'),
-        ('quinta', 'Quinta'),
-        ('sexta', 'Sexta'),
+        ('segunda', 'Seg'),
+        ('terca', 'Ter'),
+        ('quarta', 'Qua'),
+        ('quinta', 'Qui'),
+        ('sexta', 'Sex'),
     ]
-    podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE, null=True, blank=True)
-    quadro = models.ForeignKey(Quadro,on_delete=models.CASCADE, null=True, blank=True)
-    titulo_programacao = models.CharField(max_length=100)
-    horario_programacao = models.TimeField()
-    dia_semana = models.CharField(max_length=10, choices=DIAS_SEMANA, blank=True)
 
+    HORARIO = [
+        ('08:30','08:30 - 08:50'),
+        ('10:20','10:20 - 10:30'),
+        ('14:30','14:30 - 14:50'),
+        ('16:20','16:20 - 16:30'),
+    ]
+
+    programa = models.ForeignKey(Programa, on_delete=models.CASCADE)
+    dia = models.CharField(max_length=10, choices=DIAS_SEMANA)
+    horario = models.CharField(choices=HORARIO)
+    
     class Meta:
-        verbose_name_plural = "Programações"
+        verbose_name_plural = "programação"
 
     def __str__ (self):
-        return self.titulo_programacao
+        return self.programa.nome_programa
+
+
 
 class Sobre(models.Model):
     titulo_sobre = models.CharField(max_length=100)
@@ -67,19 +66,27 @@ class Sobre(models.Model):
     def __str__ (self):
         return self.titulo_sobre
     
+
 class Pedido(models.Model):
     TURNO = [
         ('manha', 'Manhã'),
         ('tarde', 'Tarde'),
     ]
 
+    HORARIO = [
+        ('08:30','08:30 - 08:50'),
+        ('10:20','10:20 - 10:30'),
+        ('14:30','14:30 - 14:50'),
+        ('16:20','16:20 - 16:30'),
+    ]
+
     nome = models.CharField("Seu nome",max_length=1000)
     musica = models.CharField("O que você gostaria de ouvir hoje?",max_length=1000)
     artista = models.CharField("Qual o nome do(a) artista ou banda dessa música?",max_length=1000)
-    horario_desejado = models.TimeField("Qual o horário desejado?")
+    horario_desejado = models.TimeField("Qual o horário desejado?",choices=HORARIO,)
     mensagem = models.TextField("Observações (opcional)",blank=True, null=True, max_length=1000)
     turno = models.CharField("Turno", max_length=10, choices=TURNO, blank=True, null=True)
-    # horario_pedidos = models.TimeField()
+
     class Meta:
         verbose_name_plural = "Pedidos"
 

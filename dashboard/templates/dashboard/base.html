@@ -27,13 +27,13 @@
       </li>
 
       <li class="nav-item mb-2">
-        <a href="{% url 'dashboard:quadros' %}" 
-           class="nav-link d-flex align-items-center {% if request.resolver_match.url_name == 'quadros' %}active{% endif %}">
-          <i class="bi bi-broadcast me-2"></i> Quadros
+        <a href="{% url 'dashboard:programas' %}" 
+           class="nav-link d-flex align-items-center {% if request.resolver_match.url_name == 'programas' %}active{% endif %}">
+          <i class="bi bi-broadcast me-2"></i> Programas
         </a>
       </li>
 
-      <li class="nav-item mb-2">
+       <li class="nav-item mb-2">
         <a href="{% url 'dashboard:programacao' %}" 
            class="nav-link d-flex align-items-center {% if request.resolver_match.url_name == 'programacao' %}active{% endif %}">
           <i class="bi bi-calendar3 me-2"></i> Programação
