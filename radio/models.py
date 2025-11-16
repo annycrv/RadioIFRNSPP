@@ -11,8 +11,6 @@ class Home(models.Model):
     class Meta:
         verbose_name_plural = "Home"
 
-
-
 class Programa(models.Model):
     banner_programa = models.ImageField("Banner do programa",upload_to="radio/img_programa/", blank=True)
     nome_programa = models.CharField("Nome do programa",max_length=100)
@@ -92,5 +90,5 @@ class Pedido(models.Model):
 
     def __str__ (self):
         return self.musica
-    
+
     

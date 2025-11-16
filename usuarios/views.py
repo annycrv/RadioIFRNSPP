@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from .models import Usuario
 from .forms import UsuarioForm, UsuarioCreationForm
 
@@ -17,6 +17,7 @@ def cadastro(request):
     }
     return render(request, "usuarios/cadastro.html", context)
 
+@permission_required("usuarios.view_usuario", raise_exception=True)
 def usuarios(request):
     context = {
         "usuarios": Usuario.objects.all(),
@@ -27,6 +28,8 @@ def usuarios(request):
     }
     return render(request, "dashboard/listar.html", context)
 
+@login_required
+@permission_required("usuarios.add_usuario", raise_exception=True)
 def usuarios_novo(request):
     context = {
         "titulo_pagina": "Novo Usuário",
@@ -43,6 +46,8 @@ def usuarios_novo(request):
         context["form"] = UsuarioCreationForm()
     return render(request, "dashboard/novo.html", context)
 
+@login_required
+@permission_required("usuarios.change_usuario", raise_exception=True)
 def usuarios_editar(request, id_usuario):
     context = {
         "usuario": get_object_or_404(Usuario, id=id_usuario),
@@ -60,6 +65,8 @@ def usuarios_editar(request, id_usuario):
         context["form"] = UsuarioForm(instance=context["usuario"])
     return render(request, "dashboard/editar.html", context)
 
+@login_required
+@permission_required("usuarios.delete_usuario", raise_exception=True)
 def usuarios_remover(request, id_usuario):
     context = {
         "usuario": get_object_or_404(Usuario, id=id_usuario),

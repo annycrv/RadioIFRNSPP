@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
+from django.contrib.auth.decorators import login_required, permission_required
 from radio.models import Home, Programa, Sobre, Programacao
 from radio.forms import ProgramaModelForm
 from radio.forms import ProgramacaoModelForm
 from usuarios.models import Usuario
 
+@login_required
 def index(request):
     context = {
         "home": Home.objects.all,
@@ -17,6 +19,7 @@ def index(request):
     }
     return render(request, "dashboard/index.html", context)
 
+@login_required
 def programas(request):
     context = {
         "programas": Programa.objects.all(),
@@ -28,7 +31,7 @@ def programas(request):
     }
     return render(request, "dashboard/listar.html", context)
 
-
+@permission_required("radio.add_programa", raise_exception=True)
 def programa_novo(request):
     context = { 
         "titulo_pagina": "Adicionar programa",
@@ -45,7 +48,8 @@ def programa_novo(request):
         context["form"] = ProgramaModelForm()
     return render(request, "dashboard/novo.html", context)
 
-
+@login_required
+@permission_required("radio.change_programa", raise_exception=True)
 def programa_editar(request, id_programa):
     context = {
         "programa": get_object_or_404(Programa, id=id_programa),
@@ -63,7 +67,8 @@ def programa_editar(request, id_programa):
         context["form"] = ProgramaModelForm(instance=context["programa"])
     return render(request, "dashboard/editar.html", context)
 
-
+@login_required
+@permission_required("radio.delete_programa", raise_exception=True)
 def programa_remover(request, id_programa):
     context = {
         "programa": get_object_or_404(Programa, id=id_programa),
@@ -76,6 +81,7 @@ def programa_remover(request, id_programa):
     
 # Programacao
 
+@login_required
 def programacao(request):
     context = {
         "programacao": Programacao.objects.all(),
@@ -89,6 +95,8 @@ def programacao(request):
     }
     return render(request, "dashboard/listar.html", context)
 
+@login_required
+@permission_required("radio.add_programacao", raise_exception=True)
 def programacao_novo(request):
     context = {
         "titulo_pagina": "Adicionar Programação",
@@ -105,6 +113,8 @@ def programacao_novo(request):
         context["form"] = ProgramacaoModelForm()
     return render(request, "dashboard/novo.html", context)
 
+@login_required
+@permission_required("radio.change_programacao", raise_exception=True)
 def programacao_editar(request, id_item):
     context = {
         "programacao": get_object_or_404(Programacao, id=id_item),
@@ -122,6 +132,8 @@ def programacao_editar(request, id_item):
         context["form"] = ProgramacaoModelForm(instance=context["programacao"])
     return render(request, "dashboard/editar.html", context)
 
+@login_required
+@permission_required("radio.delete_programacao", raise_exception=True)
 def programacao_remover(request, id_item):
     context = {
         "programacao": get_object_or_404(Programacao, id=id_item),
