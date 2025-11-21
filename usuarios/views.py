@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from .models import Usuario
 from .forms import UsuarioForm, UsuarioCreationForm
+from django.core.paginator import Paginator
 
 def cadastro(request):
     if request.method == "POST":
@@ -19,12 +20,19 @@ def cadastro(request):
 
 @permission_required("usuarios.view_usuario", raise_exception=True)
 def usuarios(request):
+    lista = Usuario.objects.all().order_by("id")
+
+    paginator = Paginator(lista, 6)
+    pagina_atual = request.GET.get("page")
+    page_obj = paginator.get_page(pagina_atual)
+
     context = {
-        "usuarios": Usuario.objects.all(),
+        "usuarios": page_obj,
         "titulo_pagina": "Usuários",
         "url_novo": "usuarios:usuarios_novo",
         "partial_tabela": "dashboard/partials/_tabela_usuarios.html",
         "texto_botao_novo": "Adicionar Usuário",
+        "page_obj": page_obj
     }
     return render(request, "dashboard/listar.html", context)
 

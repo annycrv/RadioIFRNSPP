@@ -21,4 +21,9 @@
         {% include partial_tabela %}
     </div>
 
+{% comment %} paginação {% endcomment %}
+{% include "dashboard/partials/_tabela_paginacao.html" with page_obj=programas %}
+{% include "dashboard/partials/_tabela_paginacao.html" with page_obj=programacao %}
+{% include "dashboard/partials/_tabela_paginacao.html" with page_obj=usuarios %}
+
 {% endblock content %}

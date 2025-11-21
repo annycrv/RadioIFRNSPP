@@ -67,4 +67,48 @@
   </div>
 </div>
 
+
+{% if programacao.paginator.count > 0 %}
+<!-- Paginação -->
+<nav aria-label="Page navigation" class="mt-4">
+  <ul class="pagination justify-content-center">
+
+    <!-- Botão Primeiro / Anterior -->
+    {% if programacao.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ programacao.previous_page_number }}">«</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <span class="page-link">«</span>
+      </li>
+    {% endif %}
+
+    <!-- Números das páginas -->
+    {% for num in programacao.paginator.page_range %}
+      {% if programacao.number == num %}
+        <li class="page-item active">
+          <span class="page-link">{{ num }}</span>
+        </li>
+      {% else %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+
+    <!-- Botão Próxima / Última -->
+    {% if programacao.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ programacao.next_page_number }}">»</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <span class="page-link">»</span>
+      </li>
+    {% endif %}
+
+  </ul>
+</nav>
+{%endif%}
 {% endblock content %}

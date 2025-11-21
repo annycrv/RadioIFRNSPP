@@ -2,8 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from .models import Home, Programa, Programacao, Sobre,Pedido
 from radio.forms import PedidoModelForm, HomeModelForm
-
-
+from django.core.paginator import Paginator
 
 def index(request):
     context = {
@@ -40,18 +39,32 @@ def programacao(request,dia):
     dias_validos = ['segunda', 'terca', 'quarta', 'quinta', 'sexta']
     if dia not in dias_validos:
         dia = 'segunda' 
+    
+    lista = Programacao.objects.filter(dia=dia).order_by("programa")
+
+    paginator = Paginator(lista, 9) 
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
 
     context = {
-        "programacao": Programacao.objects.filter(dia=dia),
+        "programacao": page_obj,
         # "quadros": Quadro.objects.all(),
         # "podcasts": Podcast.objects.all(),
         "dia": dia.capitalize(),
+        "page_obj": page_obj,
     }
     return render(request, "radio/programacao.html", context)
 
 def programas(request):
+    lista = Programa.objects.all().order_by("nome_programa")
+
+    paginator = Paginator(lista, 9) 
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        "programas": Programa.objects.all()
+        "programas": page_obj,
+        "page_obj": page_obj,
     }
     return render(request, "radio/programas.html", context)
 

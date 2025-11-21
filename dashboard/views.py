@@ -4,6 +4,7 @@ from radio.models import Home, Programa, Sobre, Programacao
 from radio.forms import ProgramaModelForm
 from radio.forms import ProgramacaoModelForm
 from usuarios.models import Usuario
+from django.core.paginator import Paginator
 
 @login_required
 @permission_required("radio.view_index", raise_exception=True)
@@ -23,13 +24,20 @@ def index(request):
 @login_required
 @permission_required("radio.view_programas", raise_exception=True)
 def programas(request):
+    lista = Programa.objects.all().order_by("id")
+
+    paginator = Paginator(lista, 6)
+    pagina_atual = request.GET.get("page")
+    page_obj = paginator.get_page(pagina_atual)
+
     context = {
-        "programas": Programa.objects.all(),
+        "programas": page_obj,
         "titulo_pagina": "Programas",
         "subtitulo_pagina": "Gerencie os programas da rádio",
         "url_novo": "dashboard:programa_novo",
         "partial_tabela": "dashboard/partials/_tabela_programas.html",
-        "texto_botao_novo": "Adicionar Programa", 
+        "texto_botao_novo": "Adicionar Programa",
+        "page_obj": page_obj,  
     }
     return render(request, "dashboard/listar.html", context)
 
@@ -84,17 +92,22 @@ def programa_remover(request, id_programa):
 # Programacao
 
 @login_required
-@permission_required("radio.view_programaco", raise_exception=True)
+@permission_required("radio.view_programacao", raise_exception=True)
 def programacao(request):
+    lista = Programacao.objects.all().order_by("id")
+
+    paginator = Paginator(lista, 6)
+    pagina_atual = request.GET.get("page")
+    page_obj = paginator.get_page(pagina_atual)
+
     context = {
-        "programacao": Programacao.objects.all(),
+        "programacao": page_obj,
         "titulo_pagina": "Programação",
         "subtitulo_pagina": "Gerencie a programação da rádio",
         "url_novo": "dashboard:programacao_novo",
         "partial_tabela": "dashboard/partials/_tabela_programacoes.html",
         "texto_botao_novo": "Adicionar Programação", 
-
-
+        "page_obj": page_obj, 
     }
     return render(request, "dashboard/listar.html", context)
 
