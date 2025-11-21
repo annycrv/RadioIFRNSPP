@@ -21,8 +21,8 @@
           conectando conhecimento, cultura, informação e música em um só lugar.
         </p>
         <div class="mt-4">
-          <a href="{%url 'programacao' 'segunda'%}" class="btn btn-primary btn-lg me-3">Ouvir Agora</a>
-          <a href="{% url 'sobre' %}" class="btn btn-outline-custom btn-lg">Sobre Nós</a>
+          <a href="{%url 'radio:programacao' 'segunda'%}" class="btn btn-primary btn-lg me-3">Ouvir Agora</a>
+          <a href="{% url 'radio:sobre' %}" class="btn btn-outline-custom btn-lg">Sobre Nós</a>
         </div>
       </div>
 
@@ -51,7 +51,7 @@
 
       <!-- Coluna 1 -->
       <div class="col-md-4 mb-4">
-        <a href="{% url 'programacao' 'segunda' %}">
+        <a href="{% url 'radio:programacao' 'segunda' %}">
           <div class="icon-circle mx-auto mb-3 botao">
             <i class="bi bi-calendar"></i>
           </div>
@@ -63,7 +63,7 @@
 
       <!-- Coluna 2 -->
       <div class="col-md-4 mb-4">
-        <a href="{% url 'programas' %}">
+        <a href="{% url 'radio:programas' %}">
           <div class="icon-circle mx-auto mb-3 botao">
             <i class="bi bi-mic"></i>
           </div>
@@ -100,7 +100,7 @@
           Fundada pelo então governador do estado Dinarte Mariz, e inaugurada pelo potiguar e presidente da república João Café Filho,
           a Rádio Nordeste AM 900khz, entrou em operação em dezembro de 1957, dando o nome ao bairro onde está localizada.
         </p>
-        <a href="{% url 'sobre' %}" class="btn btn-gradient fw-semibold px-4 py-2">
+        <a href="{% url 'radio:sobre' %}" class="btn btn-gradient fw-semibold px-4 py-2">
           Saiba mais →
         </a>
       </div>

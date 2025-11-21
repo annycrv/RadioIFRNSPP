@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required, permission_required
 from .models import Home, Programa, Programacao, Sobre,Pedido
 from radio.forms import PedidoModelForm, HomeModelForm
+
+
 
 def index(request):
     context = {
@@ -60,3 +63,10 @@ def programas(request):
 
 def sobre(request):
     return render(request, "radio/sobre.html")
+
+@login_required
+def redirecionar(request):
+    if request.user.is_superuser:
+        return redirect("dashboard:index")
+    else:
+        return redirect("radio:index")

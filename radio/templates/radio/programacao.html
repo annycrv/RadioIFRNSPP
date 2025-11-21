@@ -10,19 +10,19 @@
   <!-- Botões de dias da semana -->
 <div class="semana-wrapper mt-4 mb-5">
   <div class="semana-container d-flex justify-content-between align-items-center px-3 py-2">
-    <a href="{% url 'programacao' 'segunda' %}" class="dia-card {% if dia == 'Segunda' %}ativo{% endif %}">
+    <a href="{% url 'radio:programacao' 'segunda' %}" class="dia-card {% if dia == 'Segunda' %}ativo{% endif %}">
       <h6>Seg</h6>
     </a>
-    <a href="{% url 'programacao' 'terca' %}" class="dia-card {% if dia == 'Terca' %}ativo{% endif %}">
+    <a href="{% url 'radio:programacao' 'terca' %}" class="dia-card {% if dia == 'Terca' %}ativo{% endif %}">
       <h6>Ter</h6>
     </a>
-    <a href="{% url 'programacao' 'quarta' %}" class="dia-card {% if dia == 'Quarta' %}ativo{% endif %}">
+    <a href="{% url 'radio:programacao' 'quarta' %}" class="dia-card {% if dia == 'Quarta' %}ativo{% endif %}">
       <h6>Qua</h6>
     </a>
-    <a href="{% url 'programacao' 'quinta' %}" class="dia-card {% if dia == 'Quinta' %}ativo{% endif %}">
+    <a href="{% url 'radio:programacao' 'quinta' %}" class="dia-card {% if dia == 'Quinta' %}ativo{% endif %}">
       <h6>Qui</h6>
     </a>
-    <a href="{% url 'programacao' 'sexta' %}" class="dia-card {% if dia == 'Sexta' %}ativo{% endif %}">
+    <a href="{% url 'radio:programacao' 'sexta' %}" class="dia-card {% if dia == 'Sexta' %}ativo{% endif %}">
       <h6>Sex</h6>
     </a>
   </div>

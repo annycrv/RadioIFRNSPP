@@ -6,6 +6,7 @@ from radio.forms import ProgramacaoModelForm
 from usuarios.models import Usuario
 
 @login_required
+@permission_required("radio.view_index", raise_exception=True)
 def index(request):
     context = {
         "home": Home.objects.all,
@@ -20,6 +21,7 @@ def index(request):
     return render(request, "dashboard/index.html", context)
 
 @login_required
+@permission_required("radio.view_programas", raise_exception=True)
 def programas(request):
     context = {
         "programas": Programa.objects.all(),
@@ -82,6 +84,7 @@ def programa_remover(request, id_programa):
 # Programacao
 
 @login_required
+@permission_required("radio.view_programaco", raise_exception=True)
 def programacao(request):
     context = {
         "programacao": Programacao.objects.all(),
