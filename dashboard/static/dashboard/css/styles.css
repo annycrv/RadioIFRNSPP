@@ -195,3 +195,139 @@ a {
 .text{
   color: green;
 }
+
+
+
+/* ===============================
+   WRAPPER CENTRAL
+================================*/
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 15px;
+}
+
+/* ===============================
+   CONTÊINER PRINCIPAL (CARD)
+================================*/
+.auth-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* ===============================
+   COLUNA ESQUERDA (IMAGEM)
+================================*/
+.left-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background: #b2e0b3;
+}
+
+.left-column img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    object-fit: contain;
+    user-select: none;
+}
+
+/* ===============================
+   COLUNA DIREITA (FORMULÁRIO)
+================================*/
+.right-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+/* ===============================
+   CAIXA DO FORMULÁRIO
+================================*/
+.auth-box {
+    width: 100%;
+}
+
+/* ===============================
+   TÍTULOS
+================================*/
+.auth-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+/* ===============================
+   FORMULÁRIO
+================================*/
+form .form-control {
+    height: 45px;
+    border-radius: 8px;
+}
+
+form label {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.btn-primary {
+    height: 45px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* ===============================
+   LINKS (Criar conta / Fazer login)
+================================*/
+.auth-link a,
+.small {
+    color: #5a4ff3 !important;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-link a:hover,
+.small:hover {
+    text-decoration: underline !important;
+}
+
+/* ===============================
+   RESPONSIVIDADE
+================================*/
+@media (max-width: 992px) {
+    .auth-container {
+        flex-direction: column;
+    }
+
+    .left-column, .right-column {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .left-column {
+        order: 1;
+        margin-bottom: 20px;
+    }
+
+    .right-column {
+        order: 2;
+    }
+}
+
+@media (max-width: 576px) {
+    .auth-title {
+        font-size: 28px;
+        text-align: center;
+    }
+}

@@ -28,20 +28,20 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item ps-3 ">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'radio:index' %}ativo{% endif %} fw-semibold" href="{% url 'radio:index' %}">Home</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'index' %}ativo{% endif %} fw-semibold" href="{% url 'radio:index' %}">Home</a>
                     </li>
                     
                     <li class="nav-item ps-3">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'radio:pedidos' %}ativo{% endif %} fw-semibold" href="{% url 'radio:pedidos' %}">Pedidos</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'pedidos' %}ativo{% endif %} fw-semibold" href="{% url 'radio:pedidos' %}">Pedidos</a>
                     </li>
                     <li class="nav-item ps-3">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'radio:programacao' %}ativo{% endif %} fw-semibold" href="{% url 'radio:programacao' 'segunda' %}">Programação</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'programacao' %}ativo{% endif %} fw-semibold" href="{% url 'radio:programacao' 'segunda' %}">Programação</a>
                     </li>
 
                     <li class="nav-item dropdown ps-3">
-                        {% if request.resolver_match.url_name == 'radio:podcasts' %}
+                        {% if request.resolver_match.url_name == 'podcasts' %}
                     <!-- Se estiver na página de podcasts -->
-                    <a class="nav-link dropdown-toggle ativo fw-semibold" href="{% url 'radio:podcasts' %}" id="programasDropdown"
+                    <a class="nav-link dropdown-toggle ativo fw-semibold" href="{% url 'podcasts' %}" id="programasDropdown"
                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     programas
                     </a>
@@ -52,7 +52,7 @@
                 </ul>
                     {% else %}
             <!-- Caso contrário, exibe Programas -->
-                <a class="nav-link dropdown-toggle fw-semibold {% if request.resolver_match.url_name == 'radio:programas' %}ativo{% endif %}" 
+                <a class="nav-link dropdown-toggle fw-semibold {% if request.resolver_match.url_name == 'programas' %}ativo{% endif %}" 
                 href="{% url 'radio:programas' %}" id="programasDropdown"
                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Programas
@@ -65,7 +65,7 @@
     </li>
 
     <li class="nav-item ps-3">
-        <a class="nav-link {% if request.resolver_match.url_name == 'radio:sobre' %}ativo{% endif %} fw-semibold" href="{% url 'radio:sobre' %}">Sobre</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'sobre' %}ativo{% endif %} fw-semibold" href="{% url 'radio:sobre' %}">Sobre</a>
     </li>
 
     <li class="nav-item ps-3">

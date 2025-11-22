@@ -1,4 +1,19 @@
 {% extends "registration/base.html" %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+{% block titulo_pagina %}Login{% endblock titulo_pagina %}
+
+{% block imagem_lateral %}
+    <img src="{% static 'radio/img/login.svg' %}" class="img-fluid" alt="Login">
+{% endblock imagem_lateral %}
+
+{% block buttons %}
+    <a href="{% url 'usuarios:cadastro' %}" class="small d-block text-center mb-2">Criar conta</a>
+    <input class="btn btn-primary w-100" type="submit" value="Entrar">
+{% endblock buttons %}
+{% static 'radio/img/waiting2.png' %}
+
+{% comment %} {% extends "registration/base.html" %}
 
 {% block title %}Login{% endblock title %}
 {% block page_title %}Login{% endblock page_title %}
@@ -10,4 +25,4 @@
 
 {% block footer_links %}
     <div class="small"><a href="{% url 'usuarios:cadastro' %}">Criar conta.</a></div>
-{% endblock  %}
+{% endblock  %} {% endcomment %}

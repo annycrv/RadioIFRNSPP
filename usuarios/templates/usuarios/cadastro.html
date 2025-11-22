@@ -1,4 +1,18 @@
 {% extends "registration/base.html" %}
+{% load static %}
+{% block title %}Cadastro{% endblock title %}
+{% block titulo_pagina %}Cadastre-se{% endblock titulo_pagina %}
+
+{% block imagem_lateral %}
+    <img src="{% static 'radio/img/cadastrog.svg' %}" class="img-fluid" alt="Cadastro">
+{% endblock imagem_lateral %}
+
+{% block buttons %}
+    <a href="{% url 'login' %}" class="small d-block text-center mb-2">Fazer login</a>
+    <input class="btn btn-primary w-100" type="submit" value="Enviar">
+{% endblock buttons %}
+
+{% comment %} {% extends "registration/base.html" %}
 
 {% block title %}Cadastro{% endblock title %}
 {% block titulo_pagina %}Cadastro{% endblock titulo_pagina %}
@@ -6,4 +20,4 @@
 {% block buttons %}
     <a class="small" href="{% url 'login' %}">Fazer login</a>
     <input class="btn btn-primary" type="submit" value="Enviar">
-{% endblock buttons %}
+{% endblock buttons %} {% endcomment %}
