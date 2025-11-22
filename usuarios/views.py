@@ -6,12 +6,12 @@ from django.core.paginator import Paginator
 
 def cadastro(request):
     if request.method == "POST":
-        form = UsuarioForm(request.POST)
+        form = UsuarioCreationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('login')
     else:
-        form = UsuarioForm()
+        form = UsuarioCreationForm()
     
     context = {
         "form": form,
