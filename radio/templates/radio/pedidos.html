@@ -1,88 +1,87 @@
 {% extends "radio/base.html" %}
 {% load static crispy_forms_filters %}
 {% block title %}Pedidos{% endblock %}
-{% load static %}
 
 {% block content %}
-   <h2 class="titulo mb-4 text-center mt-5 ">Pedidos</h2>
-    <hr class="decorativa mx-auto">
-<div class="card2 container mx-auto shadow-lg mb-5 mt-5 rounded-2">
+
+<h2 class="titulo mb-4 text-center mt-5">Pedidos</h2>
+<hr class="decorativa mx-auto">
+
+<div class="card2 container mx-auto shadow-lg mb-5 mt-4 rounded-2">
   <div class="card-body mt-3 p-4">
-    <h4 class="card-title mb-4">
+
+    <h4 class="card-title mb-3">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
         class="bi bi-clock me-2 mb-1" viewBox="0 0 16 16">
         <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
         <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0" />
       </svg>
-      Horário de Pedidos
+      Horários de Pedidos
     </h4>
 
-    <p class="card-text text-muted fw-bold">Você pode fazer seus pedidos de músicas durante os seguintes horários:</p>
+    <!-- Resumo dos horários -->
+    <div class="d-flex flex-column gap-3">
 
-    <!-- Card 1 -->
-    <div class="card mb-4" style="max-width: 540px;">
-      <div class="card-body">
-        <h5 class="card-title">Quarta-Feira</h5>
-        <ul class="card-text text-muted">
-          <li>Manhã: 07:00 às 12:00</li>
-          <li>Tarde: 13:00 às 18:00</li>
-        </ul>
+      <!-- Horários para pedidos -->
+      <div class="card mb-2" style="max-width: 540px;">
+        <div class="card-body p-3">
+          <p class="titu-card mb-2">Horários para pedidos de músicas:</p>
+          <p class="fw-bold mb-2">Quarta-Feira</p>
+          <p class="card-text text-muted mb-0">07:00 - 12:00 | 13:00 - 18:00</p>
+        </div>
       </div>
-    </div>
 
-    <p class="card-text text-muted mb-3 fw-bold">Você poderá ouvir as músicas solicitadas nos seguintes horários:</p>
-
-    <!-- Card 2 -->
-    <div class="card mb-4" style="max-width: 540px;">
-      <div class="card-body">
-        <h5 class="card-title">Quinta-Feira</h5>
-        <ul class="card-text text-muted">
-          <li>Manhã: 08:30 às 08:50</li>
-          <li>Manhã: 10:20 às 10:30</li>
-          <li>Tarde: 14:30 às 14:50</li>
-          <li>Tarde: 16:20 às 16:30</li>
-        </ul>
+      <!-- Horários para ouvir -->
+      <div class="card mb-2" style="max-width: 540px;">
+        <div class="card-body p-3">
+          <p class="titu-card mb-2">Horários para ouvir as músicas solicitadas:</p>
+          <p class="fw-bold mb-2">Quinta-Feira</p>
+          <p class="card-text text-muted mb-0">
+            08:30 - 08:50 | 10:20 - 10:30 | 14:30 - 14:50 | 16:20 - 16:30
+          </p>
+        </div>
       </div>
-    </div>
 
-    <p class="card-text text-muted">
-      * Os pedidos são tocados por ordem cronológica e pela disponibilidade dos bolsistas.
-    </p>
+    </div> 
+
   </div>
 </div>
 
+
 <div class="container mt-5">
-    <div class="card shadow-lg border-0 mx-auto mb-5">
-        <div class="card-header text-white">
-            <h6 class="mb-0">Preencha o formulário</h6>
-        </div>
-        <div class="card-body p-4">
-            <form method="POST">
-                {% csrf_token %}
-                    {{ form.nome|as_crispy_field }}
-                    {{ form.musica|as_crispy_field }}
-                    {{ form.artista|as_crispy_field }}
+  <div class="card shadow-lg border-0 mx-auto mb-5">
+    <div class="card-header text-white">
+      <h6 class="mb-0">Preencha o formulário</h6>
+    </div>
+
+    <div class="card-body p-4">
+      <form method="POST">
+        {% csrf_token %}
+        
+        {{ form.nome|as_crispy_field }}
+        {{ form.musica|as_crispy_field }}
+        {{ form.artista|as_crispy_field }}
 
         <div class="row">
-            <div class="col-md-8">
-                {{ form.horario_desejado|as_crispy_field }}
-            </div>
-            <div class="col-md-4">
-                {{ form.turno|as_crispy_field }}
-            </div>
+          <div class="col-md-8">
+            {{ form.horario_desejado|as_crispy_field }}
+          </div>
+          <div class="col-md-4">
+            {{ form.turno|as_crispy_field }}
+          </div>
         </div>
 
         {{ form.mensagem|as_crispy_field }}
-                <div class="d-grid mt-3">
-                    <button type="submit" class="enviar rounded-pill">
-                        Enviar Pedido
-                    </button>
-                </div>
-            </form>
+
+        <div class="d-grid mt-3">
+          <button type="submit" class="enviar rounded-pill">
+            Enviar Pedido
+          </button>
         </div>
+      </form>
     </div>
+
+  </div>
 </div>
+
 {% endblock %}
-
-
-

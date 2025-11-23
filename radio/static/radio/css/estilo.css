@@ -4,6 +4,16 @@ html, body {
   font-family: 'Montserrat', sans-serif;
 
 }
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.contentglobal {
+    flex: 1;
+}
+
 
 .navbar{
     padding: 0.4rem 1rem;
@@ -11,7 +21,9 @@ html, body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500px;
 }
-
+.nav-avatar {
+    margin-top: -4px;  /* ajuste fino */
+}
 .navbar-brand img.logo {
     height: 80px; /* diminui o tamanho da logo */
     width: auto;
@@ -63,14 +75,29 @@ html, body {
 .hero {
   background: linear-gradient(90deg, #eef2ff 0%, #b3d5bf 100%);
   overflow: hidden;
-  height: 650px;
+  height: calc(100vh - 102px);
+  min-height: calc(100svh - 102px);
   margin-bottom: 130px;
-  padding: 0px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+/* 🔥 Ajuste para telas pequenas */
+@media (max-height: 650px) {
+  .hero {
+    height: auto; /* deixa crescer */
+    min-height: calc(100svh - 102px); /* ainda respeita a altura mínima */
+    padding: 40px 20px; /* evita corte do texto */
+  }
+}
+
 .title-hero {
   position: relative;
   display: inline-block;
-  padding-bottom: 10px; /* espaço para a linha */
+  padding-top: 20px; /* espaço para a linha */
 }
 
 .text{
@@ -377,17 +404,39 @@ a{
 
 /* pedidos */
 
-.card{
+/* pedidos */
+
+.titu-card{
+  font-size: 17px;
+}
+
+.card2 {
+    max-width: 750px;
+    background-color: #9dc9ac81;
+}
+
+.card {
     max-width: 700px;
 }
 
+.card-body {
+    padding: 1rem;
+}
+
+.card-title {
+    font-size: 1.2rem;
+}
+
+.card-text {
+    font-size: 0.95rem;
+}
 .card-header{
     background-color: #9DC9AC;
 }
 
 .enviar{
     background-color: #9DC9AC;
-    border: #9DC9AC;
+    border: 0px;
 }
 
 .card2{

@@ -11,18 +11,5 @@
     <a href="{% url 'usuarios:cadastro' %}" class="small d-block text-center mb-2">Criar conta</a>
     <input class="btn btn-primary w-100" type="submit" value="Entrar">
 {% endblock buttons %}
-{% static 'radio/img/waiting2.png' %}
 
-{% comment %} {% extends "registration/base.html" %}
 
-{% block title %}Login{% endblock title %}
-{% block page_title %}Login{% endblock page_title %}
-
-{% block buttons %}
-    <a class="small" href="password.html">Esqueceu a senha?</a>
-    <input class="btn btn-primary" type="submit" value="Entrar">
-{% endblock buttons %}
-
-{% block footer_links %}
-    <div class="small"><a href="{% url 'usuarios:cadastro' %}">Criar conta.</a></div>
-{% endblock  %} {% endcomment %}

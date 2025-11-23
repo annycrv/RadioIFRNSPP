@@ -135,7 +135,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 AUTH_USER_MODEL = "usuarios.Usuario"
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "radio:redirecionar"
-LOGOUT_REDIRECT_URL = "dashboard:index"
+LOGOUT_REDIRECT_URL = "radio:index"
 
 
 

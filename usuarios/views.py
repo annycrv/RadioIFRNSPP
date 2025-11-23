@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 
 def cadastro(request):
     if request.method == "POST":
-        form = UsuarioCreationForm(request.POST)
+        form = UsuarioCreationForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return redirect('login')
