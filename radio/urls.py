@@ -11,4 +11,5 @@ urlpatterns = [
     path('programas/', views.programas, name='programas'),
     # path('podcasts/', views.podcasts, name='podcasts'),
     path('sobre/', views.sobre, name='sobre'),
+    path('registrar_curtida/', views.registrar_curtida, name='registrar_curtida'),
 ]

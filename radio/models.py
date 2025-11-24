@@ -1,4 +1,5 @@
 from django.db import models
+from usuarios.models import Usuario
 
 class Home(models.Model):
     titulo_home = models.CharField(max_length=100)
@@ -16,6 +17,7 @@ class Programa(models.Model):
     nome_programa = models.CharField("Nome do programa",max_length=100)
     descricao_programa = models.CharField("Descrição do programa",max_length=1000)
     apresentador_programa = models.CharField("Apresentador do programa",max_length=1000)
+    curtidas = models.ManyToManyField(Usuario, related_name="curtidas", blank=True)
 
 
     class Meta:

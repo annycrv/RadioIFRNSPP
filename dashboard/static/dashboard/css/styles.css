@@ -331,3 +331,55 @@ form label {
         text-align: center;
     }
 }
+
+.custom-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+}
+
+.custom-pagination li {
+    display: flex;
+    align-items: center;
+}
+
+.page-number,
+.arrow-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 18px;
+    border: 2px solid #dcdcdc;
+    background: none;
+    color: #444;
+    transition: 0.2s;
+}
+
+.page-number:hover,
+.arrow-btn:hover {
+    background: #e6f5ef;
+}
+
+.page-number.active {
+    background: #8140c7;
+    color: white;
+    border-color: #8140c7;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.arrow-btn.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.arrow-btn {
+    border-color: #eaeaea;
+}

@@ -69,45 +69,36 @@
 
 
 {% if programacao.paginator.count > 0 %}
-<!-- Paginação -->
 <nav aria-label="Page navigation" class="mt-4">
-  <ul class="pagination justify-content-center">
+  <ul class="custom-pagination">
 
-    <!-- Botão Primeiro / Anterior -->
+    <!-- Botão Anterior -->
     {% if programacao.has_previous %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ programacao.previous_page_number }}">«</a>
+      <li>
+        <a href="?page={{ programacao.previous_page_number }}" class="arrow-btn">‹</a>
       </li>
     {% else %}
-      <li class="page-item disabled">
-        <span class="page-link">«</span>
-      </li>
+      <li><span class="arrow-btn disabled">‹</span></li>
     {% endif %}
 
-    <!-- Números das páginas -->
+    <!-- Números -->
     {% for num in programacao.paginator.page_range %}
       {% if programacao.number == num %}
-        <li class="page-item active">
-          <span class="page-link">{{ num }}</span>
-        </li>
+        <li><span class="page-number active">{{ num }}</span></li>
       {% else %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-        </li>
+        <li><a href="?page={{ num }}" class="page-number">{{ num }}</a></li>
       {% endif %}
     {% endfor %}
 
-    <!-- Botão Próxima / Última -->
+    <!-- Botão Próximo -->
     {% if programacao.has_next %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ programacao.next_page_number }}">»</a>
+      <li>
+        <a href="?page={{ programacao.next_page_number }}" class="arrow-btn">›</a>
       </li>
     {% else %}
-      <li class="page-item disabled">
-        <span class="page-link">»</span>
-      </li>
+      <li><span class="arrow-btn disabled">›</span></li>
     {% endif %}
-
+    
   </ul>
 </nav>
 {%endif%}

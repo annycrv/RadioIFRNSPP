@@ -25,59 +25,66 @@
               <i class="bi bi-person-circle text-pink fs-6 me-2"></i>
               <div>
                 <small class="text-muted d-block lh-1">Artista</small>
-                <span class="fw-semibold small">{{ programa.artista_programa }}</span>
+                <span class="fw-semibold small">{{ programa.apresentador_programa }}</span>
               </div>
             </div>
+            <!-- curtidas -->
+            <form action="{% url 'radio:registrar_curtida' %}" method="POST" class="mt-2">
+              {% csrf_token %}
+              <input type="hidden" name="id_programa" value="{{ programa.id }}">
+              <input type="hidden" name="next" value="{{ request.get_full_path }}">
+
+              <button type="submit" class="btn btn-light border w-100">
+                {% if user.is_authenticated and user in programa.curtidas.all %}
+                  <i class="bi bi-heart-fill text-danger"></i> {{ programa.curtidas.count }} curtidas
+                {% else %}
+                  <i class="bi bi-heart"></i> {{ programa.curtidas.count }} curtidas
+                {% endif %}
+              </button>
+            </form>
           </div>
 
         </div>
       </div>
     {% empty %}
-      <div class="col">
+      <div class="col mx-auto">
         <p class="text-center text-muted">Não há programas cadastrados.</p>
       </div>
     {% endfor %}
   </div>
 </div>
 
-{% if programas.paginator.count > 0 %}
-<!-- Paginação -->
-<nav aria-label="Page navigation" class="mt-4">
-  <ul class="pagination justify-content-center">
 
-    <!-- Botão Primeiro / Anterior -->
+<!-- Paginação -->
+{% if programas.paginator.count > 0 %}
+<nav aria-label="Page navigation" class="mt-4">
+  <ul class="custom-pagination">
+
+    <!-- Botão Anterior -->
     {% if programas.has_previous %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ programas.previous_page_number }}">«</a>
+      <li>
+        <a href="?page={{ programas.previous_page_number }}" class="arrow-btn">‹</a>
       </li>
     {% else %}
-      <li class="page-item disabled">
-        <span class="page-link">«</span>
-      </li>
+      <li><span class="arrow-btn disabled">‹</span></li>
     {% endif %}
 
-    <!-- Números das páginas -->
+    <!-- Números -->
     {% for num in programas.paginator.page_range %}
       {% if programas.number == num %}
-        <li class="page-item active">
-          <span class="page-link">{{ num }}</span>
-        </li>
+        <li><span class="page-number active">{{ num }}</span></li>
       {% else %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-        </li>
+        <li><a href="?page={{ num }}" class="page-number">{{ num }}</a></li>
       {% endif %}
     {% endfor %}
 
-    <!-- Botão Próxima / Última -->
+    <!-- Botão Próximo -->
     {% if programas.has_next %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ programas.next_page_number }}">»</a>
+      <li>
+        <a href="?page={{ programas.next_page_number }}" class="arrow-btn">›</a>
       </li>
     {% else %}
-      <li class="page-item disabled">
-        <span class="page-link">»</span>
-      </li>
+      <li><span class="arrow-btn disabled">›</span></li>
     {% endif %}
 
   </ul>

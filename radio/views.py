@@ -1,8 +1,9 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from .models import Home, Programa, Programacao, Sobre,Pedido
 from radio.forms import PedidoModelForm, HomeModelForm
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required, permission_required
 
 def index(request):
     context = {
@@ -58,7 +59,7 @@ def programacao(request,dia):
 def programas(request):
     lista = Programa.objects.all().order_by("nome_programa")
 
-    paginator = Paginator(lista, 9) 
+    paginator = Paginator(lista, 6) 
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
@@ -83,3 +84,14 @@ def redirecionar(request):
         return redirect("dashboard:index")
     else:
         return redirect("radio:index")
+    
+@login_required
+def registrar_curtida(request):
+    if request.method == "POST":
+        postagem = get_object_or_404(Programa, id=request.POST["id_programa"])
+        if not request.user in postagem.curtidas.all():
+            postagem.curtidas.add(request.user)
+        else:
+            postagem.curtidas.remove(request.user)
+        return redirect(request.POST.get("next", "programas"))
+    return redirect(request.POST.get("next", "programas"))

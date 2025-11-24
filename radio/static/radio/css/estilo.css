@@ -788,3 +788,72 @@ a{
     color: #63D3AE;
   }
 }
+
+/* Rodapé */
+html, .layout {
+    height: 100%;
+    margin: 0;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.contentglobal {
+    flex: 1; /* Ocupa o espaço e empurra o footer pra baixo */
+}
+
+/* paginação */
+.custom-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+}
+
+.custom-pagination li {
+    display: flex;
+    align-items: center;
+}
+
+.page-number,
+.arrow-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 18px;
+    border: 2px solid #dcdcdc;
+    background: none;
+    color: #444;
+    transition: 0.2s;
+}
+
+.page-number:hover,
+.arrow-btn:hover {
+    background: #e6f5ef;
+}
+
+.page-number.active {
+    background: #6cc8a3;
+    color: white;
+    border-color: #6cc8a3;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.arrow-btn.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Remove borda se quiser igual ao exemplo */
+.arrow-btn {
+    border-color: #eaeaea;
+}
