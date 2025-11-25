@@ -1,5 +1,5 @@
 from django import forms
-from .models import Pedido,Home, Programa, Programacao
+from .models import Pedido,Home, Programa, Programacao,Episodio
 
 class PedidoModelForm(forms.ModelForm):
     class Meta:
@@ -54,4 +54,9 @@ class ProgramacaoModelForm(forms.ModelForm):
     class Meta:
         model = Programacao
         fields = '__all__'
+
+class EpisodioModelForm(forms.ModelForm):
+    class Meta:
+        model = Episodio
+        exclude = ['programa']
 

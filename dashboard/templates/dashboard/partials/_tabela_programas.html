@@ -1,27 +1,62 @@
 <div class="row g-4">
+
   {% for programa in programas %}
     <div class="col-md-4">
-      <div class="program-card">
-        <h5>{{ programa.nome_programa }}</h5>
-        <p class="text-muted mb-1">{{ programa.descricao_programa|truncatewords:12  }}</p>
-        <p><strong>Apresentador:</strong> {{ programa.apresentador_programa }}</p>
-        <div class="d-flex gap-2 mt-2">
-            {% comment %} {% if perms.blog.view_postagem %} {% endcomment %}
-          <a href="{% url 'dashboard:programa_editar' programa.id %}" class="btn btn-outline-secondary btn-sm">
-            <i class="bi bi-pencil-square"></i>
+      <div class="program-card p-3 shadow-sm rounded">
+
+        <!-- Nome do Programa -->
+        <h5 class="mb-1">{{ programa.nome_programa }}</h5>
+
+        <!-- Descrição -->
+        <p class="text-muted small mb-1">
+          {{ programa.descricao_programa|truncatewords:12 }}
+        </p>
+
+        <!-- Apresentador -->
+        <p class="small">
+          <strong>Apresentador:</strong> {{ programa.apresentador_programa }}
+        </p>
+
+        <hr>
+
+        <!-- Ações principais -->
+        <div class="d-flex flex-column gap-2">
+
+          <!-- Ver Episódios do Programa -->
+          {% if episodio.id %}
+          <a href="{% url 'dashboard:episodio_detalhar' episodio.id %}" 
+             class="btn btn-primary btn-sm w-100">
+            <i class="bi bi-collection-play"></i> Ver Episódios
           </a>
-            {% comment %} {% endif %} {% endcomment %}
-            {% comment %} {% if perms.blog.change_postagem %} {% endcomment %}
-          <form method="post" action="{% url 'dashboard:programa_remover' programa.id %}" style="display:inline;">
+          {% endif %}
+
+          <!-- Adicionar Episódio (pré-vinculado ao Programa) -->
+          <a href="{% url 'dashboard:episodio_novo' programa.id %}" 
+             class="btn btn-success btn-sm w-100">
+            <i class="bi bi-plus-circle"></i> Adicionar Episódio
+          </a>
+
+          <!-- Editar Programa -->
+          <a href="{% url 'dashboard:programa_editar' programa.id %}" 
+             class="btn btn-outline-secondary btn-sm w-100">
+            <i class="bi bi-pencil-square"></i> Editar Programa
+          </a>
+
+          <!-- Remover Programa -->
+          <form method="post" action="{% url 'dashboard:programa_remover' programa.id %}">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger btn-sm">
-              <i class="bi bi-trash"></i>
+            <button type="submit" class="btn btn-danger btn-sm w-100">
+              <i class="bi bi-trash"></i> Excluir Programa
             </button>
           </form>
-          {% comment %} {% endif %} {% endcomment %}
+          <a href="{% url 'dashboard:episodios_programa' programa.id %}" class="btn btn-info btn-sm">
+              <i class="bi bi-collection-play"></i> Ver Episódios
+          </a>
         </div>
+
       </div>
     </div>
+
   {% empty %}
     <p class="text-muted">Nenhum programa cadastrado ainda.</p>
   {% endfor %}

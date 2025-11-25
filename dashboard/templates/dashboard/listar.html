@@ -11,10 +11,14 @@
         {{ subtitulo_pagina }}
     </p>
   </div>
+  {% if url_novo %}
   <a href="{% url url_novo %}" class=" px-4 py-2 novo_programa">
+    
     <i class="bi bi-plus-lg me-2"></i> {{ texto_botao_novo }}
   </a>
+  {% endif %}
 </div>
+
         {% comment %} {% endif %} {% endcomment %}
 
     <div>

@@ -25,6 +25,22 @@ class Programa(models.Model):
 
     def __str__ (self):
         return self.nome_programa
+    
+
+class Episodio(models.Model):
+    programa = models.ForeignKey(Programa, on_delete=models.CASCADE, related_name="episodios")
+    titulo = models.CharField(max_length=200)
+    descricao = models.TextField()
+    # audio = models.FileField(upload_to="radio/episodios/")
+    data_publicacao = models.DateField(auto_now_add=True)
+    apresentador = models.CharField(max_length=1000,null=True)
+
+
+    class Meta:
+        verbose_name_plural = "Episodios"
+
+    def __str__(self):
+        return f"{self.programa.nome_programa} - {self.titulo}"
 
 class Programacao(models.Model):
     DIAS_SEMANA = [

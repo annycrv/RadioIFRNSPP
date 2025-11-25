@@ -1,0 +1,33 @@
+{% extends "radio/base.html" %}
+{% load static crispy_forms_filters %}
+{% load static %}
+{% block title %}Episódios{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2 class="mb-3">Episódios de {{ programa.nome_programa }}</h2>
+
+    {% if episodios %}
+        <div class="list-group">
+
+            {% for episodio in episodios %}
+                <div class="list-group-item mb-2">
+
+                    <h5>{{ episodio.titulo }}</h5>
+                    <small class="text-muted">
+                        Publicado em: {{ episodio.data_publicacao }}
+                    </small>
+                    
+                    <p class="mt-2">{{ episodio.descricao }}</p>
+
+                </div>
+            {% endfor %}
+
+        </div>
+    {% else %}
+        <p>Este programa ainda não possui episódios.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

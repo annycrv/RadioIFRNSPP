@@ -26,6 +26,9 @@
               <div>
                 <small class="text-muted d-block lh-1">Artista</small>
                 <span class="fw-semibold small">{{ programa.apresentador_programa }}</span>
+                <a href="{% url 'radio:episodios' programa.id %}" class="btn btn-primary w-100">
+                    Ver Episódios
+                </a>
               </div>
             </div>
             <!-- curtidas -->

@@ -17,4 +17,10 @@ urlpatterns = [
     path('conteudo/', views.index, name='conteudo'),
     path('sobre/', views.index, name='sobre'),
     path('usuarios/', views.index, name='usuarios'),
+    path('episodios/', views.episodios, name='episodios'),
+    path('episodios/novo/<int:id_programa>/', views.episodio_novo, name='episodio_novo'),
+    path('episodios/detalhar/<int:id_episodio>/', views.episodio_detalhar, name='episodio_detalhar'),
+    path('episodios/<int:id_item>/editar/', views.episodio_editar, name='episodio_editar'),
+    path('episodios/<int:id_item>/remover/', views.episodio_remover, name='episodio_remover'),
+    path('programas/<int:id_programa>/episodios/', views.episodios_programa,name='episodios_programa'),
 ]

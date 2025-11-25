@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
-from radio.models import Home, Programa, Sobre, Programacao
+from radio.models import Home, Programa, Sobre, Programacao,Episodio
 from radio.forms import ProgramaModelForm
 from radio.forms import ProgramacaoModelForm
+from radio.forms import EpisodioModelForm
 from usuarios.models import Usuario
 from django.core.paginator import Paginator
 
@@ -13,13 +14,15 @@ def index(request):
         "home": Home.objects.all,
         "programacao": Programacao.objects.all,
         "programas": Programa.objects.all,
-        # "podcast": Podcast.objects.all,
         "sobre": Sobre.objects.all,
         "total_programas": Programa.objects.count(),
         "total_programacoes": Programacao.objects.count(),
         "total_usuarios": Usuario.objects.count(),
     }
     return render(request, "dashboard/index.html", context)
+
+
+# programas
 
 @login_required
 @permission_required("radio.view_programas", raise_exception=True)
@@ -41,6 +44,7 @@ def programas(request):
     }
     return render(request, "dashboard/listar.html", context)
 
+
 @permission_required("radio.add_programa", raise_exception=True)
 def programa_novo(request):
     context = { 
@@ -57,6 +61,7 @@ def programa_novo(request):
     else:
         context["form"] = ProgramaModelForm()
     return render(request, "dashboard/novo.html", context)
+
 
 @login_required
 @permission_required("radio.change_programa", raise_exception=True)
@@ -76,6 +81,7 @@ def programa_editar(request, id_programa):
     else:
         context["form"] = ProgramaModelForm(instance=context["programa"])
     return render(request, "dashboard/editar.html", context)
+
 
 @login_required
 @permission_required("radio.delete_programa", raise_exception=True)
@@ -111,6 +117,7 @@ def programacao(request):
     }
     return render(request, "dashboard/listar.html", context)
 
+
 @login_required
 @permission_required("radio.add_programacao", raise_exception=True)
 def programacao_novo(request):
@@ -128,6 +135,7 @@ def programacao_novo(request):
     else:
         context["form"] = ProgramacaoModelForm()
     return render(request, "dashboard/novo.html", context)
+
 
 @login_required
 @permission_required("radio.change_programacao", raise_exception=True)
@@ -148,6 +156,7 @@ def programacao_editar(request, id_item):
         context["form"] = ProgramacaoModelForm(instance=context["programacao"])
     return render(request, "dashboard/editar.html", context)
 
+
 @login_required
 @permission_required("radio.delete_programacao", raise_exception=True)
 def programacao_remover(request, id_item):
@@ -159,4 +168,109 @@ def programacao_remover(request, id_item):
         return redirect("dashboard:programacao")
     else:
         return render(request, "dashboard/remover.html", context)
-    
+
+# episodios 
+
+@login_required
+@permission_required("radio.view_episodios", raise_exception=True)
+def episodios(request):
+
+    lista = Episodio.objects.all().order_by("id")
+
+    paginator = Paginator(lista, 6)
+    pagina_atual = request.GET.get("page")
+    page_obj = paginator.get_page(pagina_atual)
+
+    context = {
+        "episodios": page_obj,
+        "titulo_pagina": "Episódios",
+        "subtitulo_pagina": "Gerencie os episódios da rádio",
+        "partial_tabela": "dashboard/partials/_tabela_episodios.html",
+        "page_obj": page_obj,  
+    }
+    return render(request, "dashboard/listar.html", context)
+
+
+@login_required
+@permission_required("blog.view_episodio", raise_exception=True)
+def episodio_detalhar(request, id_episodio):
+    context = {
+        "episodio": get_object_or_404(Episodio, id=id_episodio),
+        "titulo_pagina": "Detalhar Episodio",
+        "partial_detalhe": "dashboard/partials/_detalhar_episodios.html",
+    }
+    return render(request, "dashboard/detalhar.html", context)
+
+
+@login_required
+@permission_required("radio.add_episodio", raise_exception=True)
+def episodio_novo(request, id_programa):
+
+    programa = get_object_or_404(Programa, id=id_programa)
+
+    context = {
+        "titulo_pagina": "Adicionar Episódio",
+        "url_cancelar": "dashboard:episodios",
+        "programa": get_object_or_404(Programa, id=id_programa),
+    }
+
+    if request.method == "POST":
+        form = EpisodioModelForm(request.POST, request.FILES)
+        if form.is_valid():
+            episodio = form.save(commit=False)
+            episodio.programa = programa 
+            episodio.save()
+            return redirect("dashboard:episodios")
+        else:
+            context["form"] = form
+    else:
+        context["form"] = EpisodioModelForm()
+
+    return render(request, "dashboard/novo.html", context)
+
+
+@login_required
+@permission_required("radio.change_episodio", raise_exception=True)
+def episodio_editar(request, id_item):
+    context = {
+        "episodio": get_object_or_404(Episodio, id=id_item),
+        "titulo_pagina": "Editar Episódio",
+        "url_cancelar": "dashboard:episodios",
+    }
+    if request.method == "POST":
+        form = EpisodioModelForm(request.POST, instance=context["episodio"])
+        if form.is_valid():
+            form.save()
+            return redirect("dashboard:episodios")
+        else:
+            context["form"] = form
+    else:
+        context["form"] = EpisodioModelForm(instance=context["episodio"])
+    return render(request, "dashboard/editar.html", context)
+
+
+@login_required
+@permission_required("radio.delete_episodio", raise_exception=True)
+def episodio_remover(request, id_item):
+    context = {
+        "episodios": get_object_or_404(Episodio, id=id_item),
+    }
+    if request.method == "POST":
+        context["episodios"].delete()
+        return redirect("dashboard:episodios")
+    else:
+        return render(request, "dashboard/remover.html", context)
+
+
+@login_required
+@permission_required("blog.view_episodio", raise_exception=True)
+def episodios_programa(request, id_programa):
+    programa = get_object_or_404(Programa, id=id_programa)
+    episodios = Episodio.objects.filter(programa=programa).order_by('-id')
+
+    context = {
+        'programa': programa,
+        'episodios': episodios,
+        'titulo_pagina': f'Episódios de {programa.nome_programa}'
+    }
+    return render(request, 'dashboard/episodios_programa.html', context)

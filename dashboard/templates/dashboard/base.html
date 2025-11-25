@@ -39,6 +39,13 @@
           <i class="bi bi-calendar3 me-2"></i> Programação
         </a>
       </li>
+      
+       <li class="nav-item mb-2">
+        <a href="{% url 'dashboard:episodios' %}" 
+           class="nav-link d-flex align-items-center {% if request.resolver_match.url_name == 'episodios' %}active{% endif %}">
+          <i class="bi bi-calendar3 me-2"></i> Episódios
+        </a>
+      </li>
 
       <li class="nav-item mb-2">
         <a href="{% url 'dashboard:conteudo' %}" 

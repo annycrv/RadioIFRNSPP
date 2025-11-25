@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, permission_required
-from .models import Home, Programa, Programacao, Sobre,Pedido
+from .models import Home, Programa, Programacao, Sobre,Pedido,Episodio
 from radio.forms import PedidoModelForm, HomeModelForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required, permission_required
@@ -49,7 +49,6 @@ def programacao(request,dia):
 
     context = {
         "programacao": page_obj,
-        # "quadros": Quadro.objects.all(),
         # "podcasts": Podcast.objects.all(),
         "dia": dia.capitalize(),
         "page_obj": page_obj,
@@ -69,11 +68,17 @@ def programas(request):
     }
     return render(request, "radio/programas.html", context)
 
-# def podcasts(request):
-#     context = {
-#         "podcasts": Podcast.objects.all()
-#     }
-#     return render(request, "radio/podcasts.html", context)
+def episodios(request, id_programa):
+    programa = get_object_or_404(Programa,id=id_programa)
+    episodios = Episodio.objects.filter(programa=programa)
+
+    context = {
+        "programa": programa,
+        "episodios": episodios
+    }
+
+    return render(request, "radio/episodios.html",context)
+
 
 def sobre(request):
     return render(request, "radio/sobre.html")
