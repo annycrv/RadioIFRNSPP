@@ -84,10 +84,6 @@ class Sobre(models.Model):
     
 
 class Pedido(models.Model):
-    TURNO = [
-        ('manha', 'Manhã'),
-        ('tarde', 'Tarde'),
-    ]
 
     HORARIO = [
         ('08:30','08:30 - 08:50'),
@@ -101,7 +97,6 @@ class Pedido(models.Model):
     artista = models.CharField("Qual o nome do(a) artista ou banda dessa música?",max_length=1000)
     horario_desejado = models.TimeField("Qual o horário desejado?",choices=HORARIO,)
     mensagem = models.TextField("Observações (opcional)",blank=True, null=True, max_length=1000)
-    turno = models.CharField("Turno", max_length=10, choices=TURNO, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Pedidos"

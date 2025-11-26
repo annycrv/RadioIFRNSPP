@@ -20,6 +20,7 @@ def index(request):
         context["form"] = HomeModelForm()
     return render(request, "radio/index.html", context)
 
+@login_required
 def pedidos(request):
     context = {
         "pedido": Pedido.objects.first(),
@@ -82,13 +83,6 @@ def episodios(request, id_programa):
 
 def sobre(request):
     return render(request, "radio/sobre.html")
-
-@login_required
-def redirecionar(request):
-    if request.user.is_superuser:
-        return redirect("dashboard:index")
-    else:
-        return redirect("radio:index")
     
 @login_required
 def registrar_curtida(request):

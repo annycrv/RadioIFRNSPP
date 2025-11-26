@@ -20,11 +20,11 @@ class PedidoModelForm(forms.ModelForm):
             }),
             'horario_desejado': forms.Select(attrs={'class': 'form-select'}),
 
-            'turno': forms.Select(attrs={'class': 'form-select'}),
 
-            'mensagem': forms.TextInput(attrs={
+            'mensagem': forms.Textarea(attrs={
                 'class': 'form-control campo-estilizado2',
                 'placeholder': 'Digite alguma observação',
+                'rows': 4,
             }),
         }
 

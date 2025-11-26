@@ -8,7 +8,6 @@ from usuarios.models import Usuario
 from django.core.paginator import Paginator
 
 @login_required
-@permission_required("radio.view_index", raise_exception=True)
 def index(request):
     context = {
         "home": Home.objects.all,
@@ -274,3 +273,5 @@ def episodios_programa(request, id_programa):
         'titulo_pagina': f'Episódios de {programa.nome_programa}'
     }
     return render(request, 'dashboard/episodios_programa.html', context)
+
+

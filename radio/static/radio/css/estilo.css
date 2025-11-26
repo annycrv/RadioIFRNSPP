@@ -437,6 +437,14 @@ a{
 .enviar{
     background-color: #9DC9AC;
     border: 0px;
+    padding: 6px;
+}
+
+.enviar:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  color: #fff;
+  transition: all 0.3s ease;
+
 }
 
 .card2{
