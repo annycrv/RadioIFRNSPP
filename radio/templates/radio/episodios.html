@@ -1,6 +1,5 @@
 {% extends "radio/base.html" %}
 {% load static crispy_forms_filters %}
-{% load static %}
 {% block title %}Episódios{% endblock %}
 
 {% block content %}
@@ -12,14 +11,21 @@
         <div class="list-group">
 
             {% for episodio in episodios %}
-                <div class="list-group-item mb-2">
+                <div class="list-group-item mb-3 d-flex flex-column flex-md-row align-items-start">
 
-                    <h5>{{ episodio.titulo }}</h5>
-                    <small class="text-muted">
-                        Publicado em: {{ episodio.data_publicacao }}
-                    </small>
-                    
-                    <p class="mt-2">{{ episodio.descricao }}</p>
+                    <!-- Banner -->
+                    {% if episodio.banner_episodio %}
+                        <img src="{{ episodio.banner_episodio.url }}" alt="Banner do episódio" class="me-3 mb-2 mb-md-0" style="width:200px; height:auto; object-fit:cover; border-radius:5px;">
+                    {% else %}
+                        <img src="" alt="Banner padrão" class="me-3 mb-2 mb-md-0" style="width:200px; height:auto; object-fit:cover; border-radius:5px;">
+                    {% endif %}
+
+                    <!-- Informações -->
+                    <div class="flex-grow-1">
+                        <h5>{{ episodio.titulo }}</h5>
+                        <small class="text-muted">Publicado em: {{ episodio.data_publicacao }}</small>
+                        <p class="mt-2">{{ episodio.descricao }}</p>
+                    </div>
 
                 </div>
             {% endfor %}

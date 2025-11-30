@@ -56,6 +56,7 @@ def programacao(request,dia):
     }
     return render(request, "radio/programacao.html", context)
 
+
 def programas(request):
     lista = Programa.objects.all().order_by("nome_programa")
 

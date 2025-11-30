@@ -85,8 +85,11 @@ def programa_editar(request, id_programa):
 @login_required
 @permission_required("radio.delete_programa", raise_exception=True)
 def programa_remover(request, id_programa):
+    programa = get_object_or_404(Programa, id=id_programa)
     context = {
-        "programa": get_object_or_404(Programa, id=id_programa),
+        "programa":programa,
+        "tipo": "programa",  
+        "objeto": programa.nome_programa, 
     }
     if request.method == "POST":
         context["programa"].delete()
@@ -95,6 +98,7 @@ def programa_remover(request, id_programa):
         return render(request, "dashboard/remover.html", context)
     
 # Programacao
+
 
 @login_required
 @permission_required("radio.view_programacao", raise_exception=True)
@@ -115,7 +119,6 @@ def programacao(request):
         "page_obj": page_obj, 
     }
     return render(request, "dashboard/listar.html", context)
-
 
 @login_required
 @permission_required("radio.add_programacao", raise_exception=True)
@@ -167,6 +170,7 @@ def programacao_remover(request, id_item):
         return redirect("dashboard:programacao")
     else:
         return render(request, "dashboard/remover.html", context)
+
 
 # episodios 
 
@@ -251,11 +255,14 @@ def episodio_editar(request, id_item):
 @login_required
 @permission_required("radio.delete_episodio", raise_exception=True)
 def episodio_remover(request, id_item):
+    episodio = get_object_or_404(Episodio, id=id_item)
     context = {
-        "episodios": get_object_or_404(Episodio, id=id_item),
+        "episodio": episodio,       
+        "tipo": "episódio",        
+        "objeto": episodio.titulo, 
     }
     if request.method == "POST":
-        context["episodios"].delete()
+        context["episodio"].delete()
         return redirect("dashboard:episodios")
     else:
         return render(request, "dashboard/remover.html", context)

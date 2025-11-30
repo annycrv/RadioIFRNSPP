@@ -17,12 +17,9 @@
           </a>
 
           <!-- Botão Excluir -->
-          <form method="post" action="{% url 'usuarios:usuarios_remover' usuario.id %}" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger btn-sm">
+          <a href="{% url 'usuarios:usuario_remover' id_usuario=usuario.id %}" class="btn btn-danger btn-sm">
               <i class="bi bi-trash"></i>
-            </button>
-          </form>
+          </a>
         </div>
       </div>
     </div>

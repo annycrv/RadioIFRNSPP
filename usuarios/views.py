@@ -76,9 +76,12 @@ def usuarios_editar(request, id_usuario):
 @login_required
 @permission_required("usuarios.delete_usuario", raise_exception=True)
 def usuarios_remover(request, id_usuario):
+    usuario = get_object_or_404(Usuario, id=id_usuario)
     context = {
-        "usuario": get_object_or_404(Usuario, id=id_usuario),
-        "titulo_pagina": "Remover Usuario",
+        "usuario": usuario,            # objeto singular
+        "tipo": "usuário",             # para mostrar no título do template
+        "objeto": usuario.get_full_name() or usuario.username,  # para exibir no template
+        "titulo_pagina": "Remover Usuário",
     }
     if request.method == "POST":
         context["usuario"].delete()
