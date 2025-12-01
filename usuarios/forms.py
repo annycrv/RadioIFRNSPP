@@ -5,7 +5,7 @@ from .models import Usuario
 class UsuarioCreationForm(UserCreationForm):
     class Meta:
         model = Usuario
-        fields = ['username', 'first_name', 'last_name', 'email','foto_perfil']
+        fields = ['username', 'first_name', 'email','foto_perfil']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -19,9 +19,9 @@ class UsuarioCreationForm(UserCreationForm):
         "Sua senha precisa conter pelo menos 8 caracteres.<br>"
         "Sua senha não pode ser inteiramente numérica."
         )  
-        self.fields['password2'].help_text = "Informe a mesma senha informada anteriormente, para verificação."
+        self.fields['password2'].help_text = "Digite novamente a mesma senha informada anteriormente."
 
 class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ['username', 'first_name', 'last_name', 'email','foto_perfil']
+        fields = ['username', 'first_name', 'email','foto_perfil']

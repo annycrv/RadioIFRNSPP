@@ -44,7 +44,12 @@
                            href="{% url 'radio:programacao' 'segunda' %}">Programação</a>
                     </li>
 
-                    <li class="nav-item dropdown ps-3">
+                    <li class="nav-item ps-3">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'programas' %}ativo{% endif %} fw-semibold"
+                           href="{% url 'radio:programas' %}">Programas</a>
+                    </li>
+
+                    {% comment %} <li class="nav-item dropdown ps-3">
                         {% if request.resolver_match.url_name == 'podcasts' %}
 
                             <a class="nav-link dropdown-toggle ativo fw-semibold" href="{% url 'podcasts' %}"
@@ -55,9 +60,9 @@
                             <ul class="dropdown-menu" aria-labelledby="programasDropdown">
                                 <li><a class="dropdown-item fw-semibold" href="{% url 'radio:programas' %}">programas</a></li>
                                 <li><a class="fw-semibold dropdown-item" href="{% url 'radio:podcasts' %}">Podcasts</a></li>
-                            </ul>
+                            </ul> {% endcomment %}
 
-                        {% else %}
+                        {% comment %} {% else %}
 
                             <a class="nav-link dropdown-toggle fw-semibold {% if request.resolver_match.url_name == 'programas' %}ativo{% endif %}"
                                href="{% url 'radio:programas' %}" id="programasDropdown"
@@ -70,9 +75,9 @@
                                     <a class="dropdown-item fw-semibold {% if request.resolver_match.url_name == 'radio:programas' %}ativo{% endif %}"
                                        href="{% url 'radio:programas' %}">programas</a>
                                 </li>
-                            </ul>
+                            </ul> {% endcomment %}
 
-                        {% endif %}
+                        {% comment %} {% endif %} {% endcomment %}
                     </li>
 
                     <li class="nav-item ps-3">

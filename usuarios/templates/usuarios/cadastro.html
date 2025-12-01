@@ -8,7 +8,13 @@
 {% endblock imagem_lateral %}
 
 {% block buttons %}
-    <a href="{% url 'login' %}" class="small d-block text-center mb-2">Fazer login</a>
     <input class="btn btn-primary w-100" type="submit" value="Enviar">
 {% endblock buttons %}
+
+{% block footer_links %}
+    <p class="register-link text-center mt-3">
+        Já tem uma conta?
+        <a href="{% url 'login' %}">Entrar</a>
+    </p>
+{% endblock %}
 

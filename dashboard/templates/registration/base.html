@@ -40,18 +40,15 @@
                     {% csrf_token %}
 
                     {% if request.resolver_match.url_name == "cadastro" %}
-                    <div class="row g-3">
-                        <div class="col-md-6 mt-0">
-                            {{ form.username|as_crispy_field }}
+                    <div class="row g-2">
+                        <div class="col-md-12 mt-0">
+                            {{ form.email|as_crispy_field }}
                         </div>
-                        <div class="col-md-6 mt-0">
+                        <div class="col-md-12 mt-0">
                             {{ form.first_name|as_crispy_field }}
                         </div>
-                        <div class="col-md-6 mt-0">
-                            {{ form.last_name|as_crispy_field }}
-                        </div>
-                        <div class="col-md-6 mt-0">
-                            {{ form.email|as_crispy_field }}
+                        <div class="col-md-12 mt-0">
+                            {{ form.username|as_crispy_field }}
                         </div>
                         <div class="col-md-6 mt-0">
                             {{ form.password1|as_crispy_field }}
@@ -70,6 +67,9 @@
                     <!-- BOTÕES -->
                     <div class="mt-3">
                         {% block buttons %}{% endblock buttons %}
+                    </div>
+                    <div mt-3>
+                        {% block footer_links %}{% endblock %}
                     </div>
                 </form>
 

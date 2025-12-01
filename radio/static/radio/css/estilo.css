@@ -22,7 +22,7 @@ html, body {
     font-weight: 500px;
 }
 .nav-avatar {
-    margin-top: -4px;  /* ajuste fino */
+    margin-top: -4px;
 }
 .navbar-brand img.logo {
     height: 80px; /* diminui o tamanho da logo */
@@ -48,7 +48,7 @@ html, body {
 /* Aparência padrão dos links */
 .nav-link {
     padding: 6px 16px;
-    border-radius: 25px; /* bem arredondado */
+    border-radius: 25px;
     transition: all 0.3s ease;
 }
 
@@ -85,12 +85,12 @@ html, body {
   justify-content: center;
 }
 
-/* 🔥 Ajuste para telas pequenas */
+/* Ajuste para telas pequenas */
 @media (max-height: 650px) {
   .hero {
-    height: auto; /* deixa crescer */
-    min-height: calc(100svh - 102px); /* ainda respeita a altura mínima */
-    padding: 40px 20px; /* evita corte do texto */
+    height: auto;
+    min-height: calc(100svh - 102px); 
+    padding: 40px 20px; 
   }
 }
 
@@ -109,8 +109,8 @@ html, body {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 120px; /* tamanho da linha */
-  height: 4px;  /* espessura */
+  width: 120px;
+  height: 4px;  
   background: linear-gradient(90deg, #16a34a, #22c55e);
   border-radius: 2px;
 }
@@ -124,8 +124,8 @@ html, body {
 }
 
 .btn-outline-custom {
-  border: 2px solid #147D3F;  /* cor verde IFRN */
-  color: #147D3F;             /* texto verde */
+  border: 2px solid #147D3F;  
+  color: #147D3F;             
   background-color: transparent;
   border-radius: 50px;
   padding: 10px 30px;
@@ -133,8 +133,8 @@ html, body {
 }
 
 .btn-outline-custom:hover {
-  background-color: #147d4082; /* fundo verde no hover */
-  color: #fff;               /* texto branco */
+  background-color: #147d4082; 
+  color: #fff;             
 }
 
 .hero-img {
@@ -142,54 +142,54 @@ html, body {
   position: relative;
 }
 
-/* Etiqueta AO VIVO */
-.badge-live { 
-  position: absolute;
-  bottom: 85%;
-  left: 1px;
-  background: white;
-  border-radius: 20px;
-  padding: 8px 16px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+  /* Etiqueta AO VIVO
+  .badge-live { 
+    position: absolute;
+    bottom: 85%;
+    left: 1px;
+    background: white;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
 
-.badge-live .dot {
-  width: 10px;
-  height: 10px;
-  background-color: #34A853;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #107137;
-}
+  .badge-live .dot {
+    width: 10px;
+    height: 10px;
+    background-color: #34A853;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #107137;
+  }
 
-/* Etiqueta Tocando Agora */
-.badge-now-playing {
-  position: absolute;
-  right: 40px;
-  bottom: 0px;
-  background: white;
-  border-radius: 20px;
-  padding: 8px 16px;
-  font-weight: 500;
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 4px;
-}
+  /* Etiqueta Tocando Agora */
+  .badge-now-playing {
+    position: absolute;
+    right: 40px;
+    bottom: 0px;
+    background: white;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
 
-/* Animação de movimento */
-@keyframes upDown {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
+  /* Animação de movimento */
+  @keyframes upDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
 
-.animate-up-down {
-  animation: upDown 2.5s ease-in-out infinite;
-}
+  .animate-up-down {
+    animation: upDown 2.5s ease-in-out infinite;
+  } */
 
 
 /* section2 */
@@ -857,11 +857,9 @@ html, .layout {
 }
 
 .arrow-btn.disabled {
-    opacity: 0.3;
     pointer-events: none;
 }
 
-/* Remove borda se quiser igual ao exemplo */
 .arrow-btn {
     border-color: #eaeaea;
 }

@@ -337,6 +337,7 @@ form label {
     }
 }
 
+/* paginação */
 .custom-pagination {
     display: flex;
     justify-content: center;
@@ -373,15 +374,14 @@ form label {
 }
 
 .page-number.active {
-    background: #8140c7;
+    background: #6cc8a3;
     color: white;
-    border-color: #8140c7;
+    border-color: #6cc8a3;
     font-weight: bold;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .arrow-btn.disabled {
-    opacity: 0.3;
     pointer-events: none;
 }
 
