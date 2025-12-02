@@ -4,6 +4,7 @@ from .models import Usuario
 from .forms import UsuarioForm, UsuarioCreationForm
 from django.core.paginator import Paginator
 from django.contrib import messages
+from .forms import UsuarioChangeForm
 
 def cadastro(request):
     if request.method == "POST":
@@ -97,3 +98,21 @@ def usuarios_remover(request, id_usuario):
         return redirect("usuarios:usuarios")
     else:
         return render(request, "dashboard/remover.html", context)
+
+@login_required   
+def perfil(request):
+    return render(request, "registration/perfil.html")
+
+@login_required
+def editar_perfil(request):
+    if request.method == "POST":
+        form = UsuarioChangeForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Perfil atualizado!")
+            return redirect("usuarios:perfil")
+        else:
+            messages.success(request, "Falha ao atualizar o perfil!")
+    else:
+        form = UsuarioChangeForm(instance=request.user)
+    return render(request, "registration/editar_perfil.html", {"form": form})

@@ -1,0 +1,132 @@
+{% extends "registration/base.html" %}
+{% load static %}
+
+{% block title %}Meu Perfil{% endblock title %}
+{% block titulo_pagina %}Meu Perfil{% endblock titulo_pagina %}
+
+{% block content %}
+<div class="page-wrapper">
+    <div class="auth-container row g-0">
+
+        <!-- COLUNA DA IMAGEM -->
+        <div class="left-column col-lg-5 order-1 text-center">
+            {% block imagem_lateral %} 
+                <img src="{% static 'radio/img/padrao_perfil2.svg' %}" class="img-fluid" alt="Perfil">
+            {% endblock imagem_lateral %}
+        </div>
+
+        <!-- COLUNA DIREITA - PERFIL -->
+        <div class="right-column col-lg-7 order-2 p-4">
+            <div class="auth-box w-100">
+
+                <h1 class="auth-title">Meu Perfil</h1>
+
+                <div class="perfil-box">
+
+                    <!-- FOTO DO PERFIL -->
+                    <div class="perfil-foto-container">
+                        {% if request.user.foto_perfil %}
+                            <img src="{{ request.user.foto_perfil.url }}" class="perfil-foto">
+                        {% else %}
+                            <img src="{% static 'radio/img/avatarpadrao.jpg' %}" class="perfil-foto">
+                        {% endif %}
+                    </div>
+
+                    <!-- INFO -->
+                    <div class="perfil-info-list">
+
+                        <div class="perfil-info-item">
+                            <p class="perfil-info-label">Nome</p>
+                            <p class="perfil-info-value">{{ user.first_name }}</p>
+                        </div>
+
+                        <div class="perfil-info-item">
+                            <p class="perfil-info-label">Usuário</p>
+                            <p class="perfil-info-value">{{ user.username }}</p>
+                        </div>
+
+                        <div class="perfil-info-item">
+                            <p class="perfil-info-label">Email</p>
+                            <p class="perfil-info-value">{{ user.email }}</p>
+                        </div>
+
+                    </div>
+
+                    <!-- BOTÃO EDITAR -->
+                    <a href="{% url 'usuarios:editando_perfil' %}" class="btn btn-primary w-100 mt-3">
+                        Editar Perfil
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+{% comment %} {% extends "registration/base.html" %}
+{% load static %}
+
+{% block title %}Meu Perfil{% endblock title %}
+{% block titulo_pagina %}Meu Perfil{% endblock titulo_pagina %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'dashboard/css/perfil.css' %}">
+
+<div class="perfil-wrapper">
+
+
+    <!-- CARD DO PERFIL -->
+    <div class="perfil-card">
+
+        <!-- FOTO -->
+        {% if request.user.foto_perfil %}
+            <img src="{{ request.user.foto_perfil.url }}" class="perfil-avatar">
+        {% else %}
+            <img src="{% static 'radio/img/avatarpadrao.jpg' %}" class="perfil-avatar">
+        {% endif %}
+
+        <!-- NOME -->
+        <h2 class="perfil-nome">{{ user.first_name|default:"Usuário" }}</h2>
+        <br> 
+        <!-- EMAIL -->
+        <div class="perfil-info-box">
+            <i class="bi bi-envelope"></i>
+            <div>
+                <p class="perfil-info-label">Email</p>
+                <p class="perfil-info-value">{{ user.email }}</p>
+            </div>
+        </div>
+
+        <!-- USERNAME -->
+        <div class="perfil-info-box">
+            <i class="bi bi-person"></i>
+            <div>
+                <p class="perfil-info-label">Usuário</p>
+                <p class="perfil-info-value">{{ user.username }}</p>
+            </div>
+        </div>
+
+        <div class="perfil-info-box">
+            <i class="bi bi-person"></i>
+            <div>
+                <p class="perfil-info-label">Nome</p>
+                <p class="perfil-info-value">{{ user.first_name }}</p>
+            </div>
+        </div>
+
+        <!-- BOTÃO EDITAR -->
+        <a href="{% url 'usuarios:editando_perfil' %}" class="btn-perfil-editar">
+            Editar Perfil
+        </a>
+
+    </div>
+</div>
+
+{% endblock %} {% endcomment %}

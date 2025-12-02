@@ -797,21 +797,6 @@ a{
   }
 }
 
-/* Rodapé */
-html, .layout {
-    height: 100%;
-    margin: 0;
-}
-
-.layout {
-    display: flex;
-    flex-direction: column;
-}
-
-.contentglobal {
-    flex: 1; /* Ocupa o espaço e empurra o footer pra baixo */
-}
-
 /* paginação */
 .custom-pagination {
     display: flex;
@@ -863,3 +848,4 @@ html, .layout {
 .arrow-btn {
     border-color: #eaeaea;
 }
+
