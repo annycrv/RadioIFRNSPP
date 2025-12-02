@@ -3,12 +3,15 @@ from django.contrib.auth.decorators import login_required, permission_required
 from .models import Usuario
 from .forms import UsuarioForm, UsuarioCreationForm
 from django.core.paginator import Paginator
+from django.contrib import messages
 
 def cadastro(request):
     if request.method == "POST":
         form = UsuarioCreationForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
+            username = form.cleaned_data.get("username")
+            messages.success(request, f"Usuário {username} criado com sucesso! Faça login para acessar o sistema.")
             return redirect('login')
     else:
         form = UsuarioCreationForm()
@@ -47,9 +50,11 @@ def usuarios_novo(request):
         form = UsuarioCreationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            username = form.cleaned_data.get("username")
+            messages.success(request, f"Usuário {username} criado com sucesso!")
             return redirect("usuarios:usuarios")
         else:
-            context["form"] = form
+            messages.error(request, "Falha ao criar usuário!")
     else:
         context["form"] = UsuarioCreationForm()
     return render(request, "dashboard/novo.html", context)
@@ -66,9 +71,12 @@ def usuarios_editar(request, id_usuario):
         form = UsuarioForm(request.POST, request.FILES, instance=context["usuario"])
         if form.is_valid():
             form.save()
+            username = form.cleaned_data.get("username")
+            messages.success(request, f"Usuário {username} alterado com sucesso!")
+
             return redirect("usuarios:usuarios")
         else:
-            context["form"] = form
+            messages.error(request, "Falha ao alterar usuário!")
     else:
         context["form"] = UsuarioForm(instance=context["usuario"])
     return render(request, "dashboard/editar.html", context)
@@ -85,6 +93,7 @@ def usuarios_remover(request, id_usuario):
     }
     if request.method == "POST":
         context["usuario"].delete()
+        messages.success(request, "Usuário removido com sucesso!")
         return redirect("usuarios:usuarios")
     else:
         return render(request, "dashboard/remover.html", context)

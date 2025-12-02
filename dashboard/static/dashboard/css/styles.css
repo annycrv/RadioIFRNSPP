@@ -388,3 +388,9 @@ form label {
 .arrow-btn {
     border-color: #eaeaea;
 }
+
+.program-card p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}

@@ -24,13 +24,13 @@
         </li>
 
         <li class="nav-item mb-2">
-            <a href="#" class="nav-link d-flex align-items-center">
+            <a href="{% url 'dashboard:meus_curtidos' %}" class="nav-link d-flex align-items-center {% if request.resolver_match.url_name == 'meus_curtidos' %}active{% endif %}">
                 <i class="bi bi-heart me-2"></i> Meus Curtidos
             </a>
         </li>
         <li>
             <a class="nav-link d-flex align-items-center" href="{% url 'radio:index' %} ">
-                Página Inicial
+                <i class="bi bi-box-arrow-left me-2"></i>Página Inicial
             </a>
         </li>
 
@@ -70,7 +70,7 @@
             </li>
 
             <li class="nav-item mb-2">
-                <a href="{% url 'usuarios:usuarios' %}" class="nav-link d-flex align-items-center">
+                <a href="{% url 'usuarios:usuarios' %}" class="nav-link d-flex align-items-center {% if request.resolver_match.url_name == 'usuarios' %}active{% endif %}">
                     <i class="bi bi-people me-2"></i> Usuários
                 </a>
             </li>

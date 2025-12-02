@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
 </head>
-<body class="layout">
+<body class="layout ">
 <!-- Navegação -->
 <header>
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
@@ -47,37 +47,6 @@
                     <li class="nav-item ps-3">
                         <a class="nav-link {% if request.resolver_match.url_name == 'programas' %}ativo{% endif %} fw-semibold"
                            href="{% url 'radio:programas' %}">Programas</a>
-                    </li>
-
-                    {% comment %} <li class="nav-item dropdown ps-3">
-                        {% if request.resolver_match.url_name == 'podcasts' %}
-
-                            <a class="nav-link dropdown-toggle ativo fw-semibold" href="{% url 'podcasts' %}"
-                               id="programasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                programas
-                            </a>
-
-                            <ul class="dropdown-menu" aria-labelledby="programasDropdown">
-                                <li><a class="dropdown-item fw-semibold" href="{% url 'radio:programas' %}">programas</a></li>
-                                <li><a class="fw-semibold dropdown-item" href="{% url 'radio:podcasts' %}">Podcasts</a></li>
-                            </ul> {% endcomment %}
-
-                        {% comment %} {% else %}
-
-                            <a class="nav-link dropdown-toggle fw-semibold {% if request.resolver_match.url_name == 'programas' %}ativo{% endif %}"
-                               href="{% url 'radio:programas' %}" id="programasDropdown"
-                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Programas
-                            </a>
-
-                            <ul class="dropdown-menu" aria-labelledby="programasDropdown">
-                                <li>
-                                    <a class="dropdown-item fw-semibold {% if request.resolver_match.url_name == 'radio:programas' %}ativo{% endif %}"
-                                       href="{% url 'radio:programas' %}">programas</a>
-                                </li>
-                            </ul> {% endcomment %}
-
-                        {% comment %} {% endif %} {% endcomment %}
                     </li>
 
                     <li class="nav-item ps-3">
@@ -165,10 +134,9 @@
 </header>
 
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
-        crossorigin="anonymous"></script>
+    <div id="div-mensagens">
+      {% include 'dashboard/partials/_messages.html' %}
+    </div>
 
 <main class="contentglobal">
 {% block content %}
@@ -177,11 +145,16 @@
 </main>
 
 
-<footer class="footer justify-content-center align-items-center flex-column text-center">
+<footer class="footer justify-content-center align-items-center flex-column text-center mt-auto">
 
   <strong class="small text-center text-muted fst-italic py-3">
     2025 Copyright - RádioIFRNSPP
   </strong>
 </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+        crossorigin="anonymous"></script>
 </body>
 </html>

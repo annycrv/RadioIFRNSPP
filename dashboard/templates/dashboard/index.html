@@ -2,4 +2,83 @@
 {% load static %}
 {% block content %}
 <h1>Olá, {{user.username}}</h1>
+
+
+<div class="container mt-4">
+
+    {% if user.is_staff %}
+    <!-- ADMIN: 4 CARDS -->
+    <div class="row g-3 mb-4">
+
+        <!-- Total Usuários -->
+        <div class="col-md-3">
+            <a href="{% url 'usuarios:usuarios' %}" class="text-decoration-none text-dark">
+            <div class="stat-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="stat-title">Usuários</span>
+                    <i class="bi bi-people-fill text-primary"></i>
+                </div>
+                <div class="stat-value mt-2">{{ total_usuarios }}</div>
+            </div>
+            </a>
+        </div>
+
+        <!-- Programas -->
+        <div class="col-md-3">
+            <a href="{% url 'dashboard:programas' %}" class="text-decoration-none text-dark">
+            <div class="stat-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="stat-title">Programas</span>
+                    <i class="bi bi-mic-fill text-success"></i>
+                </div>
+                <div class="stat-value mt-2">{{ total_programas }}</div>
+            </div>
+            </a>    
+        </div>
+
+        <!-- Programações -->
+        <div class="col-md-3">
+            <a href="{% url 'dashboard:programacao' %}" class="text-decoration-none text-dark">
+            <div class="stat-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="stat-title">Programações</span>
+                    <i class="bi bi-calendar-week text-warning"></i>
+                </div>
+                <div class="stat-value mt-2">{{ total_programacoes }}</div>
+            </div>
+            </a>    
+        </div>
+
+        <!-- Curtidas -->
+        <div class="col-md-3">
+            <a href="" class="text-decoration-none text-dark">
+            <div class="stat-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="stat-title">Curtidas</span>
+                    <i class="bi bi-heart-fill text-danger"></i>
+                </div>
+                <div class="stat-value mt-2">{{ total_curtidos }}</div>
+            </div>
+        </div>
+            </a>
+    </div>
+
+    {% else %}
+    <!-- USUÁRIO NORMAL: 1 CARD -->
+    <div class="row g-3 mb-4 justify-content-center">
+        <a href="" class="text-decoration-none text-dark">
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="stat-title">Minhas Curtidas</span>
+                    <i class="bi bi-heart-fill text-danger"></i>
+                </div>
+                <div class="stat-value mt-2">{{ total_curtidos }}</div>
+            </div>
+        </div>
+        </a>
+    </div>
+    {% endif %}
+
+</div>
 {% endblock %}

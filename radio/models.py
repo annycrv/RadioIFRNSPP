@@ -6,8 +6,8 @@ class Home(models.Model):
     subtitulo_home = models.CharField(max_length=200)
     bg_home = models.ImageField(upload_to="radio/banner_home/", blank=True)
     quemsomos_home = models.CharField(max_length=1000)
-    nome = models.CharField("Seu nome",max_length=50, blank=True)
-    comentario = models.TextField("Quais os programas você gostaria de encontrar na nossa rádio?", max_length=1000, blank=True)
+    nome = models.CharField("Seu nome",max_length=50)
+    comentario = models.TextField("Quais os programas você gostaria de encontrar na nossa rádio?", max_length=1000)
 
     class Meta:
         verbose_name_plural = "Home"
@@ -95,7 +95,7 @@ class Pedido(models.Model):
     nome = models.CharField("Seu nome",max_length=1000)
     musica = models.CharField("O que você gostaria de ouvir hoje?",max_length=1000)
     artista = models.CharField("Qual o nome do(a) artista ou banda dessa música?",max_length=1000)
-    horario_desejado = models.TimeField("Qual o horário desejado?",choices=HORARIO,)
+    horario_desejado = models.CharField("Qual o horário desejado?", max_length=5, choices=HORARIO)
     mensagem = models.TextField("Observações (opcional)",blank=True, null=True, max_length=1000)
 
     class Meta:

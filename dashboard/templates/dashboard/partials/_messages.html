@@ -1,0 +1,40 @@
+<div class="toast-container position-fixed top-0 mt-5 pt-5 end-0 p-3" style="z-index: 2000;">
+{% if messages %}
+{% for message in messages %}
+{% load static %}
+
+    {% if message.tags == "error" %}
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="{% static 'radio/img/logoifrn.png' %}" class="rounded me-2" alt="...">
+            <strong class="me-auto text-danger">Erro</strong>
+            <small class="text-muted">Agora mesmo</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            {{ message }}
+        </div>
+    </div>
+
+    {% else %}
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="{% static 'radio/img/logoifrn.png' %}" class="rounded me-2" alt="..." style="width: 30px; height: 30px; object-fit: contain;"><strong class="me-auto text-success">Sucesso</strong>
+            <small class="text-muted">Agora mesmo</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            {{ message }}
+        </div>
+    </div>
+    {% endif %}
+
+{% endfor %}
+{% endif %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.toast').forEach(function (toastEl) {
+        new bootstrap.Toast(toastEl).show();
+    });
+});
+</script>

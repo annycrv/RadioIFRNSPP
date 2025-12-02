@@ -13,6 +13,9 @@
     <!-- Estilos -->
     <link href="{% static 'dashboard/css/styles.css' %}" rel="stylesheet" />
   </head>
+    <div id="div-mensagens">
+      {% include 'dashboard/partials/_messages.html' %}
+    </div>
 
 <body class="index">
 
@@ -39,7 +42,6 @@
         {% block content %}
         {% endblock %}
       </main>
-
     </div>
   </div>
 

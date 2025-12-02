@@ -4,7 +4,7 @@ from .models import Home, Programa, Programacao, Sobre,Pedido,Episodio
 from radio.forms import PedidoModelForm, HomeModelForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required, permission_required
-
+from django.contrib import messages
 def index(request):
     context = {
         "home": Home.objects.first()
@@ -13,9 +13,10 @@ def index(request):
         form = HomeModelForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("index")
+            messages.success(request, "Sugestão registrada com sucesso!")
+            return redirect("radio:index")
         else:
-            context["form"] = form
+            messages.error(request, "Falha ao registrar sugestão!")
     else:
         context["form"] = HomeModelForm()
     return render(request, "radio/index.html", context)
@@ -29,9 +30,10 @@ def pedidos(request):
         form = PedidoModelForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("pedidos")
+            messages.success(request, "Pedido de música registrado com sucesso!")
+            return redirect("radio:pedidos")
         else:
-            context["form"] = form
+            messages.error(request, "Falha ao registrar pedido de música!")
     else:
         context["form"] = PedidoModelForm()
     return render(request, "radio/pedidos.html", context)

@@ -6,6 +6,7 @@ from radio.forms import ProgramacaoModelForm
 from radio.forms import EpisodioModelForm
 from usuarios.models import Usuario
 from django.core.paginator import Paginator
+from django.contrib import messages
 
 @login_required
 def index(request):
@@ -17,6 +18,7 @@ def index(request):
         "total_programas": Programa.objects.count(),
         "total_programacoes": Programacao.objects.count(),
         "total_usuarios": Usuario.objects.count(),
+        "total_curtidos": Programa.objects.filter(curtidas=request.user).count()
     }
     return render(request, "dashboard/index.html", context)
 
@@ -54,9 +56,10 @@ def programa_novo(request):
         form = ProgramaModelForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, "Programa registrado com sucesso!")
             return redirect("dashboard:programas")
         else:
-            context["form"] = form
+            messages.error(request, "Falha ao registrar Programa!")
     else:
         context["form"] = ProgramaModelForm()
     return render(request, "dashboard/novo.html", context)
@@ -74,13 +77,13 @@ def programa_editar(request, id_programa):
         form = ProgramaModelForm(request.POST, instance=context["programa"])
         if form.is_valid():
             form.save()
+            messages.success(request, "Programa alterado com sucesso!")
             return redirect("dashboard:programas")
         else:
-            context["form"] = form
+            messages.error(request, "Falha ao alterar programa!")
     else:
         context["form"] = ProgramaModelForm(instance=context["programa"])
     return render(request, "dashboard/editar.html", context)
-
 
 @login_required
 @permission_required("radio.delete_programa", raise_exception=True)
@@ -93,6 +96,7 @@ def programa_remover(request, id_programa):
     }
     if request.method == "POST":
         context["programa"].delete()
+        messages.success(request, "Programa removido com sucesso!")
         return redirect("dashboard:programas")
     else:
         return render(request, "dashboard/remover.html", context)
@@ -131,9 +135,10 @@ def programacao_novo(request):
         form = ProgramacaoModelForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, "Programação registrada com sucesso!")
             return redirect("dashboard:programacao")
         else:
-            context["form"] = form
+            messages.error(request, "Falha ao registrar programação!")
     else:
         context["form"] = ProgramacaoModelForm()
     return render(request, "dashboard/novo.html", context)
@@ -151,9 +156,10 @@ def programacao_editar(request, id_item):
         form = ProgramacaoModelForm(request.POST, instance=context["programacao"])
         if form.is_valid():
             form.save()
+            messages.success(request, "Programação alterada com sucesso!")
             return redirect("dashboard:programacao")
         else:
-            context["form"] = form
+            messages.error(request, "Falha ao alterar programação!")
     else:
         context["form"] = ProgramacaoModelForm(instance=context["programacao"])
     return render(request, "dashboard/editar.html", context)
@@ -167,6 +173,7 @@ def programacao_remover(request, id_item):
     }
     if request.method == "POST":
         context["programacao"].delete()
+        messages.success(request, "Programação removida com sucesso!")
         return redirect("dashboard:programacao")
     else:
         return render(request, "dashboard/remover.html", context)
@@ -223,9 +230,10 @@ def episodio_novo(request, id_programa):
             episodio = form.save(commit=False)
             episodio.programa = programa 
             episodio.save()
+            messages.success(request, "Episódio registrado com sucesso!")
             return redirect("dashboard:episodios")
         else:
-            context["form"] = form
+            messages.error(request, "Falha ao registrar episódio!")
     else:
         context["form"] = EpisodioModelForm()
 
@@ -244,13 +252,13 @@ def episodio_editar(request, id_item):
         form = EpisodioModelForm(request.POST, instance=context["episodio"])
         if form.is_valid():
             form.save()
+            messages.success(request, "Episódio alterado com sucesso!")
             return redirect("dashboard:episodios")
         else:
-            context["form"] = form
+            messages.error(request, "Falha ao alterar episódio!")
     else:
         context["form"] = EpisodioModelForm(instance=context["episodio"])
     return render(request, "dashboard/editar.html", context)
-
 
 @login_required
 @permission_required("radio.delete_episodio", raise_exception=True)
@@ -263,6 +271,7 @@ def episodio_remover(request, id_item):
     }
     if request.method == "POST":
         context["episodio"].delete()
+        messages.success(request, "Episódio removido com sucesso!")
         return redirect("dashboard:episodios")
     else:
         return render(request, "dashboard/remover.html", context)
@@ -280,5 +289,21 @@ def episodios_programa(request, id_programa):
         'titulo_pagina': f'Episódios de {programa.nome_programa}'
     }
     return render(request, 'dashboard/episodios_programa.html', context)
+
+@login_required
+def meus_curtidos(request):
+    lista = Programa.objects.filter(curtidas=request.user)
+
+    paginator = Paginator(lista, 6)
+    pagina_atual = request.GET.get("page")
+    page_obj = paginator.get_page(pagina_atual)
+
+    context = {
+        "curtidos": page_obj,
+        "titulo_pagina": "Meus Curtidos",
+        "partial_tabela": "dashboard/partials/_tabela_curtidos.html",
+        "page_obj": page_obj,  
+    }
+    return render(request, "dashboard/listar.html", context)
 
 
