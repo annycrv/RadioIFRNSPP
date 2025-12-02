@@ -1,86 +1,85 @@
-<nav class="sidebar d-flex flex-column p-4 min-vh-100">
+<div class="sidebar collapse d-md-block p-4 min-vh-100 shadow-sm" id="sidebarMenu">
 
-    <!-- Título -->
-    <h2 class="logo-text mb-4">
-        Dashboard
-    </h2>
+  <a href="{% url 'dashboard:index' %}" class="text-decoration-none titu_nav">
+    <h4 class="fw-bold mb-4">Dashboard</h4>
+  </a>
 
-    <h6 class="text-uppercase menu-titulo mb-3">Menu</h6>
+  <h6 class="text-uppercase text-muted mb-3 titu_nav">Menu</h6>
 
-    <ul class="nav flex-column flex-grow-1">
+  <ul class="navbar-nav flex-column">
 
-        <!-- ITEM COMUM -->
-        <li class="nav-item mb-2">
-            <a href="{% url 'dashboard:index' %}" 
-               class="nav-link d-flex align-items-center {% if request.resolver_match.url_name == 'index' %}active{% endif %}">
-                <i class="bi bi-house-door me-2"></i> Meu Painel
-            </a>
-        </li>
+    <li class="nav-item mb-1">
+      <a class="nav-link {% if request.resolver_match.url_name == 'index' %}ativo{% endif %}"
+         href="{% url 'dashboard:index' %}">
+         <i class="bi bi-house-door me-2"></i> Meu Painel
+      </a>
+    </li>
 
-        <li class="nav-item mb-2">
-            <a href="#" class="nav-link d-flex align-items-center ">
-                <i class="bi bi-person me-2"></i> Meu Perfil
-            </a>
-        </li>
+    <li class="nav-item mb-1">
+      <a class="nav-link" href="#">
+        <i class="bi bi-person me-2"></i> Meu Perfil
+      </a>
+    </li>
 
-        <li class="nav-item mb-2">
-            <a href="{% url 'dashboard:meus_curtidos' %}" class="nav-link d-flex align-items-center {% if request.resolver_match.url_name == 'meus_curtidos' %}active{% endif %}">
-                <i class="bi bi-heart me-2"></i> Meus Curtidos
-            </a>
-        </li>
-        <li>
-            <a class="nav-link d-flex align-items-center" href="{% url 'radio:index' %} ">
-                <i class="bi bi-box-arrow-left me-2"></i>Página Inicial
-            </a>
-        </li>
+    <li class="nav-item mb-1">
+      <a class="nav-link {% if request.resolver_match.url_name == 'meus_curtidos' %}ativo{% endif %}"
+         href="{% url 'dashboard:meus_curtidos' %}">
+         <i class="bi bi-heart me-2"></i> Meus Curtidos
+      </a>
+    </li>
 
-        <!-- ITENS EXTRAS APENAS PARA STAFF -->
-        {% if user.is_staff %}
-            <hr>
+    <li class="nav-item mb-1">
+      <a class="nav-link" href="{% url 'radio:index' %}">
+        <i class="bi bi-box-arrow-left me-2"></i> Página Inicial
+      </a>
+    </li>
 
-            <!-- Programas com submenu -->
-            <li class="nav-item mb-2">
-                <a href="{% url 'dashboard:programas' %}" 
-                   class="nav-link d-flex align-items-center {% if request.resolver_match.url_name == 'programas' %}active{% endif %}">
-                    <i class="bi bi-broadcast me-2"></i> Programas
-                </a>
-                
-                <!-- Submenu Episódios -->
-                <ul class="nav flex-column ms-4 ">
-                    <li class="nav-item">
-                        <a href="{% url 'dashboard:episodios' %}" 
-                           class="nav-link d-flex align-items-center {% if request.resolver_match.url_name == 'episodios' %}active{% endif %}">
-                            <i class="bi bi-music-note-list me-2"></i> Episódios
-                        </a>
-                    </li>
-                </ul>
-            </li>
+    {% if user.is_staff %}
+    <hr class="my-3">
 
-            <li class="nav-item mb-2">
-                <a href="{% url 'dashboard:programacao' %}" 
-                   class="nav-link d-flex align-items-center {% if request.resolver_match.url_name == 'programacao' %}active{% endif %}">
-                    <i class="bi bi-calendar-week me-2"></i> Programação
-                </a>
-            </li>
+    <li class="nav-item mb-1">
+      <a class="nav-link {% if request.resolver_match.url_name == 'programas' %}ativo{% endif %}"
+         href="{% url 'dashboard:programas' %}">
+         <i class="bi bi-broadcast me-2"></i> Programas
+      </a>
+    </li>
 
-            <li class="nav-item mb-2">
-                <a href="{% url 'dashboard:conteudo' %}" class="nav-link d-flex align-items-center">
-                    <i class="bi bi-file-text me-2"></i> Conteúdo Index
-                </a>
-            </li>
-
-            <li class="nav-item mb-2">
-                <a href="{% url 'usuarios:usuarios' %}" class="nav-link d-flex align-items-center {% if request.resolver_match.url_name == 'usuarios' %}active{% endif %}">
-                    <i class="bi bi-people me-2"></i> Usuários
-                </a>
-            </li>
-
-            <li class="nav-item mb-2">
-                <a href="{% url 'dashboard:sobre' %}" class="nav-link d-flex align-items-center">
-                    <i class="bi bi-info-circle me-2"></i> Sobre
-                </a>
-            </li>
-        {% endif %}
+    <ul class="navbar-nav ms-4">
+      <li>
+        <a class="nav-link {% if request.resolver_match.url_name == 'episodios' %}ativo{% endif %}"
+           href="{% url 'dashboard:episodios' %}">
+           <i class="bi bi-music-note-list me-2"></i> Episódios
+        </a>
+      </li>
     </ul>
 
-</nav>
+    <li class="nav-item mb-1">
+      <a class="nav-link {% if request.resolver_match.url_name == 'programacao' %}ativo{% endif %}"
+         href="{% url 'dashboard:programacao' %}">
+         <i class="bi bi-calendar-week me-2"></i> Programação
+      </a>
+    </li>
+
+    <li class="nav-item mb-1">
+      <a class="nav-link" href="{% url 'dashboard:conteudo' %}">
+        <i class="bi bi-file-text me-2"></i> Conteúdo Home
+      </a>
+    </li>
+
+    <li class="nav-item mb-1">
+      <a class="nav-link {% if request.resolver_match.url_name == 'usuarios' %}ativo{% endif %}"
+         href="{% url 'usuarios:usuarios' %}">
+         <i class="bi bi-people me-2"></i> Usuários
+      </a>
+    </li>
+
+    <li class="nav-item mb-1">
+      <a class="nav-link" href="{% url 'dashboard:sobre' %}">
+        <i class="bi bi-info-circle me-2"></i> Sobre
+      </a>
+    </li>
+
+    {% endif %}
+
+  </ul>
+</div>

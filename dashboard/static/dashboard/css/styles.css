@@ -51,7 +51,7 @@ body {
 
 /* Hover e link ativo */
 .nav-link:hover,
-.nav-link.active {
+.nav-link.ativo {
   background-color: #34A853; /* verde forte */
   color: #fff;
 }
@@ -77,6 +77,7 @@ body {
 main {
   background-color: #fafafa;
   color: #333;
+  padding: 1.5rem;
 }
 .titulo-dashboard {
   font-weight: 600;
@@ -297,7 +298,6 @@ form label {
 ================================*/
 .auth-link a,
 .small {
-    color: #5a4ff3 !important;
     text-decoration: none;
     font-weight: 600;
 }
@@ -393,4 +393,40 @@ form label {
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
+}
+
+.titu_nav{
+  color: #34A853;
+}
+
+/* ---------------------------
+   SIDEBAR RESPONSIVO
+---------------------------- */
+
+/* No desktop ele fica fixo à esquerda */
+@media (min-width: 768px) {
+    #sidebarMenu {
+        width: 260px;
+        min-height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+}
+
+/* No mobile ele fica colapsado */
+@media (max-width: 767px) {
+    #sidebarMenu {
+        width: 100%;
+    }
+}
+
+/* Ajusta o conteúdo para que nunca "estoure" a tela */
+.content-wrapper {
+    min-width: 0; /* MUITO IMPORTANTE para flexbox */
+    overflow-x: hidden;
+}
+
+/* Título responsivo */
+.titulo-header {
+    font-size: clamp(1.2rem, 2.5vw, 1.7rem);
 }

@@ -5,7 +5,6 @@
 
 {% block content %}
 
-
 <section class="hero d-flex align-items-center py-5">
   <div class="container-index">
     <div class="row align-items-center">
@@ -17,8 +16,7 @@
           <span>com você</span>
         </h1>
         <p class="lead mt-3">
-          <strong class="text">Rádio IFRN:</strong> A voz dos alunos, o som da nossa escola,
-          conectando conhecimento, cultura, informação e música em um só lugar.
+          <strong class="text">{{ home.subtitulo_home}}</strong> 
         </p>
         <div class="mt-4">
           <a href="{%url 'radio:programacao' 'segunda'%}" class="btn btn-primary btn-lg me-3">Programação diária</a>
@@ -36,12 +34,12 @@
 </section>
 
 
-<section class="section2 py-5 mt-5 text-center bg-white">
+<section class="section2 py-5 mt-4 mb-5 text-center bg-white">
   <div class="container">
     <div class="row justify-content-center">
 
       <!-- Coluna 1 -->
-      <div class="col-md-4 mb-4">
+      <div class="col-md-4 mb-5">
         <a href="{% url 'radio:programacao' 'segunda' %}">
           <div class="icon-circle mx-auto mb-3 botao">
             <i class="bi bi-calendar"></i>
@@ -53,7 +51,7 @@
       </div>
 
       <!-- Coluna 2 -->
-      <div class="col-md-4 mb-4">
+      <div class="col-md-4 mb-5">
         <a href="{% url 'radio:programas' %}">
           <div class="icon-circle mx-auto mb-3 botao">
             <i class="bi bi-mic"></i>
@@ -88,14 +86,12 @@
       <div class="col-lg-8 mb-4 mb-lg-0">
         <h2 class="titulo3 fw-bold mb-3">Quem somos</h2>
         <p class="text-secondary mb-4 me-5">
-          Fundada pelo então governador do estado Dinarte Mariz, e inaugurada pelo potiguar e presidente da república João Café Filho,
-          a Rádio Nordeste AM 900khz, entrou em operação em dezembro de 1957, dando o nome ao bairro onde está localizada.
+          {{ home.quemsomos_home }}
         </p>
         <a href="{% url 'radio:sobre' %}" class="btn btn-gradient fw-semibold px-4 py-2">
           Saiba mais →
         </a>
       </div>
-
       <!-- Carrossel -->
 <div id="carouselExample" class="carousel slide col-lg-4 mb-4 mb-lg-0">
   <div class="carousel-inner ">

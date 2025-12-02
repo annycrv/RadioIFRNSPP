@@ -1,5 +1,11 @@
 from django import forms
-from .models import Pedido,Home, Programa, Programacao,Episodio
+from .models import Pedido,Home, Programa, Programacao,Episodio,Sugestao
+
+
+class HomeModelForm(forms.ModelForm):
+    class Meta:
+        model = Home
+        fields = ["subtitulo_home","quemsomos_home"]
 
 class PedidoModelForm(forms.ModelForm):
     class Meta:
@@ -28,9 +34,9 @@ class PedidoModelForm(forms.ModelForm):
             }),
         }
 
-class HomeModelForm(forms.ModelForm):
+class SugestaoModelForm(forms.ModelForm):
     class Meta:
-        model = Home
+        model = Sugestao
         fields = ["nome","comentario"]
         widgets = {
             'nome': forms.TextInput(attrs={

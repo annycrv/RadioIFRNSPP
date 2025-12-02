@@ -13,39 +13,50 @@
     <!-- Estilos -->
     <link href="{% static 'dashboard/css/styles.css' %}" rel="stylesheet" />
   </head>
-    <div id="div-mensagens">
-      {% include 'dashboard/partials/_messages.html' %}
-    </div>
-
+<header class="navbar navbar-light bg-white shadow-sm d-md-none px-3 py-2">
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu"
+            aria-controls="sidebarMenu"
+            aria-expanded="false"
+            aria-label="Menu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</header>
 <body class="index">
 
-  <div class="d-flex min-vh-100">
+  <!-- MENSAGENS (agora dentro do body, correto) -->
+  <div id="div-mensagens">
+    {% include 'dashboard/partials/_messages.html' %}
+  </div>
+
+
+
+<div class="d-flex min-vh-100 flex-column flex-md-row">
 
     <!-- SIDEBAR -->
     {% include 'dashboard/partials/_sidebar.html' %}
 
     <!-- CONTEÚDO PRINCIPAL -->
-    <div class="flex-grow-1 d-flex flex-column">
+    <div class="flex-grow-1 d-flex flex-column content-wrapper">
 
       <!-- Topbar -->
       <header class="topbar d-flex align-items-center px-4 py-3 shadow-sm">
-        <button class="btn btn-outline-primary me-3 d-lg-none" id="toggleSidebar">
-          <i class="bi bi-list"></i>
-        </button>
-        <h1 class="m-0 titulo-header">
-          Meu Painel
-        </h1>
+          <h1 class="m-0 titulo-header">Meu Painel</h1>
       </header>
 
-      <!-- Conteúdo -->
-      <main class="flex-grow-1 p-4 bg-body-tertiary">
+      <!-- Conteúdo principal -->
+      <main class="flex-grow-1 p-4">
         {% block content %}
         {% endblock %}
       </main>
-    </div>
-  </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+</div>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
