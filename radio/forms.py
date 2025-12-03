@@ -1,11 +1,5 @@
 from django import forms
-from .models import Pedido,Home, Programa, Programacao,Episodio,Sugestao
-
-
-class HomeModelForm(forms.ModelForm):
-    class Meta:
-        model = Home
-        fields = ["subtitulo_home","quemsomos_home"]
+from .models import Pedido, Programa, Programacao,Episodio,Sugestao
 
 class PedidoModelForm(forms.ModelForm):
     class Meta:
@@ -66,3 +60,9 @@ class EpisodioModelForm(forms.ModelForm):
         model = Episodio
         exclude = ['programa']
 
+        widgets = {
+            'audio': forms.URLInput(attrs={
+                'placeholder': 'Ex: http://instagram.com/',
+                'class': 'form-control',  # opcional, para estilizar com Bootstrap
+            }),
+        }

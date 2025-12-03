@@ -1,11 +1,9 @@
-from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
-from radio.models import Home, Programa, Sobre, Programacao,Episodio, Sugestao
+from radio.models import Programa, Programacao,Episodio, Sugestao
 from radio.forms import ProgramaModelForm
 from radio.forms import ProgramacaoModelForm
 from radio.forms import EpisodioModelForm
-from radio.forms import HomeModelForm
-from radio.forms import SugestaoModelForm
 from usuarios.models import Usuario
 from django.core.paginator import Paginator
 from django.contrib import messages
@@ -13,10 +11,9 @@ from django.contrib import messages
 @login_required
 def index(request):
     context = {
-        "home": Home.objects.all,
+        "sugestao": Sugestao.objects.all,
         "programacao": Programacao.objects.all,
         "programas": Programa.objects.all,
-        "sobre": Sobre.objects.all,
         "total_programas": Programa.objects.count(),
         "total_programacoes": Programacao.objects.count(),
         "total_usuarios": Usuario.objects.count(),
@@ -308,62 +305,3 @@ def meus_curtidos(request):
         "page_obj": page_obj,  
     }
     return render(request, "dashboard/listar.html", context)
-
-@login_required
-@permission_required("radio.view_home", raise_exception=True)
-def conteudo(request):
-    lista = Home.objects.all().order_by("id")
-
-    paginator = Paginator(lista, 6)
-    pagina_atual = request.GET.get("page")
-    page_obj = paginator.get_page(pagina_atual)
-
-    context = {
-        "conteudo": page_obj,
-        "titulo_pagina": "Conteúdo",
-        "subtitulo_pagina": "Gerencie o conteúdo da página principal da rádio",
-        "url_novo": "dashboard:conteudo_novo",
-        "partial_tabela": "dashboard/partials/_tabela_conteudo.html",
-        "texto_botao_novo": "Adicionar Conteúdo", 
-        "page_obj": page_obj, 
-    }
-    return render(request, "dashboard/listar.html", context)
-
-@login_required
-@permission_required("radio.add_home", raise_exception=True)
-def conteudo_novo(request):
-    context = {
-        "titulo_pagina": "Adicionar Conteúdo a página principal",
-        "url_cancelar": "dashboard:conteudo",
-    }
-    if request.method == "POST":
-        form = HomeModelForm(request.POST,request.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Conteúdo registrado com sucesso!")
-            return redirect("dashboard:conteudo")
-        else:
-            messages.error(request, "Falha ao registrar conteúdo!")
-    else:
-        context["form"] = HomeModelForm()
-    return render(request, "dashboard/novo.html", context)
-
-@login_required
-@permission_required("radio.change_home", raise_exception=True)
-def conteudo_editar(request, id_item):
-    context = {
-        "conteudo": get_object_or_404(Home, id=id_item),
-        "titulo_pagina": "Editar Conteúdo",
-        "url_cancelar": "dashboard:conteudo",
-    }
-    if request.method == "POST":
-        form = HomeModelForm(request.POST, instance=context["conteudo"])
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Conteúdo alterado com sucesso!")
-            return redirect("dashboard:conteudo")
-        else:
-            messages.error(request, "Falha ao alterar conteúdo!")
-    else:
-        context["form"] = HomeModelForm(instance=context["conteudo"])
-    return render(request, "dashboard/editar.html", context)

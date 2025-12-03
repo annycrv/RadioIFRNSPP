@@ -1,29 +1,31 @@
-<div class="row g-4">
+<div class="table-responsive">
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th scope="col" class="col-2"><a href="{% querystring ordenar='id' %}" >#</a></th>
+        <th scope="col" class="col-4"><a href="{% querystring ordenar='username' %}" >Username<a></th>
+        <th scope="col" class="col-4"><a href="{% querystring ordenar='first_name' %}" >Nome</a></th>
+        <th scope="col" class="col-2">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
   {% for usuario in usuarios %}
-    <div class="col-md-4">
-      <div class="program-card p-3 shadow-sm rounded-3">
-        <h5 class="mb-2">{{ usuario.username }}</h5>
-        <p class="text-muted mb-1">
-          <strong>Nome:</strong> {{ usuario.first_name }} {{ usuario.last_name }}
-        </p>
-        <p class="text-muted mb-3">
-          <strong>Email:</strong> {{ usuario.email }}
-        </p>
-
-        <div class="d-flex gap-2 mt-2">
-          <!-- Botão Editar -->
-          <a href="{% url 'usuarios:usuarios_editar' usuario.id %}" class="btn btn-outline-secondary btn-sm">
-            <i class="bi bi-pencil-square"></i>
-          </a>
-
-          <!-- Botão Excluir -->
-          <a href="{% url 'usuarios:usuario_remover' id_usuario=usuario.id %}" class="btn btn-danger btn-sm">
-              <i class="bi bi-trash"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  {% empty %}
-    <p class="text-muted">Nenhum usuário cadastrado ainda.</p>
-  {% endfor %}
+    <tr>
+      <td>
+        {{ usuario.id }} 
+      </td>  
+      <td>
+        {{ usuario.username }} 
+      </td>  
+      <td>
+        {{ usuario.first_name }} 
+      </td>     
+      <td class="text-nowrap">
+        <a href="{% url 'usuarios:usuarios_editar' usuario.id %}" class="btn btn-primary"><i class="bi bi-pencil-fill"></i></a>
+        <a href="{% url 'usuarios:usuario_remover' id_usuario=usuario.id %}" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
+      </td>  
+    </tr>
+  {% endfor %}
+    </tbody>
+  </table>
 </div>

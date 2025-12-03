@@ -34,6 +34,14 @@
       </a>
     </li>
 
+    <li class="nav-item mb-1">
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button class="dropdown-item py-2" type="submit">
+          <i class="bi bi-box-arrow-right me-2"></i> Sair
+        </button>
+      </form>
+    </li>
     {% if user.is_staff %}
     <hr class="my-3">
 
@@ -61,24 +69,11 @@
     </li>
 
     <li class="nav-item mb-1">
-      <a class="nav-link" href="{% url 'dashboard:conteudo' %}">
-        <i class="bi bi-file-text me-2"></i> Conteúdo Home
-      </a>
-    </li>
-
-    <li class="nav-item mb-1">
       <a class="nav-link {% if request.resolver_match.url_name == 'usuarios' %}ativo{% endif %}"
          href="{% url 'usuarios:usuarios' %}">
          <i class="bi bi-people me-2"></i> Usuários
       </a>
     </li>
-
-    <li class="nav-item mb-1">
-      <a class="nav-link" href="{% url 'dashboard:sobre' %}">
-        <i class="bi bi-info-circle me-2"></i> Sobre
-      </a>
-    </li>
-
     {% endif %}
 
   </ul>

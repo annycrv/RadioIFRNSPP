@@ -1,16 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, permission_required
-from .models import Home, Programa, Programacao, Sobre,Pedido,Episodio
-from radio.forms import PedidoModelForm, HomeModelForm
+from .models import Programa, Programacao,Pedido,Episodio, Sugestao
+from radio.forms import PedidoModelForm, SugestaoModelForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 def index(request):
     context = {
-        "home": Home.objects.first()
+        "sugestao": Sugestao.objects.first()
     }
     if request.method == "POST":
-        form = HomeModelForm(request.POST)
+        form = SugestaoModelForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, "Sugestão registrada com sucesso!")
@@ -18,7 +18,7 @@ def index(request):
         else:
             messages.error(request, "Falha ao registrar sugestão!")
     else:
-        context["form"] = HomeModelForm()
+        context["form"] = SugestaoModelForm()
     return render(request, "radio/index.html", context)
 
 @login_required
@@ -52,7 +52,6 @@ def programacao(request,dia):
 
     context = {
         "programacao": page_obj,
-        # "podcasts": Podcast.objects.all(),
         "dia": dia.capitalize(),
         "page_obj": page_obj,
     }

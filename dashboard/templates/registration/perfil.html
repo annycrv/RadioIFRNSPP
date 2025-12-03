@@ -5,7 +5,15 @@
 {% block titulo_pagina %}Meu Perfil{% endblock titulo_pagina %}
 
 {% block content %}
-<div class="page-wrapper">
+
+<!-- BOTÃO DE VOLTAR -->
+<a href="{% url 'radio:index' %}" 
+   class="btn btn-success shadow-sm position-absolute top-0 start-0 m-3 d-flex justify-content-center align-items-center"
+   style="width: 40px; height: 40px; border-radius: 50%; z-index: 9999;">
+    <i class="bi bi-arrow-left"></i>
+</a>
+
+<div class="page-wrapper position-relative">
     <div class="auth-container row g-0">
 
         <!-- COLUNA DA IMAGEM -->
@@ -53,80 +61,17 @@
                     </div>
 
                     <!-- BOTÃO EDITAR -->
-                    <a href="{% url 'usuarios:editando_perfil' %}" class="btn btn-primary w-100 mt-3">
+                    <a href="{% url 'usuarios:editando_perfil' %}" 
+                       class="editar btn btn-primary w-50" 
+                       style="margin: 0;">
                         Editar Perfil
                     </a>
 
                 </div>
-
             </div>
         </div>
 
     </div>
 </div>
+
 {% endblock %}
-
-
-
-
-
-{% comment %} {% extends "registration/base.html" %}
-{% load static %}
-
-{% block title %}Meu Perfil{% endblock title %}
-{% block titulo_pagina %}Meu Perfil{% endblock titulo_pagina %}
-
-{% block content %}
-<link rel="stylesheet" href="{% static 'dashboard/css/perfil.css' %}">
-
-<div class="perfil-wrapper">
-
-
-    <!-- CARD DO PERFIL -->
-    <div class="perfil-card">
-
-        <!-- FOTO -->
-        {% if request.user.foto_perfil %}
-            <img src="{{ request.user.foto_perfil.url }}" class="perfil-avatar">
-        {% else %}
-            <img src="{% static 'radio/img/avatarpadrao.jpg' %}" class="perfil-avatar">
-        {% endif %}
-
-        <!-- NOME -->
-        <h2 class="perfil-nome">{{ user.first_name|default:"Usuário" }}</h2>
-        <br> 
-        <!-- EMAIL -->
-        <div class="perfil-info-box">
-            <i class="bi bi-envelope"></i>
-            <div>
-                <p class="perfil-info-label">Email</p>
-                <p class="perfil-info-value">{{ user.email }}</p>
-            </div>
-        </div>
-
-        <!-- USERNAME -->
-        <div class="perfil-info-box">
-            <i class="bi bi-person"></i>
-            <div>
-                <p class="perfil-info-label">Usuário</p>
-                <p class="perfil-info-value">{{ user.username }}</p>
-            </div>
-        </div>
-
-        <div class="perfil-info-box">
-            <i class="bi bi-person"></i>
-            <div>
-                <p class="perfil-info-label">Nome</p>
-                <p class="perfil-info-value">{{ user.first_name }}</p>
-            </div>
-        </div>
-
-        <!-- BOTÃO EDITAR -->
-        <a href="{% url 'usuarios:editando_perfil' %}" class="btn-perfil-editar">
-            Editar Perfil
-        </a>
-
-    </div>
-</div>
-
-{% endblock %} {% endcomment %}

@@ -45,7 +45,7 @@ def usuarios(request):
 def usuarios_novo(request):
     context = {
         "titulo_pagina": "Novo Usuário",
-        "url_cancelar": "dashboard:usuarios"
+        "url_cancelar": "usuarios:usuarios"
     }
     if request.method == "POST":
         form = UsuarioCreationForm(request.POST, request.FILES)
@@ -66,7 +66,7 @@ def usuarios_editar(request, id_usuario):
     context = {
         "usuario": get_object_or_404(Usuario, id=id_usuario),
         "titulo_pagina": "Editar Usuario",
-        "url_cancelar": "dashboard:usuarios"
+        "url_cancelar": "usuarios:usuarios"
     }
     if request.method == "POST":
         form = UsuarioForm(request.POST, request.FILES, instance=context["usuario"])

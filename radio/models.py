@@ -1,15 +1,6 @@
 from django.db import models
 from usuarios.models import Usuario
 
-class Home(models.Model):
-    titulo_home = models.CharField(max_length=100)
-    subtitulo_home = models.CharField(max_length=200)
-    bg_home = models.ImageField(upload_to="radio/banner_home/", blank=True)
-    quemsomos_home = models.CharField(max_length=1000)
-
-    class Meta:
-        verbose_name_plural = "Home"
-
 class Sugestao(models.Model):
     nome = models.CharField("Seu nome",max_length=50)
     comentario = models.TextField("Quais os programas você gostaria de encontrar na nossa rádio?", max_length=1000)
@@ -33,10 +24,11 @@ class Programa(models.Model):
     
 
 class Episodio(models.Model):
+    banner_episodio = models.ImageField("Banner do episodio",upload_to="radio/img_episodio/", blank=True)
     programa = models.ForeignKey(Programa, on_delete=models.CASCADE, related_name="episodios")
     titulo = models.CharField(max_length=200)
     descricao = models.TextField()
-    # audio = models.FileField(upload_to="radio/episodios/")
+    audio = models.URLField(blank=True)
     data_publicacao = models.DateField(auto_now_add=True)
     apresentador = models.CharField(max_length=1000,null=True)
 
@@ -72,20 +64,6 @@ class Programacao(models.Model):
 
     def __str__ (self):
         return self.programa.nome_programa
-
-
-
-class Sobre(models.Model):
-    titulo_sobre = models.CharField(max_length=100)
-    subtitulo_sobre = models.CharField(max_length=1000)
-    conteudo_sobre = models.CharField(max_length=1000)
-    banner_sobre = models.ImageField(upload_to="banner_sobre/")
-
-    class Meta:
-        verbose_name_plural = "Sobre"
-
-    def __str__ (self):
-        return self.titulo_sobre
     
 
 class Pedido(models.Model):

@@ -14,7 +14,6 @@ urlpatterns = [
     path('programacao/novo/', views.programacao_novo, name='programacao_novo'),
     path('programacao/<int:id_item>/editar/', views.programacao_editar, name='programacao_editar'),
     path('programacao/<int:id_item>/remover/', views.programacao_remover, name='programacao_remover'),
-    path('sobre/', views.index, name='sobre'),
     path('usuarios/', views.index, name='usuarios'),
     path('episodios/', views.episodios, name='episodios'),
     path('episodios/novo/<int:id_programa>/', views.episodio_novo, name='episodio_novo'),
@@ -23,8 +22,4 @@ urlpatterns = [
     path('episodios/<int:id_item>/remover/', views.episodio_remover, name='episodio_remover'),
     path('programas/<int:id_programa>/episodios/', views.episodios_programa,name='episodios_programa'),
     path('meus-curtidos/', views.meus_curtidos, name="meus_curtidos"),
-    path('conteudo/' , views.conteudo, name="conteudo" ),
-    path('conteudo/novo/', views.conteudo_novo, name='conteudo_novo'),
-    path('conteudo/<int:id_item>/editar/', views.conteudo_editar, name='conteudo_editar'),
-
 ]
