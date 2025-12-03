@@ -1,3 +1,103 @@
 {% extends "radio/base.html" %}
 {% block title %}Sobre{% endblock %}
 {% load static %}
+{% block content %}
+<div class="flex-grow-1 d-flex flex-column">
+   <h2 class="titulo mb-4 text-center mt-5 ">Sobre</h2>
+    <hr class="decorativa mx-auto mb-5">
+
+<section class="sobre-historia-section pt-0">
+    <div class="sobre-historia-container">
+
+        <div class="sobre-historia-img-wrapper">
+            <img src="{% static 'radio/img/estudio.png' %}" alt="Estúdio de Rádio" class="sobre-historia-img">
+        </div>
+
+        <div class="sobre-historia-texto">
+            <h3 class="sobre-historia-subtitulo">NOSSA HISTÓRIA</h3>
+
+            <h2 class="sobre-historia-titulo">
+                Uma voz para a<br>
+                comunidade escolar
+            </h2>
+
+            <p class="sobre-historia-paragrafo">
+                A Rádio IFRN SPP nasceu do desejo de criar um espaço onde estudantes, professores 
+                e a comunidade pudessem se conectar através da comunicação e da cultura.
+            </p>
+
+            <p class="sobre-historia-paragrafo">
+                Desde sua fundação, a rádio tem sido um laboratório vivo de aprendizado, onde alunos 
+                desenvolvem habilidades em comunicação, produção de conteúdo e trabalho em equipe.
+            </p>
+
+            <p class="sobre-historia-paragrafo">
+                Hoje, somos referência em rádio escolar, levando informação, entretenimento e cultura 
+                para toda a comunidade do campus.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="sobre-mvv-section">
+    <div class="sobre-mvv-container">
+
+        <h3 class="sobre-mvv-subtitulo">O QUE NOS GUIA</h3>
+        <h2 class="sobre-mvv-titulo">Missão, Visão e Valores</h2>
+
+        <div class="sobre-mvv-cards">
+
+            <div class="sobre-mvv-card">
+                <h4>Missão</h4>
+                <p>Promover a comunicação, a cultura e o conhecimento através de uma programação diversificada que atenda à comunidade escolar.</p>
+            </div>
+
+            <div class="sobre-mvv-card">
+                <h4>Visão</h4>
+                <p>Ser reconhecida como a principal rádio educativa da região, referência em qualidade de conteúdo e formação de novos comunicadores.</p>
+            </div>
+
+            <div class="sobre-mvv-card">
+                <h4>Valores</h4>
+                <p>Ética, diversidade, compromisso com a educação, criatividade, trabalho em equipe e responsabilidade social.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% comment %} equipe {% endcomment %}
+<section class="sobre-equipe">
+    <div class="sobre-equipe-container">
+
+        <h3 class="sobre-equipe-subtitulo">QUEM SOMOS</h3>
+        <h2 class="sobre-equipe-titulo">Nossa Equipe</h2>
+        <p class="sobre-equipe-descricao">
+            Uma equipe formada por estudantes e professores apaixonados por comunicação.
+        </p>
+
+        <div class="sobre-equipe-cards">
+
+            <div class="sobre-equipe-card">
+                <div class="sobre-equipe-avatar">FO</div>
+                <h4 class="sobre-equipe-nome">Fátima Oliveira</h4>
+                <p class="sobre-equipe-cargo">Coordenadora</p>
+            </div>
+
+            <div class="sobre-equipe-card">
+                <div class="sobre-equipe-avatar">CN</div>
+                <h4 class="sobre-equipe-nome">Clara Nicolly</h4>
+                <p class="sobre-equipe-cargo">Bolsista</p>
+            </div>
+
+            <div class="sobre-equipe-card">
+                <div class="sobre-equipe-avatar">BO</div>
+                <h4 class="sobre-equipe-nome">Bruno Octávio</h4>
+                <p class="sobre-equipe-cargo">Integrante</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
