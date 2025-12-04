@@ -2,7 +2,7 @@
   <table class="table table-hover table-striped">
     <thead>
       <tr>
-        <th scope="col" class="col-2"><a href="{% querystring ordenar='id' %}" >#</a></th>
+        {% comment %} <th scope="col" class="col-2"><a href="{% querystring ordenar='id' %}" >#</a></th> {% endcomment %}
         <th scope="col" class="col-4"><a href="{% querystring ordenar='username' %}" >Username<a></th>
         <th scope="col" class="col-4"><a href="{% querystring ordenar='first_name' %}" >Nome</a></th>
         <th scope="col" class="col-2">Ações</th>
@@ -11,9 +11,9 @@
     <tbody>
   {% for usuario in usuarios %}
     <tr>
-      <td>
+      {% comment %} <td>
         {{ usuario.id }} 
-      </td>  
+      </td>   {% endcomment %}
       <td>
         {{ usuario.username }} 
       </td>  

@@ -22,4 +22,6 @@ urlpatterns = [
     path('episodios/<int:id_item>/remover/', views.episodio_remover, name='episodio_remover'),
     path('programas/<int:id_programa>/episodios/', views.episodios_programa,name='episodios_programa'),
     path('meus-curtidos/', views.meus_curtidos, name="meus_curtidos"),
+    path("sugestoes/", views.view_sugestoes, name="sugestoes"),
+    path("sugestoes/<int:id_item>/remover/", views.sugestoes_remover, name="sugestoes_remover"),
 ]

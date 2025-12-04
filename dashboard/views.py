@@ -305,3 +305,28 @@ def meus_curtidos(request):
         "page_obj": page_obj,  
     }
     return render(request, "dashboard/listar.html", context)
+
+
+@login_required
+@permission_required("radio.view_sugestao", raise_exception=True)
+def view_sugestoes(request):
+    sugestoes = Sugestao.objects.all().order_by('-id')
+
+    context = {
+        "sugestoes": sugestoes,
+        "titulo_pagina": "Sugestões",
+    }
+    return render(request, "dashboard/sugestoes.html", context)
+
+
+@login_required
+@permission_required("radio.delete_sugestao", raise_exception=True)
+def sugestoes_remover(request, id_item):
+    sugestao = get_object_or_404(Sugestao, id=id_item)
+
+    if request.method == "POST":
+        sugestao.delete()
+        messages.success(request, "Sugestão removida com sucesso!")
+        return redirect("dashboard:sugestoes")
+
+    return render(request, "dashboard/remover.html", {"sugestao": sugestao})

@@ -7,7 +7,7 @@
 {% block content %}
 
 <!-- BOTÃO DE VOLTAR -->
-<a href="{% url 'radio:index' %}" 
+<a href="{% url 'dashboard:index' %}" 
    class="btn btn-success shadow-sm position-absolute top-0 start-0 m-3 d-flex justify-content-center align-items-center"
    style="width: 40px; height: 40px; border-radius: 50%; z-index: 9999;">
     <i class="bi bi-arrow-left"></i>
@@ -62,7 +62,7 @@
 
                     <!-- BOTÃO EDITAR -->
                     <a href="{% url 'usuarios:editando_perfil' %}" 
-                       class="editar btn btn-primary w-50" 
+                       class="editar btn btn-primary w-50 py-2" 
                        style="margin: 0;">
                         Editar Perfil
                     </a>
