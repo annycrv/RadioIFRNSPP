@@ -1,9 +1,12 @@
+{% load static %}
+
 <div class="sidebar collapse d-md-block p-4 min-vh-100 shadow-sm" id="sidebarMenu">
 
-  <a href="{% url 'dashboard:index' %}" class="text-decoration-none titu_nav">
-    <h4 class="fw-bold mb-4">Dashboard</h4>
+  <a class="navbar-brand-dash" href="{% url 'radio:index' %}">
+    <img src="{% static 'radio/img/logoifrn.png' %}" class="logo " alt="Logo IFRN">
   </a>
-
+  <br>
+  <br>
   <h6 class="text-uppercase text-muted mb-3 titu_nav">Menu</h6>
 
   <ul class="navbar-nav flex-column">
@@ -66,6 +69,13 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'sugestoes' %}ativo{% endif %}"
          href="{% url 'dashboard:sugestoes' %}">
          <i class="bi bi-lightbulb me-2"></i> Sugestões
+      </a>
+    </li>
+
+    <li class="nav-item mb-1">
+      <a class="nav-link {% if request.resolver_match.url_name == 'pedidos' %}ativo{% endif %}"
+         href="{% url 'dashboard:pedidos' %}">
+         <i class="bi bi-lightbulb me-2"></i> Pedidos
       </a>
     </li>
     {% endif %}

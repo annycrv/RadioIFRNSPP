@@ -1,0 +1,66 @@
+<div class="table-responsive">
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th scope="col" class="col-2">
+          <a href="{% querystring ordenar='nome' %}">Nome</a>
+        </th>
+        
+
+        <th scope="col" class="col-2">
+          <a href="{% querystring ordenar='musica' %}">Musica</a>
+        </th>
+
+        <th scope="col" class="col-2">
+          <a href="{% querystring ordenar='banda' %}">Banda</a>
+        </th>
+
+        <th scope="col" class="col-2">
+          <a href="{% querystring ordenar='horario' %}">Horário</a>
+        </th> 
+
+        <th scope="col" class="col-2">
+          <a href="{% querystring ordenar='observacao' %}">Observação</a>
+        </th>
+
+        <th scope="col" class="col-2">Ações</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for pedido in pedidos %}
+      <tr>
+
+        <td>{{ pedido.nome }}</td>
+
+        <td class="text-muted">
+          {{ pedido.musica|truncatewords:12 }}
+        </td>
+
+        <td class="text-muted">
+          {{ pedido.artista|truncatewords:12 }}
+        </td>
+
+        <td class="text-muted">
+          {{ pedido.horario_desejado|truncatewords:12 }}
+        </td>
+
+        <td class="text-muted">
+          {{ pedido.mensagem|truncatewords:12 }}
+        </td>
+
+        <td class="text-nowrap">
+          <a href="{% url 'dashboard:pedidos_remover' id_item=pedido.id %}" 
+             class="btn btn-danger btn-sm">
+            <i class="bi bi-trash-fill"></i>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% if pedidos|length == 0 %}
+<p class="text-muted mt-3">Nenhum pedido enviado ainda.</p>
+{% endif %}

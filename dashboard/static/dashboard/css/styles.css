@@ -607,3 +607,8 @@ form label {
     border-radius: 8px;
     font-weight: 600;
 }
+
+.navbar-brand-dash img.logo {
+    height: 80px;
+    width: auto;
+}

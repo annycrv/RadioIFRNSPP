@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
-from radio.models import Programa, Programacao,Episodio, Sugestao
+from radio.models import Programa, Programacao,Episodio, Sugestao, Pedido
 from radio.forms import ProgramaModelForm
 from radio.forms import ProgramacaoModelForm
 from radio.forms import EpisodioModelForm
@@ -131,37 +131,75 @@ def programacao_novo(request):
         "titulo_pagina": "Adicionar Programação",
         "url_cancelar": "dashboard:programacao",
     }
+
     if request.method == "POST":
-        form = ProgramacaoModelForm(request.POST,request.FILES)
+        form = ProgramacaoModelForm(request.POST)
         if form.is_valid():
-            form.save()
+            programa = form.cleaned_data["programa"]
+            dias = form.cleaned_data["dias"]
+            horarios = form.cleaned_data["horarios"]
+
+            # cria todas as combinações
+            for dia in dias:
+                for horario in horarios:
+                    Programacao.objects.create(
+                        programa=programa,
+                        dia=dia,
+                        horario=horario
+                    )
+
             messages.success(request, "Programação registrada com sucesso!")
             return redirect("dashboard:programacao")
         else:
             messages.error(request, "Falha ao registrar programação!")
+            context["form"] = form
     else:
         context["form"] = ProgramacaoModelForm()
+
     return render(request, "dashboard/novo.html", context)
 
 
 @login_required
 @permission_required("radio.change_programacao", raise_exception=True)
 def programacao_editar(request, id_item):
+    old = get_object_or_404(Programacao, id=id_item)
+
     context = {
-        "programacao": get_object_or_404(Programacao, id=id_item),
         "titulo_pagina": "Editar Programação",
         "url_cancelar": "dashboard:programacao",
     }
+
     if request.method == "POST":
-        form = ProgramacaoModelForm(request.POST, instance=context["programacao"])
+        form = ProgramacaoModelForm(request.POST)
         if form.is_valid():
-            form.save()
+            programa = form.cleaned_data["programa"]
+            dias = form.cleaned_data["dias"]
+            horarios = form.cleaned_data["horarios"]
+
+            # Remove o original
+            old.delete()
+
+            # recria tudo
+            for dia in dias:
+                for horario in horarios:
+                    Programacao.objects.create(
+                        programa=programa,
+                        dia=dia,
+                        horario=horario
+                    )
+
             messages.success(request, "Programação alterada com sucesso!")
             return redirect("dashboard:programacao")
-        else:
-            messages.error(request, "Falha ao alterar programação!")
+
+        context["form"] = form
+
     else:
-        context["form"] = ProgramacaoModelForm(instance=context["programacao"])
+        context["form"] = ProgramacaoModelForm(initial={
+            "programa": old.programa,
+            "dias": [old.dia],
+            "horarios": [old.horario],
+        })
+
     return render(request, "dashboard/editar.html", context)
 
 
@@ -290,6 +328,8 @@ def episodios_programa(request, id_programa):
     }
     return render(request, 'dashboard/episodios_programa.html', context)
 
+# curtidos
+
 @login_required
 def meus_curtidos(request):
     lista = Programa.objects.filter(curtidas=request.user)
@@ -306,6 +346,7 @@ def meus_curtidos(request):
     }
     return render(request, "dashboard/listar.html", context)
 
+# sugestões
 
 @login_required
 @permission_required("radio.view_sugestao", raise_exception=True)
@@ -330,3 +371,29 @@ def sugestoes_remover(request, id_item):
         return redirect("dashboard:sugestoes")
 
     return render(request, "dashboard/remover.html", {"sugestao": sugestao})
+
+# pedidos
+
+@login_required
+@permission_required("radio.view_pedido", raise_exception=True)
+def view_pedidos(request):
+    pedidos = Pedido.objects.all().order_by('-id')
+
+    context = {
+        "pedidos": pedidos,
+        "titulo_pagina": "Pedidos",
+    }
+    return render(request, "dashboard/pedidos.html", context)
+
+
+@login_required
+@permission_required("radio.delete_pedido", raise_exception=True)
+def pedidos_remover(request, id_item):
+    pedido = get_object_or_404(Pedido, id=id_item)
+
+    if request.method == "POST":
+        pedido.delete()
+        messages.success(request, "Pedido removido com sucesso!")
+        return redirect("dashboard:pedidos")
+
+    return render(request, "dashboard/remover.html", {"pedido": pedido})
