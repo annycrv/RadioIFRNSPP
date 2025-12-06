@@ -487,16 +487,17 @@ a{
 }
 
 .programacao-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 1.5rem;
-  justify-items: start;
-  align-items: start;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards por linha */
+    gap: 20px; /* espaçamento entre os cards */
+    max-width: 1000px; /* limita a largura total da grid */
+    margin: 0 auto;     /* centraliza a grid no container */
+    width: 100%;
 }
 
 .programacao-card {
   width: 100%;
-  max-width: 340px;
+  max-width: 350px;
   border-radius: 16px;
   background: #e8f2e5; 
   transition: all 0.25s ease;
@@ -1003,3 +1004,130 @@ a{
     font-size: 15px;
     color: #2f4858;
 }
+/* ------------------------------------------------------------------ */
+/*               BANNER PROGRAMA PADRONIZADO                          */
+/* ------------------------------------------------------------------ */
+
+.banner-programa-container-fluid {
+    padding: 20px 30px;
+    background: linear-gradient(135deg, #9dc9ac 0%, #6d8f77 100%);
+    border-radius: 20px;
+    margin-top: 40px;
+}
+
+.banner-programa-content {
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+}
+
+.banner-img-wrapper {
+    width: 400px;       /* largura fixa da imagem */
+    height: 400px;      /* altura fixa */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* IMAGEM */
+.banner-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+
+
+/* Texto do banner */
+.banner-info {
+
+    color: #fff;
+    min-width: 250px;
+}
+
+/* Título e descrição */
+.banner-title {
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 20px;
+
+}
+
+.banner-description {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+
+}
+
+/* Meta e ícones */
+.banner-meta,
+.banner-curtidas {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+
+
+.episodio-card {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 18px 24px;
+    border: 1px solid #eee;
+    transition: 0.25s ease-in-out;
+    flex-wrap: wrap; /* Permite quebrar em mobile */
+}
+
+.episodio-card:hover {
+    background: #9dc9ac20;
+    border-color: #9dc9ac60;
+    transform: translateY(-2px);
+}
+
+.episodio-thumb {
+    width: 110px;
+    height: 110px;
+    border-radius: 16px;
+    object-fit: cover;
+    flex-shrink: 0; /* Não encolhe */
+}
+
+.episodio-info-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #9dc9ac;
+}
+
+.episodio-data {
+    color: #777;
+    font-size: 14px;
+}
+
+.btn-ouvir {
+    border-radius: 50px;
+    padding: 10px 22px;
+    white-space: nowrap; /* Mantém o botão em uma linha */
+}
+
+@media (max-width: 767px) {
+    .episodio-thumb {
+        width: 80px;
+        height: 80px;
+    }
+
+    .episodio-info-title {
+        font-size: 18px;
+    }
+
+    .btn-ouvir {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+

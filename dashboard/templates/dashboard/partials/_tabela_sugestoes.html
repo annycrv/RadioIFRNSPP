@@ -15,27 +15,30 @@
     </thead>
 
     <tbody>
-      {% for sugestao in sugestoes %}
+      {% for item in sugestao %}
       <tr>
+        <td>{{ item.nome }}</td>
 
-        <td>{{ sugestao.nome }}</td>
-
-        <td class="text-muted">
-          {{ sugestao.comentario|truncatewords:12 }}
-        </td>
+      <td class="text-muted" 
+          style="white-space: normal; word-wrap: break-word; overflow-wrap: break-word;">
+          {{ item.comentario|truncatewords:12 }}
+      </td>
 
         <td class="text-nowrap">
-          <a href="{% url 'dashboard:sugestoes_remover' id_item=sugestao.id %}" 
+          <a href="{% url 'dashboard:sugestoes_remover' id_item=item.id %}"
              class="btn btn-danger btn-sm">
             <i class="bi bi-trash-fill"></i>
           </a>
         </td>
       </tr>
+      {% empty %}
+      <tr>
+        <td colspan="3" class="text-center text-muted py-3">
+          Nenhuma sugestão enviada ainda.
+        </td>
+      </tr>
       {% endfor %}
     </tbody>
+
   </table>
 </div>
-
-{% if sugestoes|length == 0 %}
-<p class="text-muted mt-3">Nenhuma sugestão enviada ainda.</p>
-{% endif %}

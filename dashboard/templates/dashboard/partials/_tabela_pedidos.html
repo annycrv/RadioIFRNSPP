@@ -6,7 +6,6 @@
           <a href="{% querystring ordenar='nome' %}">Nome</a>
         </th>
         
-
         <th scope="col" class="col-2">
           <a href="{% querystring ordenar='musica' %}">Musica</a>
         </th>
@@ -17,7 +16,7 @@
 
         <th scope="col" class="col-2">
           <a href="{% querystring ordenar='horario' %}">Horário</a>
-        </th> 
+        </th>
 
         <th scope="col" class="col-2">
           <a href="{% querystring ordenar='observacao' %}">Observação</a>
@@ -30,7 +29,6 @@
     <tbody>
       {% for pedido in pedidos %}
       <tr>
-
         <td>{{ pedido.nome }}</td>
 
         <td class="text-muted">
@@ -56,11 +54,15 @@
           </a>
         </td>
       </tr>
+
+      {% empty %}
+      <tr>
+        <td colspan="6" class="text-center text-muted py-3">
+          Nenhum pedido enviado ainda.
+        </td>
+      </tr>
       {% endfor %}
     </tbody>
+
   </table>
 </div>
-
-{% if pedidos|length == 0 %}
-<p class="text-muted mt-3">Nenhum pedido enviado ainda.</p>
-{% endif %}

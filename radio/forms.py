@@ -51,9 +51,35 @@ class ProgramaModelForm(forms.ModelForm):
 
 
 class ProgramacaoModelForm(forms.ModelForm):
+    
+    dias = forms.MultipleChoiceField(
+        choices=Programacao.DIAS_SEMANA,
+        widget=forms.CheckboxSelectMultiple,
+        label="Dias"
+    )
+    horarios = forms.MultipleChoiceField(
+        choices=Programacao.HORARIO,
+        widget=forms.CheckboxSelectMultiple,
+        label="Horários"
+    )
+
     class Meta:
         model = Programacao
-        fields = '__all__'
+        fields = ['programa']
+
+    def save(self, commit=True):
+        programa = self.cleaned_data['programa']
+        dias = self.cleaned_data['dias']
+        horarios = self.cleaned_data['horarios']
+
+        instances = []
+        for dia in dias:
+            for horario in horarios:
+                instance = Programacao(programa=programa, dia=dia, horario=horario)
+                if commit:
+                    instance.save()
+                instances.append(instance)
+        return instances
 
 class EpisodioModelForm(forms.ModelForm):
     class Meta:

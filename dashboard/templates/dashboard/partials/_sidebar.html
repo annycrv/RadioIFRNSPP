@@ -19,7 +19,7 @@
     </li>
 
     <li class="nav-item mb-1">
-      <a class="nav-link" href="{% url 'usuarios:perfil' %}">
+      <a class="nav-link {% if request.resolver_match.url_name == 'perfil' %}ativo{% endif %}" href="{% url 'dashboard:perfil' %}">
         <i class="bi bi-person me-2"></i> Meu Perfil
       </a>
     </li>
@@ -33,7 +33,7 @@
 
     {% if user.is_staff %}
     <hr class="my-3">
-    <p>Perfil de Administrador</p>
+      <h6 class="text-uppercase text-muted mb-3 titu_nav">ÁREA ADMINISTRATIVA</h6>
 
     <li class="nav-item mb-1">
       <a class="nav-link {% if request.resolver_match.url_name == 'programas' %}ativo{% endif %}"
@@ -75,7 +75,7 @@
     <li class="nav-item mb-1">
       <a class="nav-link {% if request.resolver_match.url_name == 'pedidos' %}ativo{% endif %}"
          href="{% url 'dashboard:pedidos' %}">
-         <i class="bi bi-lightbulb me-2"></i> Pedidos
+         <i class="bi bi-file-music me-2"></i> Pedidos
       </a>
     </li>
     {% endif %}

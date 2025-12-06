@@ -1,45 +1,113 @@
 {% extends "radio/base.html" %}
 {% load static crispy_forms_filters %}
-{% block title %}Episódios{% endblock %}
+
+{% block title %}{{ programa.nome_programa }}{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
 
-    <h2 class="mb-4">Episódios de {{ programa.nome_programa }}</h2>
+<div class="banner-programa-container-fluid">
+    <div class="banner-programa-content container align-itens-center">
+
+        <div class="row g-3 align-items-center">
+
+            <!-- Imagem -->
+            <div class="col-12 col-lg-6 col-md-12 col-sm-12 justify-content-center">
+                <div class="banner-img-wrapper mx-auto">
+                    <img src="{{ programa.banner_programa.url }}" class="banner-img" alt="{{ programa.nome_programa }}">
+                </div>
+            </div>
+
+            <!-- Texto -->
+            <div class="col-12 col-lg-6 col-md-12 col-sm-12 justify-content-center">
+                <div class="banner-info">
+
+                    <h1 class="banner-title">{{ programa.nome_programa }}</h1>
+
+                    <p class="banner-description">{{ programa.descricao_programa }}</p>
+
+                    <div class="banner-meta">
+                        <i class="bi bi-people-fill"></i>
+                        <span>{{ programa.apresentador_programa }}</span>
+                    </div>
+
+                    <div class="banner-curtidas">
+                        <i class="bi bi-heart-fill"></i>
+                        <span>{{ programa.curtidas.count }} curtidas</span>
+                    </div>
+
+                    <div class="banner-meta">
+                        <i class="bi bi-collection-play-fill"></i>
+                        <span>{{ programa.episodios.count }} episódios</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container py-5">
+
+    <div class="mb-4 d-flex align-items-center gap-3">
+        <div class="d-flex align-items-center justify-content-center rounded-3" 
+             style="width:50px; height:50px; background:#9dc9ac60; color:white; font-size:22px;">
+            🎧
+        </div>
+
+        <div>
+            <h3 class="fw-semibold m-0">Episódios</h3>
+            <small class="text-muted">{{ episodios|length }} episódios disponíveis</small>
+        </div>
+    </div>
 
     {% if episodios %}
-        <div class="row g-4">
+        <div class="d-flex flex-column gap-4">
+
             {% for episodio in episodios %}
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm border-0">
-                        
-                        <!-- Banner -->
-                        {% if episodio.banner_episodio %}
-                            <img src="{{ episodio.banner_episodio.url }}" class="card-img-top" alt="Banner do episódio" style="height: 200px; object-fit: cover; border-top-left-radius: .25rem; border-top-right-radius: .25rem;">
-                        {% else %}
-                            <img src="{% static 'images/banner_padrao.png' %}" class="card-img-top" alt="Banner padrão" style="height: 200px; object-fit: cover; border-top-left-radius: .25rem; border-top-right-radius: .25rem;">
-                        {% endif %}
+<div class="episodio-card d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
 
-                        <!-- Conteúdo -->
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ episodio.titulo }}</h5>
-                            <p class="card-text text-truncate" style="max-height: 4.5em; overflow: hidden;">{{ episodio.descricao }}</p>
-                            <p class="text-muted small mb-2">Publicado em: {{ episodio.data_publicacao }}</p>
-                            <a href="{{ episodio.audio }}" 
-                            class="" 
-                            target="_blank" 
-                            rel="noopener noreferrer">
-                                Ouça agora
-                            </a>
+    <!-- Esquerda -->
+    <div class="d-flex align-items-start gap-3 flex-grow-1 flex-wrap">
 
+        <img src="{{ episodio.banner_episodio.url }}"
+             class="episodio-thumb"
+             alt="{{ episodio.titulo }}">
 
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+        <div class="flex-grow-1">
+            <h5 class="episodio-info-title mb-1">
+                {{ episodio.titulo }}
+            </h5>
+
+            <p class="text-muted mb-2 text-break">
+                {{ episodio.descricao|truncatewords:50 }}
+            </p>
+
+            <small class="episodio-data d-block">
+                <i class="bi bi-calendar-event"></i>
+                {{ episodio.data_publicacao|date:"d \\d\\e M \\d\\e Y" }}
+            </small>
         </div>
+
+    </div>
+
+    <!-- Botão -->
+    <div class="mt-3 mt-md-0 ms-md-3 flex-shrink-0">
+        <a href="{{ episodio.audio }}" target="_blank"
+           class="btn btn-outline-secondary btn-ouvir">
+            ▶ Ouvir agora
+        </a>
+    </div>
+
+</div>
+
+            {% endfor %}
+
+        </div>
+
     {% else %}
-        <p class="text-muted">Este programa ainda não possui episódios.</p>
+        <p class="text-muted">Nenhum episódio cadastrado ainda.</p>
     {% endif %}
 
 </div>

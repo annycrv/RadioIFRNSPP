@@ -31,38 +31,38 @@
 
 <!-- Cards da programação -->
 <div class="container my-3">
-  <div class="programacao-grid">
+  <div class="row g-3 ">
     {% for item in programacao %}
-      <div class="card programacao-card shadow-sm border-0 h-100 p-3 body-card">
-        <h5 class="fw-bold mb-2 text-gradient">{{ item.programa.nome_programa }}</h5>
-        <p class="mb-3">{{ item.programa.descricao_programa|truncatewords:12 }}</p>
+      <div class="col-12 col-sm-6 col-lg-4 d-flex">
+        <div class="card programacao-card shadow-sm border-0 h-100 p-3 body-card w-100">
+          <h5 class="fw-bold mb-2 text-gradient">{{ item.programa.nome_programa }}</h5>
+          <p class="mb-3">{{ item.programa.descricao_programa|truncatewords:12 }}</p>
 
-        <div class="d-flex justify-content-between border-top pt-2 mt-auto">
-          <div class="d-flex align-items-center">
-            <i class="bi bi-clock-history text-warning fs-6 me-2"></i>
-            <div>
-              <small class="text-muted d-block lh-1">Horário</small>
-              <span class="fw-semibold small">{{ item.horario }}</span>
+          <div class="d-flex justify-content-between border-top pt-2 mt-auto">
+            <div class="d-flex align-items-center">
+              <i class="bi bi-clock-history text-warning fs-6 me-2"></i>
+              <div>
+                <small class="text-muted d-block lh-1">Horário</small>
+                <span class="fw-semibold small">{{ item.horario }}</span>
+              </div>
             </div>
-          </div>
 
-          <div class="d-flex align-items-center">
-            <i class="bi bi-person-circle text-pink fs-6 me-2"></i>
-            <div>
-              <small class="text-muted d-block lh-1">Artista</small>
-              <span class="fw-semibold small">{{ item.programa.apresentador_programa }}</span>
+            <div class="d-flex align-items-center">
+              <i class="bi bi-person-circle text-pink fs-6 me-2"></i>
+              <div>
+                <small class="text-muted d-block lh-1">Artista</small>
+                <span class="fw-semibold small">{{ item.programa.apresentador_programa }}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     {% empty %}
-
       <div class="text-center mb-4 p-5 mx-auto">
         <img src="{% static 'radio/img/waiting2.png' %}" width="300" class="">
         <h5>Sem programas cadastrados</h5>
         <p class="text-muted">Volte em breve para conferir as novas atrações!</p>
       </div>
-
     {% endfor %}
   </div>
 </div>

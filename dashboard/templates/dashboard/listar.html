@@ -5,7 +5,6 @@
   <div>
     <h2 class="fw-bold mb-1">
         {{ titulo_pagina }}
-        {% comment %} {% if perms.blog.create_postagem %} {% endcomment %}
     </h2>
     <p class="text-muted">
         {{ subtitulo_pagina }}
@@ -19,8 +18,6 @@
   {% endif %}
 </div>
 
-        {% comment %} {% endif %} {% endcomment %}
-
     <div>
         {% include partial_tabela %}
     </div>
@@ -29,5 +26,7 @@
 {% include "dashboard/partials/_tabela_paginacao.html" with page_obj=programas %}
 {% include "dashboard/partials/_tabela_paginacao.html" with page_obj=programacao %}
 {% include "dashboard/partials/_tabela_paginacao.html" with page_obj=usuarios %}
+{% include "dashboard/partials/_tabela_paginacao.html" with page_obj=pedidos %}
+{% include "dashboard/partials/_tabela_paginacao.html" with page_obj=sugestao %}
 
 {% endblock content %}

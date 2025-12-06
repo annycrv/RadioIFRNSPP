@@ -4,6 +4,7 @@ from radio.models import Programa, Programacao,Episodio, Sugestao, Pedido
 from radio.forms import ProgramaModelForm
 from radio.forms import ProgramacaoModelForm
 from radio.forms import EpisodioModelForm
+from usuarios.forms import UsuarioChangeForm
 from usuarios.models import Usuario
 from django.core.paginator import Paginator
 from django.contrib import messages
@@ -131,31 +132,16 @@ def programacao_novo(request):
         "titulo_pagina": "Adicionar Programação",
         "url_cancelar": "dashboard:programacao",
     }
-
     if request.method == "POST":
-        form = ProgramacaoModelForm(request.POST)
+        form = ProgramacaoModelForm(request.POST,request.FILES)
         if form.is_valid():
-            programa = form.cleaned_data["programa"]
-            dias = form.cleaned_data["dias"]
-            horarios = form.cleaned_data["horarios"]
-
-            # cria todas as combinações
-            for dia in dias:
-                for horario in horarios:
-                    Programacao.objects.create(
-                        programa=programa,
-                        dia=dia,
-                        horario=horario
-                    )
-
+            form.save()
             messages.success(request, "Programação registrada com sucesso!")
             return redirect("dashboard:programacao")
         else:
             messages.error(request, "Falha ao registrar programação!")
-            context["form"] = form
     else:
         context["form"] = ProgramacaoModelForm()
-
     return render(request, "dashboard/novo.html", context)
 
 
@@ -234,20 +220,9 @@ def episodios(request):
         "titulo_pagina": "Episódios",
         "subtitulo_pagina": "Gerencie os episódios da rádio",
         "partial_tabela": "dashboard/partials/_tabela_episodios.html",
-        "page_obj": page_obj,  
+        "page_obj": page_obj, 
     }
     return render(request, "dashboard/listar.html", context)
-
-
-@login_required
-@permission_required("blog.view_episodio", raise_exception=True)
-def episodio_detalhar(request, id_episodio):
-    context = {
-        "episodio": get_object_or_404(Episodio, id=id_episodio),
-        "titulo_pagina": "Detalhar Episodio",
-        "partial_detalhe": "dashboard/partials/_detalhar_episodios.html",
-    }
-    return render(request, "dashboard/detalhar.html", context)
 
 
 @login_required
@@ -317,16 +292,22 @@ def episodio_remover(request, id_item):
 
 @login_required
 @permission_required("radio.view_episodio", raise_exception=True)
-def episodios_programa(request, id_programa):
+def detalhar_episodio(request, id_programa):
     programa = get_object_or_404(Programa, id=id_programa)
     episodios = Episodio.objects.filter(programa=programa).order_by('-id')
+    paginator = Paginator(episodios, 6)
+    pagina_atual = request.GET.get("page")
+    page_obj = paginator.get_page(pagina_atual)
 
     context = {
+        "episodios": page_obj,
         'programa': programa,
-        'episodios': episodios,
-        'titulo_pagina': f'Episódios de {programa.nome_programa}'
+        'titulo_pagina': f'Episódios de {programa.nome_programa}',
+        'partial_detalhe':"dashboard/partials/_detalhar_episodio.html",
+        "url_cancelar": "dashboard:episodios",
+        "page_obj": page_obj,  
     }
-    return render(request, 'dashboard/episodios_programa.html', context)
+    return render(request, 'dashboard/detalhar.html', context)
 
 # curtidos
 
@@ -351,13 +332,19 @@ def meus_curtidos(request):
 @login_required
 @permission_required("radio.view_sugestao", raise_exception=True)
 def view_sugestoes(request):
-    sugestoes = Sugestao.objects.all().order_by('-id')
+    lista = Sugestao.objects.all().order_by("id")
+
+    paginator = Paginator(lista, 6)
+    pagina_atual = request.GET.get("page")
+    page_obj = paginator.get_page(pagina_atual)
 
     context = {
-        "sugestoes": sugestoes,
+        "sugestao": page_obj,
         "titulo_pagina": "Sugestões",
+        "partial_tabela": "dashboard/partials/_tabela_sugestoes.html",
+        "page_obj": page_obj, 
     }
-    return render(request, "dashboard/sugestoes.html", context)
+    return render(request, "dashboard/listar.html", context)
 
 
 @login_required
@@ -377,13 +364,19 @@ def sugestoes_remover(request, id_item):
 @login_required
 @permission_required("radio.view_pedido", raise_exception=True)
 def view_pedidos(request):
-    pedidos = Pedido.objects.all().order_by('-id')
+    lista = Pedido.objects.all().order_by("-id")
+
+    paginator = Paginator(lista, 6)
+    pagina_atual = request.GET.get("page")
+    page_obj = paginator.get_page(pagina_atual)
 
     context = {
-        "pedidos": pedidos,
+        "pedidos": page_obj,
         "titulo_pagina": "Pedidos",
+        "partial_tabela": "dashboard/partials/_tabela_pedidos.html",
+        "page_obj": page_obj, 
     }
-    return render(request, "dashboard/pedidos.html", context)
+    return render(request, "dashboard/listar.html", context)
 
 
 @login_required
@@ -397,3 +390,34 @@ def pedidos_remover(request, id_item):
         return redirect("dashboard:pedidos")
 
     return render(request, "dashboard/remover.html", {"pedido": pedido})
+
+@login_required   
+def perfil(request):
+    context = {
+        "titulo_pagina": "Meu Perfil",
+        "partial_tabela": "dashboard/partials/_tabela_perfil.html",
+    }
+    return render(request, "dashboard/listar.html",context)
+
+@login_required
+def editar_perfil(request):
+
+    context = {
+        "titulo_pagina": "Editar Perfil",
+        "url_cancelar": "dashboard:perfil",
+    }
+
+    if request.method == "POST":
+        form = UsuarioChangeForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Perfil atualizado com sucesso!")
+            return redirect("dashboard:perfil")
+        else:
+            messages.error(request, "Falha ao atualizar o perfil. Verifique os dados.")
+    else:
+        form = UsuarioChangeForm(instance=request.user)
+
+    context["form"] = form
+
+    return render(request, "dashboard/editar.html", context)
