@@ -33,7 +33,7 @@
 <div class="container my-3">
   <div class="row g-3 ">
     {% for item in programacao %}
-      <div class="col-12 col-sm-6 col-lg-4 d-flex">
+      <div class="col-12 col-sm-6 col-lg-4 d-flex justify-content-center">
         <div class="card programacao-card shadow-sm border-0 h-100 p-3 body-card w-100">
           <h5 class="fw-bold mb-2 text-gradient">{{ item.programa.nome_programa }}</h5>
           <p class="mb-3">{{ item.programa.descricao_programa|truncatewords:12 }}</p>

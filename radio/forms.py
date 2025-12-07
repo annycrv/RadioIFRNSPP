@@ -47,6 +47,7 @@ class SugestaoModelForm(forms.ModelForm):
 class ProgramaModelForm(forms.ModelForm):
     class Meta:
         model = Programa
+        exclude = ['curtidas']
         fields = '__all__'
 
 
