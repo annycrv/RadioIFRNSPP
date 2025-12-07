@@ -4,23 +4,13 @@ html, body {
   font-family: 'Montserrat', sans-serif;
   height: 100%;
   margin: 0;
+  padding: 0;
 }
 
-body.layout {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+.bodyp{
+  min-height: calc(100vh - 102px - 70px);
 }
 
-.layout {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.contentglobal {
-    flex: 1 0 auto;
-}
 
 
 .navbar{
@@ -229,6 +219,7 @@ body.layout {
 
 /* programação */
 .semana-wrapper { 
+  width: 100%;
   display: flex;
   justify-content: center;
 }
@@ -352,11 +343,6 @@ a{
     justify-content: center;
     align-items: center; 
 }
-
-/* Ícone Instagram */
-/* .footer img.instagram {
-    height: 25px;
-} */
 
 
 /* pedidos */
@@ -752,13 +738,17 @@ a{
 }
 
 /* paginação */
+.paginacao{
+  margin-top: auto;
+}
+
 .custom-pagination {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 16px;
     list-style: none;
-    padding: 0;
+
 }
 
 .custom-pagination li {

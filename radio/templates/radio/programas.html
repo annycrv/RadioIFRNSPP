@@ -2,7 +2,7 @@
 {% block title %}Programas{% endblock %}
 {% load static %}
 {% block content %}
-<div class="flex-grow-1 d-flex flex-column">
+<div class="flex-grow-1 d-flex flex-column bodyp">
    <h2 class="titulo mb-4 text-center mt-5 ">Programas</h2>
     <hr class="decorativa mx-auto mb-5">
 
@@ -87,8 +87,8 @@
 
 <!-- Paginação -->
 {% if programas.paginator.count > 0 %}
-<nav aria-label="Page navigation" class="mt-4">
-  <ul class="custom-pagination">
+<nav aria-label="Page navigation" class="paginacao">
+  <ul class="custom-pagination mb-3">
 
     <!-- Botão Anterior -->
     {% if programas.has_previous %}

@@ -75,7 +75,7 @@ def programa_editar(request, id_programa):
         "url_cancelar": "dashboard:programas",
     }
     if request.method == "POST":
-        form = ProgramaModelForm(request.POST, instance=context["programa"])
+        form = ProgramaModelForm(request.POST,request.FILES, instance=context["programa"])
         if form.is_valid():
             form.save()
             messages.success(request, "Programa alterado com sucesso!")
@@ -262,7 +262,7 @@ def episodio_editar(request, id_item):
         "url_cancelar": "dashboard:episodios",
     }
     if request.method == "POST":
-        form = EpisodioModelForm(request.POST, instance=context["episodio"])
+        form = EpisodioModelForm(request.POST,request.FILES, instance=context["episodio"])
         if form.is_valid():
             form.save()
             messages.success(request, "Episódio alterado com sucesso!")

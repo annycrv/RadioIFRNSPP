@@ -338,13 +338,17 @@ form label {
 }
 
 /* paginação */
+
+.paginacao{
+  margin-top: auto;
+}
+
 .custom-pagination {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 16px;
     list-style: none;
-    padding: 0;
 }
 
 .custom-pagination li {
