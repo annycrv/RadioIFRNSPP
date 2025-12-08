@@ -94,5 +94,5 @@ def registrar_curtida(request):
             postagem.curtidas.add(request.user)
         else:
             postagem.curtidas.remove(request.user)
-        return redirect(request.POST.get("next", "programas"))
-    return redirect(request.POST.get("next", "programas"))
+        return redirect(request.POST.get("next", "radio:programas"))
+    return redirect(request.POST.get("next", "radio:programas"))

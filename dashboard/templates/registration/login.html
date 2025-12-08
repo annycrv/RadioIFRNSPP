@@ -12,6 +12,10 @@
 {% endblock buttons %}
 
 {% block footer_links %}
+    <p class="text-center mt-3">
+        <a href="{% url 'password_reset' %}">Esqueceu a senha?</a>
+    </p>
+    
     <p class="register-link text-center mt-3">
         Não tem uma conta?
         <a href="{% url 'usuarios:cadastro' %}">Cadastre-se</a>
