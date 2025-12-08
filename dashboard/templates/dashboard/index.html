@@ -1,7 +1,18 @@
 {% extends "dashboard/base.html" %}
 {% load static %}
 {% block content %}
-<h1>Olá, {{user.username}}</h1>
+<div class="header-box mb-4">
+    <h1 class="fw-bold mb-1" style="font-size:2.2rem; color:#2E7D32; letter-spacing:-1px;">
+        Bem-vindo(a),
+        <span style="color:#2E7D32;">{{ user.first_name }}</span>
+        <span class="emoji-glow">🎧</span>
+    </h1>
+
+    <p class="text-muted mb-0" style="font-size:0.95rem;">
+        Aqui está um resumo do seu painel.
+    </p>
+</div>
+
 
 
 <div class="container mt-4">
