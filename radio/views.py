@@ -59,17 +59,25 @@ def programacao(request,dia):
 
 
 def programas(request):
-    lista = Programa.objects.all().order_by("nome_programa")
+    filtro = request.GET.get("f", "")
 
-    paginator = Paginator(lista, 6) 
+    programas_filtrados = Programa.objects.filter(
+        nome_programa__icontains=filtro,
+    ) | Programa.objects.filter(
+        apresentador_programa__icontains=filtro,
+    )
+
+    programas_filtrados = programas_filtrados.order_by("nome_programa")
+
+    paginator = Paginator(programas_filtrados, 6)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
-    context = {
+    return render(request, "radio/programas.html", {
         "programas": page_obj,
         "page_obj": page_obj,
-    }
-    return render(request, "radio/programas.html", context)
+        "filtro": filtro,
+    })
 
 def episodios(request, id_programa):
     programa = get_object_or_404(Programa,id=id_programa)

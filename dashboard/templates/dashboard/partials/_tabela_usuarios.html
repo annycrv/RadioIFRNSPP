@@ -5,6 +5,7 @@
         {% comment %} <th scope="col" class="col-2"><a href="{% querystring ordenar='id' %}" >#</a></th> {% endcomment %}
         <th scope="col" class="col-4"><a href="{% querystring ordenar='username' %}" >Username<a></th>
         <th scope="col" class="col-4"><a href="{% querystring ordenar='first_name' %}" >Nome</a></th>
+        <th scope="col" class="col-4"><a href="{% querystring ordenar='email' %}" >Email<a></th>
         <th scope="col" class="col-2">Ações</th>
       </tr>
     </thead>
@@ -19,7 +20,10 @@
       </td>  
       <td>
         {{ usuario.first_name }} 
-      </td>     
+      </td>  
+      <td>
+        {{ usuario.email }} 
+      </td>    
       <td class="text-nowrap">
         <a href="{% url 'usuarios:usuarios_editar' usuario.id %}" class="btn btn-outline-secondary btn-sm"><i class="bi bi-pencil-fill"></i></a>
         <a href="{% url 'usuarios:usuario_remover' id_usuario=usuario.id %}" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></a>

@@ -14,7 +14,7 @@
 <body class="d-flex flex-column min-vh-100">
 <!-- Navegação -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light shadow-sm ">
             <div class="container-fluid">
 
                 <a class="navbar-brand" href="{% url 'radio:index' %}">
@@ -55,13 +55,13 @@
                         </li>
 
                         <li class="nav-item ps-3">
-                            <ul class="navbar-nav">
+                            
 
                                 {% if user.is_authenticated %}
 
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
-                                        id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <li class="nav-item dropdown text-center text-lg-start">
+                                        <a class="nav-link dropdown-toggle d-flex align-items-center justify-content-center justify-content-lg-end"
+                                        href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         {%if user.foto_perfil %}
                                             <img src="{{ user.foto_perfil.url }}" alt="Avatar" class="nav-avatar rounded-circle" width="34" height="34">
                                         {%else%}
@@ -98,7 +98,7 @@
                                                 </a>
                                             </li>
 
-                                            <li><a class="dropdown-item" href="{% url 'password_change' %}">Alterar Senha</a></li>
+                                            <li><a class="dropdown-item" href="{% url 'password_change' %}"><i class="bi bi-key me-2"></i>Alterar Senha</a></li>
 
                                             <li><hr class="dropdown-divider"></li>
                                             <li>
@@ -121,7 +121,7 @@
 
                                 {% endif %}
 
-                            </ul>
+                            
                         </li>
                     </ul>
                 </div>

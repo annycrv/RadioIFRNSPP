@@ -3,8 +3,34 @@
 {% load static %}
 {% block content %}
 <div class="flex-grow-1 d-flex flex-column bodyp">
-   <h2 class="titulo mb-4 text-center mt-5 ">Programas</h2>
-    <hr class="decorativa mx-auto mb-5">
+
+  <div class="container position-relative mt-5 mb-4">
+
+      <!-- Título centralizado -->
+      <h2 class="titulo text-center mb-0">Programas</h2>
+
+      <!-- Pesquisa alinhada à direita -->
+      <form method="get" 
+            class="d-flex position-absolute" 
+            style="right: 0; top: 0; max-width: 350px;">
+        
+        <div class="input-group">
+          <input class="form-control"
+                 type="search"
+                 placeholder="Pesquisar"
+                 name="f"
+                 value="{{ request.GET.f }}">
+
+          <button class="btn btn-outline-secondary" type="submit">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+
+      </form>
+
+  </div>
+
+  <hr class="decorativa mx-auto mb-5">
 
 <!-- Card Programa -->
 <div class="container my-3">
@@ -104,7 +130,7 @@
       {% if programas.number == num %}
         <li><span class="page-number active">{{ num }}</span></li>
       {% else %}
-        <li><a href="?page={{ num }}" class="page-number">{{ num }}</a></li>
+        <li><a href="?page={{ num }}{% if filtro %}&f={{ filtro }}{% endif %}" ></li>
       {% endif %}
     {% endfor %}
 

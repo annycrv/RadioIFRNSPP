@@ -61,6 +61,7 @@ def programa_novo(request):
             return redirect("dashboard:programas")
         else:
             messages.error(request, "Falha ao registrar Programa!")
+            context["form"] = form
     else:
         context["form"] = ProgramaModelForm()
     return render(request, "dashboard/novo.html", context)
@@ -140,6 +141,7 @@ def programacao_novo(request):
             return redirect("dashboard:programacao")
         else:
             messages.error(request, "Falha ao registrar programação!")
+            context["form"] = form
     else:
         context["form"] = ProgramacaoModelForm()
     return render(request, "dashboard/novo.html", context)
@@ -247,6 +249,7 @@ def episodio_novo(request, id_programa):
             return redirect("dashboard:episodios")
         else:
             messages.error(request, "Falha ao registrar episódio!")
+            context["form"] = form
     else:
         context["form"] = EpisodioModelForm()
 

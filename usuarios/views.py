@@ -24,7 +24,8 @@ def cadastro(request):
 
 @permission_required("usuarios.view_usuario", raise_exception=True)
 def usuarios(request):
-    lista = Usuario.objects.all().order_by("id")
+    ordenar_por = request.GET.get("ordenar", "first_name")
+    lista = Usuario.objects.all().order_by(ordenar_por, "id", "email")
 
     paginator = Paginator(lista, 6)
     pagina_atual = request.GET.get("page")
@@ -56,6 +57,7 @@ def usuarios_novo(request):
             return redirect("usuarios:usuarios")
         else:
             messages.error(request, "Falha ao criar usuário!")
+            context["form"] = form
     else:
         context["form"] = UsuarioCreationForm()
     return render(request, "dashboard/novo.html", context)
