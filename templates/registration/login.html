@@ -8,16 +8,18 @@
 {% endblock imagem_lateral %}
 
 {% block buttons %}
+    <!-- Link “Esqueceu a senha?” alinhado à direita -->
+    <div class="d-flex justify-content-end mb-2">
+        <a href="{% url 'password_reset' %}" class="small text-end">Esqueceu a senha?</a>
+    </div>
+
+    <!-- Botão de enviar -->
     <input class="btn btn-primary w-50" type="submit" value="Entrar">
 {% endblock buttons %}
 
 {% block footer_links %}
-    <p class="text-center mt-3">
-        <a href="{% url 'password_reset' %}">Esqueceu a senha?</a>
-    </p>
-    
-    <p class="register-link text-center mt-3">
-        Não tem uma conta?
-        <a href="{% url 'usuarios:cadastro' %}">Cadastre-se</a>
-    </p>
+<p class="register-link text-center mt-3">
+    Não tem uma conta?
+    <a href="{% url 'usuarios:cadastro' %}">Cadastre-se</a>
+</p>
 {% endblock %}
