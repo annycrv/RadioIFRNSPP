@@ -5,15 +5,14 @@ body {
 
 /* Botões */
 .novo_programa {
-    background-color: #34A853; 
-    color: #fff;
+    color: black;
     text-decoration: none;
     border-radius: 10px;
 }
 
 .salvar {
-  background-color: #34A853; 
-  color: #fff;
+  background-color: #9DC9AC; 
+  color: black;
   border: 0;
   border-radius: 10px;
 }
@@ -589,7 +588,7 @@ form label {
     border-radius: 14px;
     padding: 26px 28px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    border-left: 6px solid #8B0000;
+    border-left: 6px solid #db1a1a;
 }
 
 /* senha */
@@ -828,4 +827,17 @@ form label {
 .curtidaimg{
     width: 300px;
     height: 300px;
+}
+
+.novo_programa{
+    background-color: #9DC9AC;
+    border: 0px;
+    padding: 6px;
+}
+
+.novo_programa:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  color: #fff;
+  transition: all 0.3s ease;
+
 }

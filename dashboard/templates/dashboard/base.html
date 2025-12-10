@@ -41,9 +41,13 @@
     <div class="flex-grow-1 d-flex flex-column content-wrapper">
 
       <!-- Topbar -->
+      
       <header class="topbar d-flex align-items-center px-4 py-3 shadow-sm">
-          <h1 class="m-0 titulo-header">Meu Painel</h1>
+        <h1 class="m-0 titulo-header">
+          {% block title %}Meu Painel{% endblock title %}
+        </h1>
       </header>
+      
 
       <!-- Conteúdo principal -->
       <main class="flex-grow-1 p-4 d-flex flex-column">

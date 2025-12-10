@@ -46,7 +46,7 @@ def programacao(request,dia):
     
     lista = Programacao.objects.filter(dia=dia).order_by("programa")
 
-    paginator = Paginator(lista, 9) 
+    paginator = Paginator(lista, 6) 
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
