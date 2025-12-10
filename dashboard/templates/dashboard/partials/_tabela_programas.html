@@ -1,3 +1,4 @@
+{% load static%}
 <div class="row g-4">
 
   {% for programa in programas %}
@@ -59,7 +60,10 @@
       </div>
     </div>
 
-  {% empty %}
-    <p class="text-muted">Nenhum programa cadastrado ainda.</p>
-  {% endfor %}
+{% empty %}
+<div class="d-flex flex-column align-items-center text-center">
+    <img src="{% static 'radio/img/programa.svg' %}" class="curtidaimg mb-3">
+    <p class="text-center text-muted">Nenhum programa cadastrado ainda.</p>
 </div>
+</div>
+{% endfor %}
