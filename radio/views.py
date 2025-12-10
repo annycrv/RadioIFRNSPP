@@ -61,11 +61,14 @@ def programacao(request,dia):
 def programas(request):
     filtro = request.GET.get("f", "")
 
-    programas_filtrados = Programa.objects.filter(
-        nome_programa__icontains=filtro,
-    ) | Programa.objects.filter(
-        apresentador_programa__icontains=filtro,
-    )
+    programas_filtrados = Programa.objects.all()
+
+    if filtro:
+        programas_filtrados = Programa.objects.filter(
+            nome_programa__icontains=filtro,
+        ) | Programa.objects.filter(
+            apresentador_programa__icontains=filtro,
+        )
 
     programas_filtrados = programas_filtrados.order_by("nome_programa")
 

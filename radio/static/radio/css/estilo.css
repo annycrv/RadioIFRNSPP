@@ -1160,3 +1160,38 @@ padding: 60px 0;
 .custom-next {
     right: -40px; /* Move para fora do container */
 }
+
+/* responsividade pesquisa */
+
+.search-programas {
+  right: 0;
+  top: 0;
+  max-width: 350px;
+}
+
+@media (max-width: 768px) {
+
+  .search-programas {
+    position: static !important;
+    margin: 0.75rem auto 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .search-programas .input-group {
+    max-width: 90%;
+  }
+
+  .titulo-bloco {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.banner_ep{
+  height: 160px;
+  object-fit: cover;
+}
+
+.banner_pro{
+  min-height: 220px;
+}

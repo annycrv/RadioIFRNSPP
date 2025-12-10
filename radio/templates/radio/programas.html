@@ -6,12 +6,14 @@
 
   <div class="container position-relative mt-5 mb-4">
 
-      <!-- Título centralizado -->
-      <h2 class="titulo text-center mb-0">Programas</h2>
+    <div class="titulo-bloco text-center">
+      <h2 class="titulo mb-4">Programas</h2>
+      <hr class="decorativa mx-auto">
+    </div>
 
       <!-- Pesquisa alinhada à direita -->
       <form method="get" 
-            class="d-flex position-absolute" 
+            class="d-flex position-absolute search-programas" 
             style="right: 0; top: 0; max-width: 350px;">
         
         <div class="input-group">
@@ -30,8 +32,6 @@
 
   </div>
 
-  <hr class="decorativa mx-auto mb-5">
-
 <!-- Card Programa -->
 <div class="container my-3">
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -41,7 +41,7 @@
         <div class="card programa-card shadow-sm w-100 d-flex flex-column border-0 rounded-4 overflow-hidden" style="background:#ffffff;">
           
           {% if programa.banner_programa %}         
-            <img src="{{ programa.banner_programa.url }}" class="w-100" style="height:220px; object-fit:cover;" alt="Banner {{ programa.nome_programa }}">
+            <img src="{{ programa.banner_programa.url }}" class="banner_pro w-100" style="height:220px; object-fit:cover;" alt="Banner {{ programa.nome_programa }}">
           {% else %}
             <img src="https://via.placeholder.com/600x400" class="w-100" style="height:220px; object-fit:cover;" alt="Banner padrão">
           {% endif %}
@@ -104,8 +104,23 @@
       </div>
     {% empty %}
       <div class="col mx-auto">
-        <p class="text-center text-muted">Não há programas cadastrados.</p>
+        {% if filtro %}
+          <p class="text-muted text-center">
+            Nenhum programa encontrado para
+            <strong>"{{ filtro }}"</strong>.
+          </p>
+
+          <div class="text-center">
+            <a href="{% url 'radio:programas' %}"
+              class="btn btn-outline-success btn-sm mt-2">
+              Limpar busca
+            </a>
+          </div>
+        {% else %}
+          <p class="text-center text-muted">Não há programas cadastrados.</p>
+        {% endif %}
       </div>
+
     {% endfor %}
   </div>
 </div>

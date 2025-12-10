@@ -63,7 +63,7 @@
                                         <a class="nav-link dropdown-toggle d-flex align-items-center justify-content-center justify-content-lg-end"
                                         href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         {%if user.foto_perfil %}
-                                            <img src="{{ user.foto_perfil.url }}" alt="Avatar" class="nav-avatar rounded-circle" width="34" height="34">
+                                            <img src="{{ user.foto_perfil.url }}" alt="Avatar" class="nav-avatar rounded-circle" width="34" height="34" style="object-fit:cover;">
                                         {%else%}
                                             <img src="{% static 'radio/img/avatarpadrao.jpg' %}" alt="Avatar" class="nav-avatar rounded-circle" width="34" height="34">
                                         {% endif %}
@@ -75,7 +75,7 @@
                                             <li class="px-3 py-2 border-bottom">
                                                 <div class="d-flex align-items-center">
                                                     {%if request.user.foto_perfil %}
-                                                        <img src="{{ request.user.foto_perfil.url }}" class="rounded-circle me-2" width="45" height="45">
+                                                        <img src="{{ request.user.foto_perfil.url }}" class="rounded-circle me-2" width="45" height="45" style="object-fit:cover;">
                                                     {%else%}
                                                         <img src="{% static 'radio/img/avatarpadrao.jpg' %}" class="rounded-circle me-2" width="45" height="45">
                                                     {% endif %}
