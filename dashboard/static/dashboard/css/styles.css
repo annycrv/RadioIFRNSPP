@@ -7,7 +7,7 @@ body {
 .novo_programa {
     color: black;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 .salvar {
@@ -490,8 +490,8 @@ form label {
 
 /* botao */
 .btn-perfil-editar {
-    background: #0d6efd;
-    color: white;
+    background: #9DC9AC ;
+    color: black;
     text-decoration: none;
     padding: 12px;
     display: block;
@@ -499,10 +499,11 @@ form label {
     border-radius: 12px;
     margin-top: 20px;
     transition: 0.2s;
+    border-color: transparent;
 }
 
 .btn-perfil-editar:hover {
-    background: #0b5ed7;
+    color: white;
 }
 
 /* responsivo */
