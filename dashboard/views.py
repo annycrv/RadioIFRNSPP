@@ -103,6 +103,20 @@ def programa_remover(request, id_programa):
     else:
         return render(request, "dashboard/remover.html", context)
     
+@login_required
+@permission_required("radio.view_programa", raise_exception=True)
+def programa_detalhar(request, id_programa):
+    programa = get_object_or_404(Programa, id=id_programa)
+
+    context = {
+        'programa': programa,
+        "titulo_pagina": "Programas",
+        'partial_detalhe':"dashboard/partials/_detalhar_programa.html",
+        "url_cancelar": "dashboard:programas",
+    }
+    return render(request, 'dashboard/detalhar.html', context)
+
+
 # Programacao
 
 

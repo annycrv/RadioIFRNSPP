@@ -1203,6 +1203,7 @@ padding: 60px 0;
 
 .dropdown-item:hover{
   background-color: #2ecc701b;
+  color: black
 }
 
 .sobre-historia-section{

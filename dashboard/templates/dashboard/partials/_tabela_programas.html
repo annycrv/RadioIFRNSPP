@@ -1,55 +1,44 @@
-{% load static%}
+{% load static %}
 <div class="row g-4">
 
   {% for programa in programas %}
     <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
       <div class="program-card p-3 shadow-sm rounded h-100 d-flex flex-column">
 
-        <!-- Nome do Programa -->
         <h5 class="mb-1">{{ programa.nome_programa }}</h5>
 
-        <!-- Descrição -->
         <p class="text-muted small mb-1 descricao">
           {{ programa.descricao_programa|truncatewords:12 }}
         </p>
 
-        <!-- Apresentador -->
         <p class="small mb-2">
           <strong>Apresentador:</strong> {{ programa.apresentador_programa }}
         </p>
 
         <hr class="my-2">
 
-        <!-- Ações principais -->
         <div class="d-flex flex-column gap-2 mt-auto">
 
-          <!-- Ver Episódios do Programa -->
-          {% if episodio.id %}
-          <a href="{% url 'dashboard:episodio_detalhar' episodio.id %}" 
-             class="btn btn-primary btn-sm w-100">
-            <i class="bi bi-collection-play"></i> Ver Episódios
+          <a href="{% url 'dashboard:programa_detalhar' programa.id %}" 
+             class="btn btn-warning btn-sm w-100">
+            <i class="bi bi-collection-play"></i> Detalhar programa
           </a>
-          {% endif %}
 
-          <!-- Editar Programa -->
           <a href="{% url 'dashboard:programa_editar' programa.id %}" 
              class="btn btn-outline-secondary btn-sm w-100">
             <i class="bi bi-pencil-square"></i> Editar Programa
           </a>
 
-          <!-- Remover Programa -->
           <a href="{% url 'dashboard:programa_remover' id_programa=programa.id %}" 
              class="btn btn-danger btn-sm w-100">
             <i class="bi bi-trash"></i> Excluir Programa
           </a>
 
-          <!-- Adicionar Episódio -->
           <a href="{% url 'dashboard:episodio_novo' programa.id %}" 
              class="btn btn-success btn-sm w-100">
             <i class="bi bi-plus-circle"></i> Adicionar Episódio
           </a>
 
-          <!-- Ver Episódios -->
           <a href="{% url 'dashboard:episodios_programa' programa.id %}" 
              class="btn btn-info btn-sm w-100">
             <i class="bi bi-collection-play"></i> Ver Episódios
@@ -60,10 +49,11 @@
       </div>
     </div>
 
-{% empty %}
-<div class="d-flex flex-column align-items-center text-center">
-    <img src="{% static 'radio/img/programa.svg' %}" class="curtidaimg mb-3">
-    <p class="text-center text-muted">Nenhum programa cadastrado ainda.</p>
-</div>
-</div>
-{% endfor %}
+  {% empty %}
+    <div class="d-flex flex-column align-items-center text-center">
+        <img src="{% static 'radio/img/programa.svg' %}" class="curtidaimg mb-3">
+        <p class="text-center text-muted">Nenhum programa cadastrado ainda.</p>
+    </div>
+  {% endfor %}
+
+</div>  
