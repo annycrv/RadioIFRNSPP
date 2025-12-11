@@ -119,7 +119,11 @@
             </a>
           </div>
         {% else %}
-          <p class="text-center text-muted">Não há programas cadastrados.</p>
+        <div class="text-center mb-4 mx-auto">
+          <img src="{% static 'radio/img/programa.svg' %}" width="300" class="">
+          <h5>Sem programas cadastrados</h5>
+          <p class="text-muted">Volte em breve para conferir as novas atrações!</p>
+        </div>
         {% endif %}
       </div>
 
