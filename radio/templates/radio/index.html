@@ -10,22 +10,22 @@
     <div class="row align-items-center">
       
       <!-- Texto -->
-      <div class="col-lg-6 text-start">
-        <h1 class="fw-bold display-4 title-hero">
+      <div class="col-lg-6 col-md-6 col-sm-12 text-start">
+        <h1 class="fw-bold display-4 title-hero mt-5 mb-1">
           Sua escola<br>
           <span>com você</span>
         </h1>
-        <p class="lead mt-3">
+        <p class="lead mt-1 mb-2">
           <strong class="text">Rádio IFRN: A voz dos alunos, o som da nossa escola, conectando conhecimento, cultura, informação e música em um só lugar.</strong> 
         </p>
-        <div class="mt-4">
-          <a href="{%url 'radio:programacao' 'segunda'%}" class="btn btn-primary btn-lg me-3">Programação diária</a>
-          <a href="{% url 'radio:sobre' %}" class="btn btn-outline-custom btn-lg">Sobre Nós</a>
+        <div class="mt-1">
+          <a href="{%url 'radio:programacao' 'segunda'%}" class="btn btn-primary btn-lg me-3 mt-2">Programação diária</a>
+          <a href="{% url 'radio:sobre' %}" class="btn btn-outline-custom btn-lg mt-2">Sobre Nós</a>
         </div>
       </div>
 
       <!-- Imagem -->
-      <div class="col-lg-6 text-center position-relative">
+      <div class="col-lg-6 col-md-6 col-sm-12 text-center position-relative">
         <img src="{% static 'radio/img/index2.png' %}" alt="Rádio IFRN" class="img-fluid hero-img">
       </div>
 

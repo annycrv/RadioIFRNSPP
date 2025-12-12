@@ -30,7 +30,7 @@
 
 
 <!-- Cards da programação -->
-<div class="container my-3">
+<div class="container my-3 mb-5">
   <div class="row g-3 ">
     {% for item in programacao %}
       <div class="col-12 col-sm-6 col-lg-4 d-flex justify-content-center">
@@ -72,7 +72,6 @@
 <nav aria-label="Page navigation" class="paginacao">
   <ul class="custom-pagination mb-3 mx-auto">
 
-    <!-- Botão Anterior -->
     {% if programacao.has_previous %}
       <li>
         <a href="?page={{ programacao.previous_page_number }}" class="arrow-btn">‹</a>
@@ -81,7 +80,6 @@
       <li><span class="arrow-btn disabled">‹</span></li>
     {% endif %}
 
-    <!-- Números -->
     {% for num in programacao.paginator.page_range %}
       {% if programacao.number == num %}
         <li><span class="page-number active">{{ num }}</span></li>
@@ -90,7 +88,6 @@
       {% endif %}
     {% endfor %}
 
-    <!-- Botão Próximo -->
     {% if programacao.has_next %}
       <li>
         <a href="?page={{ programacao.next_page_number }}" class="arrow-btn">›</a>

@@ -5,115 +5,174 @@
 
 <!-- Banner do Programa -->
 <div class="bodyp d-flex flex-column">
-<section class="banner-section">
-<div class="container">
-<div class="row align-items-center g-4">
 
+    <section class="banner-section">
+        <div class="container">
+            <div class="row align-items-center g-4">
 
-<!-- Imagem -->
-<div class="col-12 col-md-4 text-center">
-<img src="{{ programa.banner_programa.url }}" class="imgpro img-fluid rounded shadow" alt="Banner Programa">
-</div>
+                <!-- Imagem -->
+                <div class="col-12 col-md-4 text-center">
+                    <img src="{{ programa.banner_programa.url }}" class="imgpro img-fluid rounded shadow" alt="Banner Programa">
+                </div>
 
+                <!-- Informações -->
+                <div class="col-12 col-md-8">
+                    <span class="badge bg-success mb-2">Programa</span>
+                    <h1 class="fw-bold titulop">{{ programa.nome_programa }}</h1>
+                    <p class="descricao text-muted">{{ programa.descricao_programa }}</p>
 
-<!-- Informações -->
-<div class="col-12 col-md-8">
-<span class="badge bg-success mb-2">Programa</span>
-<h1 class="fw-bold titulop">{{ programa.nome_programa }}</h1>
-<p class=" descricao text-muted">{{ programa.descricao_programa}}</p>
+                    <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+                        <span class="text-muted d-flex align-items-center">
+                            <i class="pessoa bi bi-person me-2"></i> {{ programa.apresentador_programa }}
+                        </span>
 
+                        <span class="text-muted d-flex align-items-center">
+                            <i class="bi bi-clock me-2"></i> {{ programa.episodios.count }} episódios
+                        </span>
 
-<div class="d-flex flex-wrap align-items-center gap-3 mb-3">
-<span class="text-muted d-flex align-items-center"><i class="pessoa bi bi-person me-2"></i> {{ programa.apresentador_programa }}</span>
-<span class="text-muted d-flex align-items-center"><i class="bi bi-clock me-2"></i> {{ programa.episodios.count }} episódios</span>
-<span class=" text-muted d-flex align-items-center"><i class="bi bi-heart me-2"></i> {{ programa.curtidas.count }} curtidas</span>
-</div>
-
-
-
-</div>
-</div>
-</div>
-</section>
-
-
-
-
-<!-- EPISÓDIOS -->
-<section class="py-5">
-<div class="container position-relative">
-
-    <h2 class="fw-bold mb-2">Episódios</h2>
-    <p class="text-muted mb-4">Explore todos os episódios e descubra novos insights</p>
-
-    {% if episodios %}
-        <!-- Botão Anterior -->
-        <button class="carousel-control-prev custom-prev" type="button" data-bs-target="#carouselEpisodios" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-
-        <!-- Botão Próximo -->
-        <button class="carousel-control-next custom-next" type="button" data-bs-target="#carouselEpisodios" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
-
-        <div id="carouselEpisodios" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-
-                {% for episodio in episodios %}
-                    {% if forloop.first %}
-                    <div class="carousel-item active">
-                        <div class="row g-4">
-                    {% elif forloop.counter0|divisibleby:4 %}
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row g-4">
-                    {% endif %}
-
-                    <!-- CARD -->
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-                        <a href="{{ episodio.audio }}" class="episode-link">
-                            <div class="card episode-card shadow-sm h-100 position-relative">
-
-                                <span class="tag-ep">EP {{ forloop.counter }}</span>
-
-                                <div class="episode-image-wrapper">
-                                    <img src="{{ episodio.banner_episodio.url }}" class="banner_ep card-img-top" alt="">
-                                    <div class="episode-play">
-                                        <i class="bi bi-play-fill"></i>
-                                    </div>
-                                </div>
-
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ episodio.titulo }}</h5>
-                                    <p class="text-muted small">{{ episodio.descricao|truncatewords:15 }}</p>
-                                </div>
-                                <div class="hover-line"></div>
-
-                            </div>
-                        </a>
+                        <span class="text-muted d-flex align-items-center">
+                            <i class="bi bi-heart me-2"></i> {{ programa.curtidas.count }} curtidas
+                        </span>
                     </div>
 
-                    {% if forloop.last %}
-                        </div>
-                    </div>
-                    {% endif %}
-                {% endfor %}
+                </div>
             </div>
         </div>
+    </section>
 
-    {% else %}
-        <!-- EMPTY STATE -->
-        <div class="text-center py-5">
-            <img src="{% static 'radio/img/episodio.svg' %}" class="mb-3 curtidaimg">
-            <p class="text-muted">Este programa ainda não possui episódios.</p>
+    <!-- EPISÓDIOS -->
+    <section class="py-5">
+        <div class="container position-relative">
+
+            <h2 class="fw-bold mb-2">Episódios</h2>
+            <p class="text-muted mb-4">Explore todos os episódios e descubra novos insights</p>
+
+            {% if episodios %}
+
+                <!-- Carrossel tela maior -->
+                <div class="d-none d-lg-block">
+
+                    <!-- Botões -->
+                    <button class="carousel-control-prev custom-prev-maior" type="button" data-bs-target="#carouselDesktop" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+
+                    <button class="carousel-control-next custom-next-maior" type="button" data-bs-target="#carouselDesktop" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+
+                    <div id="carouselDesktop" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+
+                            {% for episodio in episodios %}
+                                {% if forloop.first %}
+                                    <div class="carousel-item active">
+                                        <div class="row g-4">
+                                {% elif forloop.counter0|divisibleby:4 %}
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="row g-4">
+                                {% endif %}
+
+                                <!-- CARD -->
+                                <div class="col-lg-3 col-md-6">
+                                    <a href="{{ episodio.audio }}" class="episode-link">
+                                        <div class="card episode-card shadow-sm h-100 position-relative">
+
+                                            <span class="tag-ep">EP {{ forloop.counter }}</span>
+
+                                            <div class="episode-image-wrapper">
+                                                <img src="{{ episodio.banner_episodio.url }}" class="banner_ep card-img-top" alt="">
+                                                <div class="episode-play">
+                                                    <i class="bi bi-play-fill"></i>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ episodio.titulo }}</h5>
+                                                <p class="text-muted small">{{ episodio.descricao|truncatewords:15 }}</p>
+                                            </div>
+
+                                            <div class="hover-line"></div>
+
+                                        </div>
+                                    </a>
+                                </div>
+
+                                {% if forloop.last %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carrossel tela menor -->
+                <div class="d-lg-none">
+
+                    <!-- Botões -->
+                    <button class="carousel-control-prev custom-prev-menor" type="button" data-bs-target="#carouselMobile" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+
+                    <button class="carousel-control-next custom-next-menor" type="button" data-bs-target="#carouselMobile" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+
+                    <div id="carouselMobile" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+
+                            {% for episodio in episodios %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <div class="row g-4">
+                                        <div class="col-12">
+                                            <a href="{{ episodio.audio }}" class="episode-link">
+                                                <div class="card episode-card shadow-sm h-100 position-relative">
+
+                                                    <span class="tag-ep">EP {{ forloop.counter }}</span>
+
+                                                    <div class="episode-image-wrapper">
+                                                        <img src="{{ episodio.banner_episodio.url }}" class="banner_ep card-img-top" alt="">
+                                                        <div class="episode-play">
+                                                            <i class="bi bi-play-fill"></i>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">{{ episodio.titulo }}</h5>
+                                                        <p class="text-muted small">{{ episodio.descricao|truncatewords:15 }}</p>
+                                                    </div>
+
+                                                    <div class="hover-line"></div>
+
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+
+            {% else %}
+
+                <!-- EMPTY STATE -->
+                <div class="text-center py-5">
+                    <img src="{% static 'radio/img/episodio.svg' %}" class="mb-3 curtidaimg">
+                    <p class="text-muted">Este programa ainda não possui episódios.</p>
+                </div>
+
+            {% endif %}
+
         </div>
-    {% endif %}
+    </section>
 
 </div>
-</section>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

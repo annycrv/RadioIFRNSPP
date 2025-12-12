@@ -73,8 +73,8 @@ html, body {
 .hero {
   background: linear-gradient(90deg, #eef2ff 0%, #b3d5bf 100%);
   overflow: hidden;
-  height: calc(100vh - 102px);
-  min-height: calc(100svh - 102px);
+  height: calc(100vh - 101px);
+  min-height: calc(100vh - 102px);
   margin-bottom: 130px;
   background-size: cover;
   background-position: center;
@@ -95,7 +95,6 @@ html, body {
 .title-hero {
   position: relative;
   display: inline-block;
-  padding-top: 20px; /* espaço para a linha */
 }
 
 .text{
@@ -1142,7 +1141,7 @@ padding: 60px 0;
 .episode-card:hover .hover-line {
     width: 100%;
 }
-.custom-prev, .custom-next {
+.custom-prev-maior, .custom-next-maior, .custom-next-menor, .custom-prev-menor {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -1150,14 +1149,14 @@ padding: 60px 0;
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background-color: rgba(0,0,0,0.5);
-}
+    background-color: rgba(0,0,0,0.5)
+  }
 
-.custom-prev {
+.custom-prev-maior {
     left: -40px; /* Move para fora do container */
 }
 
-.custom-next {
+.custom-next-maior {
     right: -40px; /* Move para fora do container */
 }
 
