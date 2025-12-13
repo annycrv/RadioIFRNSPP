@@ -1,5 +1,4 @@
 {% load static %}
-<!-- Card Programa -->
 <div class="container my-3">
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
@@ -33,7 +32,6 @@
              class="btn btn-outline-success btn-sm rounded-4 px-3">Episódios</a>
         </div>
 
-        <!-- Botão descurtir -->
         <form action="{% url 'radio:registrar_curtida' %}" method="POST" class="mt-3">
           {% csrf_token %}
           <input type="hidden" name="id_programa" value="{{ programa.id }}">
@@ -57,12 +55,10 @@
 </div>
 
 
-<!-- Paginação -->
 {% if programas.paginator.count > 0 %}
 <nav aria-label="Page navigation" class="mt-4">
   <ul class="custom-pagination">
 
-    <!-- Botão Anterior -->
     {% if programas.has_previous %}
       <li>
         <a href="?page={{ programas.previous_page_number }}" class="arrow-btn">‹</a>
@@ -71,7 +67,6 @@
       <li><span class="arrow-btn disabled">‹</span></li>
     {% endif %}
 
-    <!-- Números -->
     {% for num in programas.paginator.page_range %}
       {% if programas.number == num %}
         <li><span class="page-number active">{{ num }}</span></li>
@@ -80,7 +75,6 @@
       {% endif %}
     {% endfor %}
 
-    <!-- Botão Próximo -->
     {% if programas.has_next %}
       <li>
         <a href="?page={{ programas.next_page_number }}" class="arrow-btn">›</a>

@@ -46,7 +46,7 @@ def programas(request):
     }
     return render(request, "dashboard/listar.html", context)
 
-
+@login_required
 @permission_required("radio.add_programa", raise_exception=True)
 def programa_novo(request):
     context = { 
@@ -407,6 +407,8 @@ def pedidos_remover(request, id_item):
         return redirect("dashboard:pedidos")
 
     return render(request, "dashboard/remover.html", {"pedido": pedido})
+
+#perfil
 
 @login_required   
 def perfil(request):

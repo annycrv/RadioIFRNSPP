@@ -1,0 +1,187 @@
+[
+  {
+    "model": "radio.episodio",
+    "pk": 1,
+    "fields": {
+      "banner_episodio": "radio/img_episodio/episodio1.jpg",
+      "programa": 1,
+      "titulo": "Sustentabilidade no Cotidiano",
+      "descricao": "Práticas sustentáveis aplicadas à rotina das pessoas.\nPequenas ações diárias que contribuem para a preservação do meio ambiente.",
+      "audio": "https://www.instagram.com",
+      "apresentador": "Carlos Silva",
+      "data_publicacao": "2024-10-15"
+    }
+  },
+  {
+    "model": "radio.episodio",
+    "pk": 2,
+    "fields": {
+      "banner_episodio": "radio/img_episodio/episodio2.jpg",
+      "programa": 1,
+      "titulo": "Consumo Consciente",
+      "descricao": "Reflexão sobre hábitos de consumo responsáveis e sustentáveis.\nEscolhas conscientes que impactam positivamente a sociedade e o planeta.",
+      "audio": "https://www.instagram.com",
+      "apresentador": "Carlos Silva",
+      "data_publicacao": "2024-10-15"
+    }
+  },
+  {
+    "model": "radio.episodio",
+    "pk": 3,
+    "fields": {
+      "banner_episodio": "radio/img_episodio/episodio3.jpg",
+      "programa": 1,
+      "titulo": "Educação Ambiental",
+      "descricao": "A educação ambiental como ferramenta de transformação social.\nFormação de cidadãos mais conscientes e comprometidos com o futuro.",
+      "audio": "https://www.instagram.com",
+      "apresentador": "Carlos Silva",
+      "data_publicacao": "2024-10-15"
+    }
+  },
+  {
+    "model": "radio.episodio",
+    "pk": 4,
+    "fields": {
+      "banner_episodio": "radio/img_episodio/episodio4.jpg",
+      "programa": 1,
+      "titulo": "Mudanças Climáticas",
+      "descricao": "Impactos das mudanças climáticas no meio ambiente e na sociedade.\nO papel coletivo na redução dos danos e na adaptação ao cenário atual.",
+      "audio": "https://www.instagram.com",
+      "apresentador": "Carlos Silva",
+      "data_publicacao": "2024-10-15"
+    }
+  },
+
+  {
+    "model": "radio.episodio",
+    "pk": 5,
+    "fields": {
+      "banner_episodio": "radio/img_episodio/episodio5.jpg",
+      "programa": 2,
+      "titulo": "Arte e Identidade Cultural",
+      "descricao": "A arte como forma de expressão social e cultural.\nConstrução da identidade por meio da música, da dança e das artes visuais.",
+      "audio": "https://www.instagram.com",
+      "apresentador": "Ana Paula",
+      "data_publicacao": "2024-10-15"
+    }
+  },
+  {
+    "model": "radio.episodio",
+    "pk": 6,
+    "fields": {
+      "banner_episodio": "radio/img_episodio/episodio6.jpg",
+      "programa": 2,
+      "titulo": "Literatura Brasileira",
+      "descricao": "Autores e obras que marcaram a literatura nacional.\nA importância da leitura na formação cultural e educacional.",
+      "audio": "https://www.instagram.com",
+      "apresentador": "Ana Paula",
+      "data_publicacao": "2024-10-15"
+    }
+  },
+  {
+    "model": "radio.episodio",
+    "pk": 7,
+    "fields": {
+      "banner_episodio": "radio/img_episodio/episodio7.jpg",
+      "programa": 2,
+      "titulo": "Música Popular",
+      "descricao": "Ritmos, estilos e histórias da música brasileira.\nA música como elemento de identidade e expressão cultural.",
+      "audio": "https://www.instagram.com",
+      "apresentador": "Ana Paula",
+      "data_publicacao": "2024-10-15"
+    }
+  },
+
+  {
+    "model": "radio.episodio",
+    "pk": 8,
+    "fields": {
+      "banner_episodio": "radio/img_episodio/episodio8.jpg",
+      "programa": 4,
+      "titulo": "Clássicos da Música",
+      "descricao": "Grandes sucessos musicais que marcaram gerações.\nCanções atemporais que continuam presentes na memória do público.",
+      "audio": "https://www.instagram.com",
+      "apresentador": "Juliana Costa",
+      "data_publicacao": "2024-10-15"
+    }
+  },
+  {
+    "model": "radio.episodio",
+    "pk": 9,
+    "fields": {
+      "banner_episodio": "radio/img_episodio/episodio9.jpg",
+      "programa": 4,
+      "titulo": "Novos Talentos",
+      "descricao": "Artistas em ascensão no cenário musical atual.\nEspaço para divulgar novas vozes e produções independentes.",
+      "audio": "https://www.instagram.com",
+      "apresentador": "Juliana Costa",
+      "data_publicacao": "2024-10-15"
+    }
+  },
+
+  {
+    "model": "radio.episodio",
+    "pk": 11,
+    "fields": {
+      "banner_episodio": "radio/img_episodio/episodio11.jpg",
+      "programa": 6,
+      "titulo": "Resumo Esportivo",
+      "descricao": "Principais notícias e resultados do esporte.\nUm panorama completo dos acontecimentos da semana.",
+      "audio": "https://www.instagram.com",
+      "apresentador": "Felipe Souza",
+      "data_publicacao": "2024-10-15"
+    }
+  },
+  {
+    "model": "radio.episodio",
+    "pk": 12,
+    "fields": {
+      "banner_episodio": "radio/img_episodio/episodio12.jpg",
+      "programa": 6,
+      "titulo": "Análise das Partidas",
+      "descricao": "Análises técnicas e táticas das partidas disputadas.\nComentários especializados sobre o desempenho das equipes.",
+      "audio": "https://www.instagram.com",
+      "apresentador": "Felipe Souza",
+      "data_publicacao": "2024-10-15"
+    }
+  },
+  {
+    "model": "radio.episodio",
+    "pk": 13,
+    "fields": {
+      "banner_episodio": "radio/img_episodio/episodio13.jpg",
+      "programa": 6,
+      "titulo": "Entrevistas Esportivas",
+      "descricao": "Conversas com atletas, treinadores e profissionais do esporte.\nRelatos, experiências e bastidores das competições.",
+      "audio": "https://www.instagram.com",
+      "apresentador": "Felipe Souza",
+      "data_publicacao": "2024-10-15"
+    }
+  },
+  {
+    "model": "radio.episodio",
+    "pk": 14,
+    "fields": {
+      "banner_episodio": "radio/img_episodio/episodio14.jpg",
+      "programa": 6,
+      "titulo": "Histórias do Esporte",
+      "descricao": "Momentos históricos que marcaram o esporte mundial.\nConquistas, superações e trajetórias inspiradoras.",
+      "audio": "https://www.instagram.com",
+      "apresentador": "Felipe Souza",
+      "data_publicacao": "2024-10-15"
+    }
+  },
+  {
+    "model": "radio.episodio",
+    "pk": 15,
+    "fields": {
+      "banner_episodio": "radio/img_episodio/episodio15.jpg",
+      "programa": 6,
+      "titulo": "Curiosidades Esportivas",
+      "descricao": "Fatos curiosos e pouco conhecidos do esporte.\nInformação e entretenimento para os apaixonados por esportes.",
+      "audio": "https://www.instagram.com",
+      "apresentador": "Felipe Souza",
+      "data_publicacao": "2024-10-15"
+    }
+  }
+]

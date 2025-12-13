@@ -1,0 +1,168 @@
+[
+  {
+    "model": "radio.programacao",
+    "pk": 1,
+    "fields": {
+      "programa": 1,
+      "dia": "segunda",
+      "horario": "08:30"
+    }
+  },
+  {
+    "model": "radio.programacao",
+    "pk": 2,
+    "fields": {
+      "programa": 2,
+      "dia": "segunda",
+      "horario": "10:20"
+    }
+  },
+  {
+    "model": "radio.programacao",
+    "pk": 3,
+    "fields": {
+      "programa": 3,
+      "dia": "segunda",
+      "horario": "14:30"
+    }
+  },
+  {
+    "model": "radio.programacao",
+    "pk": 4,
+    "fields": {
+      "programa": 4,
+      "dia": "segunda",
+      "horario": "16:20"
+    }
+  },
+
+  {
+    "model": "radio.programacao",
+    "pk": 5,
+    "fields": {
+      "programa": 2,
+      "dia": "terca",
+      "horario": "08:30"
+    }
+  },
+  {
+    "model": "radio.programacao",
+    "pk": 6,
+    "fields": {
+      "programa": 3,
+      "dia": "terca",
+      "horario": "10:20"
+    }
+  },
+  {
+    "model": "radio.programacao",
+    "pk": 7,
+    "fields": {
+      "programa": 5,
+      "dia": "terca",
+      "horario": "14:30"
+    }
+  },
+  {
+    "model": "radio.programacao",
+    "pk": 8,
+    "fields": {
+      "programa": 6,
+      "dia": "terca",
+      "horario": "16:20"
+    }
+  },
+
+  {
+    "model": "radio.programacao",
+    "pk": 9,
+    "fields": {
+      "programa": 1,
+      "dia": "quarta",
+      "horario": "08:30"
+    }
+  },
+  {
+    "model": "radio.programacao",
+    "pk": 10,
+    "fields": {
+      "programa": 4,
+      "dia": "quarta",
+      "horario": "10:20"
+    }
+  },
+  {
+    "model": "radio.programacao",
+    "pk": 11,
+    "fields": {
+      "programa": 5,
+      "dia": "quarta",
+      "horario": "14:30"
+    }
+  },
+  {
+    "model": "radio.programacao",
+    "pk": 12,
+    "fields": {
+      "programa": 6,
+      "dia": "quarta",
+      "horario": "16:20"
+    }
+  },
+
+  {
+    "model": "radio.programacao",
+    "pk": 13,
+    "fields": {
+      "programa": 1,
+      "dia": "quinta",
+      "horario": "08:30"
+    }
+  },
+  {
+    "model": "radio.programacao",
+    "pk": 14,
+    "fields": {
+      "programa": 3,
+      "dia": "quinta",
+      "horario": "10:20"
+    }
+  },
+  {
+    "model": "radio.programacao",
+    "pk": 15,
+    "fields": {
+      "programa": 5,
+      "dia": "quinta",
+      "horario": "14:30"
+    }
+  },
+
+  {
+    "model": "radio.programacao",
+    "pk": 16,
+    "fields": {
+      "programa": 2,
+      "dia": "sexta",
+      "horario": "08:30"
+    }
+  },
+  {
+    "model": "radio.programacao",
+    "pk": 17,
+    "fields": {
+      "programa": 4,
+      "dia": "sexta",
+      "horario": "10:20"
+    }
+  },
+  {
+    "model": "radio.programacao",
+    "pk": 18,
+    "fields": {
+      "programa": 6,
+      "dia": "sexta",
+      "horario": "14:30"
+    }
+  }
+]

@@ -57,7 +57,7 @@ class Programacao(models.Model):
 
     programa = models.ForeignKey(Programa, on_delete=models.CASCADE)
     dia = models.CharField(max_length=10, choices=DIAS_SEMANA)
-    horario = models.CharField(choices=HORARIO)
+    horario = models.CharField(choices=HORARIO, max_length=20)
     
     class Meta:
         verbose_name_plural = "programação"
