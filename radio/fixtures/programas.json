@@ -3,7 +3,7 @@
     "model": "radio.programa",
     "pk": 1,
     "fields": {
-      "banner_programa": "radio/img_programa/programa1.jpg",
+      "banner_programa": "img_programa/programa1.jpg",
       "nome_programa": "Meio Ambiente em Debate",
       "descricao_programa": "Debates sobre sustentabilidade, preservação ambiental e ações conscientes.\nInformação e reflexão para um futuro melhor.",
       "apresentador_programa": "Carlos Silva"
@@ -13,7 +13,7 @@
     "model": "radio.programa",
     "pk": 2,
     "fields": {
-        "banner_programa": "radio/img_programa/programa2.jpg",
+        "banner_programa": "img_programa/programa2.jpg",
         "nome_programa": "Cinema em Foco",
         "descricao_programa": "Análises, críticas e debates sobre filmes e produções audiovisuais.\nUm espaço para discutir narrativas, técnicas e o impacto do cinema.",
         "apresentador_programa": "Ana Paula"
@@ -24,7 +24,7 @@
     "model": "radio.programa",
     "pk": 3,
     "fields": {
-      "banner_programa": "radio/img_programa/programa3.jpg",
+      "banner_programa": "img_programa/programa3.jpg",
       "nome_programa": "Notícias da Cidade",
       "descricao_programa": "As principais notícias do dia com foco na comunidade.\nInformação clara e acessível para todos.",
       "apresentador_programa": "Lucas Ferreira"
@@ -34,7 +34,7 @@
     "model": "radio.programa",
     "pk": 4,
     "fields": {
-      "banner_programa": "radio/img_programa/programa4.jpg",
+      "banner_programa": "img_programa/programa4.jpg",
       "nome_programa": "Música para Todos",
       "descricao_programa": "Uma seleção musical variada para todos os gostos.\nDo clássico ao contemporâneo, sem sair do ritmo.",
       "apresentador_programa": "Juliana Costa"
@@ -44,7 +44,7 @@
     "model": "radio.programa",
     "pk": 5,
     "fields": {
-        "banner_programa": "radio/img_programa/programa5.jpg",
+        "banner_programa": "img_programa/programa5.jpg",
         "nome_programa": "Tecnologia em Pauta",
         "descricao_programa": "Debates sobre tecnologia, inovação e tendências digitais.\nAnálises acessíveis sobre o impacto da tecnologia no cotidiano.",
         "apresentador_programa": "Ricardo Almeida"
@@ -54,7 +54,7 @@
     "model": "radio.programa",
     "pk": 6,
     "fields": {
-      "banner_programa": "radio/img_programa/programa6.jpg",
+      "banner_programa": "img_programa/programa6.jpg",
       "nome_programa": "Esporte em Foco",
       "descricao_programa": "Análises, notícias e comentários sobre o mundo esportivo.\nTudo o que acontece dentro e fora das quadras.",
       "apresentador_programa": "Felipe Souza"

@@ -9,7 +9,7 @@ class Sugestao(models.Model):
         verbose_name_plural = "Sugestões"
 
 class Programa(models.Model):
-    banner_programa = models.ImageField("Banner do programa",upload_to="radio/img_programa/", blank=True)
+    banner_programa = models.ImageField("Banner do programa",upload_to="img_programa/", blank=True)
     nome_programa = models.CharField("Nome do programa",max_length=100)
     descricao_programa = models.CharField("Descrição do programa",max_length=1000)
     apresentador_programa = models.CharField("Apresentador do programa",max_length=1000)
@@ -24,7 +24,7 @@ class Programa(models.Model):
     
 
 class Episodio(models.Model):
-    banner_episodio = models.ImageField("Banner do episodio",upload_to="radio/img_episodio/", blank=True)
+    banner_episodio = models.ImageField("Banner do episodio",upload_to="img_episodio/", blank=True)
     programa = models.ForeignKey(Programa, on_delete=models.CASCADE, related_name="episodios")
     titulo = models.CharField(max_length=200)
     descricao = models.TextField()
