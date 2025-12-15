@@ -3,13 +3,13 @@ from usuarios.models import Usuario
 
 class Sugestao(models.Model):
     nome = models.CharField("Seu nome",max_length=50)
-    comentario = models.TextField("Quais os programas você gostaria de encontrar na nossa rádio?", max_length=1000)
+    comentario = models.TextField("Quais os programas você gostaria de encontrar na nossa rádio?")
 
     class Meta:
         verbose_name_plural = "Sugestões"
 
 class Programa(models.Model):
-    banner_programa = models.ImageField("Banner do programa",upload_to="img_programa/", blank=True)
+    banner_programa = models.ImageField("Banner do programa",upload_to="img_programa/", blank=True, null=True)
     nome_programa = models.CharField("Nome do programa",max_length=100)
     descricao_programa = models.CharField("Descrição do programa",max_length=1000)
     apresentador_programa = models.CharField("Apresentador do programa",max_length=1000)
@@ -24,11 +24,11 @@ class Programa(models.Model):
     
 
 class Episodio(models.Model):
-    banner_episodio = models.ImageField("Banner do episodio",upload_to="img_episodio/", blank=True)
+    banner_episodio = models.ImageField("Banner do episodio",upload_to="img_episodio/", blank=True, null=True)
     programa = models.ForeignKey(Programa, on_delete=models.CASCADE, related_name="episodios")
     titulo = models.CharField(max_length=200)
     descricao = models.TextField()
-    audio = models.URLField(blank=True)
+    audio = models.URLField(blank=True,null=True)
     data_publicacao = models.DateField(auto_now_add=True)
     apresentador = models.CharField(max_length=1000,null=True)
 
@@ -79,7 +79,7 @@ class Pedido(models.Model):
     musica = models.CharField("O que você gostaria de ouvir hoje?",max_length=1000)
     artista = models.CharField("Qual o nome do(a) artista ou banda dessa música?",max_length=1000)
     horario_desejado = models.CharField("Qual o horário desejado?", max_length=5, choices=HORARIO)
-    mensagem = models.TextField("Observações (opcional)",blank=True, null=True, max_length=1000)
+    mensagem = models.TextField("Observações (opcional)",blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Pedidos"
