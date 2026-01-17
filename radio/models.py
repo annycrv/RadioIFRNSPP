@@ -8,11 +8,23 @@ class Sugestao(models.Model):
     class Meta:
         verbose_name_plural = "Sugestões"
 
+class Apresentador(models.Model):
+    nome = models.CharField(max_length=100)
+    foto = models.ImageField(upload_to='apresentadores/',blank=True, null=True)
+    descricao = models.CharField(max_length=1000)
+
+    class Meta:
+        verbose_name_plural = "Apresentadores"
+
+    def __str__(self):
+        return self.nome
+
+
 class Programa(models.Model):
     banner_programa = models.ImageField("Banner do programa",upload_to="img_programa/", blank=True, null=True)
     nome_programa = models.CharField("Nome do programa",max_length=100)
     descricao_programa = models.CharField("Descrição do programa",max_length=1000)
-    apresentador_programa = models.CharField("Apresentador do programa",max_length=1000)
+    apresentador_programa = models.ForeignKey(Apresentador, on_delete=models.SET_NULL, null=True, related_name='programas')
     curtidas = models.ManyToManyField(Usuario, related_name="curtidas", blank=True)
 
 
@@ -30,7 +42,7 @@ class Episodio(models.Model):
     descricao = models.TextField()
     audio = models.URLField(blank=True,null=True)
     data_publicacao = models.DateField(auto_now_add=True)
-    apresentador = models.CharField(max_length=1000,null=True)
+    apresentador = models.ForeignKey(Apresentador,on_delete=models.SET_NULL,null=True,blank=True,related_name="episodios")
 
 
     class Meta:

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, permission_required
-from .models import Programa, Programacao,Pedido,Episodio, Sugestao
+from .models import Apresentador,Programa, Programacao,Pedido,Episodio, Sugestao
 from radio.forms import PedidoModelForm, SugestaoModelForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required, permission_required
@@ -75,11 +75,13 @@ def programas(request):
     paginator = Paginator(programas_filtrados, 6)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
+    apresentadores = Apresentador.objects.all()
 
     return render(request, "radio/programas.html", {
         "programas": page_obj,
         "page_obj": page_obj,
         "filtro": filtro,
+        "apresentadores": apresentadores,
     })
 
 def episodios(request, id_programa):

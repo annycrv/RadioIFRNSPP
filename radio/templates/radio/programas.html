@@ -39,10 +39,10 @@
 
     {% for programa in programas %}
       <div class="col d-flex">
-        <div class="card programa-card shadow-sm w-100 d-flex flex-column border-0 rounded-4 overflow-hidden" style="background:#ffffff;">
+        <div class="card programa-card w-100 d-flex flex-column border-0 rounded-4 overflow-hidden" style="background:#ffffff;">
           
           {% if programa.banner_programa %}         
-            <img src="{{ programa.banner_programa.url }}" class="banner_pro w-100" style="height:220px; object-fit:cover;" alt="Banner {{ programa.nome_programa }}">
+            <img src="{{ programa.banner_programa.url }}" class="banner_pro w-100" style="height:220px; object-fit:cover;" alt="Banner {{ programa.nome_programa }}" loading="lazy">
           {% else %}
             <img src="https://via.placeholder.com/600x400" class="w-100" style="height:220px; object-fit:cover;" alt="Banner padrão">
           {% endif %}
@@ -63,8 +63,12 @@
                   <i class="bi bi-person text-muted"></i>
                 </div>
                 <div>
-                  <small class="text-muted d-block lh-1">Artista</small>
-                  <span class="fw-semibold small">{{ programa.apresentador_programa }}</span>
+                  <small class="text-muted d-block lh-1">Artista  </small>
+                  <span class="fw-semibold small"><a href="#"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalApresentador{{ programa.apresentador_programa.id }}">
+                      {{ programa.apresentador_programa }}
+                    </a></span>
                 </div>
               </div>
 
@@ -162,5 +166,51 @@
 </nav>
 </div>
 {%endif%}
+{% for apresentador in apresentadores %}
+<div class="modal fade"
+     id="modalApresentador{{ apresentador.id }}"
+     tabindex="-1"
+     aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-perfil-clean">
+
+      <!-- Header Roxo -->
+      <div class="perfil-header">
+        <div class="perfil-header-content">
+
+          <!-- Avatar -->
+          <div class="perfil-avatar">
+            <img src="{{ apresentador.foto.url }}"
+                 alt="{{ apresentador.nome }}">
+          </div>
+
+          <!-- Nome -->
+          <div class="perfil-header-text">
+            <h5>{{ apresentador.nome }}</h5>
+          </div>
+
+        </div>
+
+        <button type="button"
+                class="btn-close btn-close-white fechar-modal"
+                data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Corpo -->
+      <div class="modal-body perfil-body">
+
+       
+        <p class="perfil-descricao">
+          {{ apresentador.descricao }}
+        </p>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endfor %}
+
 
 {% endblock %}

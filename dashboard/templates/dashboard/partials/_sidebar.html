@@ -40,6 +40,7 @@
       </a>
     </li>
 
+
     <ul class="navbar-nav ms-4">
       <li>
         <a class="nav-link {% if request.resolver_match.url_name == 'episodios' %}ativo{% endif %}"
@@ -48,6 +49,13 @@
         </a>
       </li>
     </ul>
+    
+    <li class="nav-item mb-1">
+      <a class="nav-link {% if request.resolver_match.url_name == 'apresentadores' %}ativo{% endif %}"
+         href="{% url 'dashboard:apresentadores' %}">
+         <i class="bi bi-mic me-2"></i> Apresentadores
+      </a>
+    </li>
 
     <li class="nav-item mb-1">
       <a class="nav-link {% if request.resolver_match.url_name == 'programacao' %}ativo{% endif %}"

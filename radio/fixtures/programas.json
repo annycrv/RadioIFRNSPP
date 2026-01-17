@@ -3,61 +3,60 @@
     "model": "radio.programa",
     "pk": 1,
     "fields": {
+      "nome_programa": "Manhã em Sintonia",
+      "descricao_programa": "Programa matinal com notícias locais, música e entrevistas.",
       "banner_programa": "img_programa/programa1.jpg",
-      "nome_programa": "Meio Ambiente em Debate",
-      "descricao_programa": "Debates sobre sustentabilidade, preservação ambiental e ações conscientes.\nInformação e reflexão para um futuro melhor.",
-      "apresentador_programa": "Carlos Silva"
+      "apresentador_programa": 1
     }
   },
   {
     "model": "radio.programa",
     "pk": 2,
     "fields": {
-        "banner_programa": "img_programa/programa2.jpg",
-        "nome_programa": "Cinema em Foco",
-        "descricao_programa": "Análises, críticas e debates sobre filmes e produções audiovisuais.\nUm espaço para discutir narrativas, técnicas e o impacto do cinema.",
-        "apresentador_programa": "Ana Paula"
+      "nome_programa": "Conexão Jovem",
+      "descricao_programa": "Espaço dedicado à juventude, cultura pop e atualidades.",
+      "banner_programa": "img_programa/programa2.jpg",
+      "apresentador_programa": 2
     }
-
   },
   {
     "model": "radio.programa",
     "pk": 3,
     "fields": {
+      "nome_programa": "Voz da Comunidade",
+      "descricao_programa": "Debates e entrevistas sobre temas sociais e comunitários.",
       "banner_programa": "img_programa/programa3.jpg",
-      "nome_programa": "Notícias da Cidade",
-      "descricao_programa": "As principais notícias do dia com foco na comunidade.\nInformação clara e acessível para todos.",
-      "apresentador_programa": "Lucas Ferreira"
+      "apresentador_programa": 3
     }
   },
   {
     "model": "radio.programa",
     "pk": 4,
     "fields": {
+      "nome_programa": "Tarde Musical",
+      "descricao_programa": "Seleção musical variada para animar sua tarde.",
       "banner_programa": "img_programa/programa4.jpg",
-      "nome_programa": "Música para Todos",
-      "descricao_programa": "Uma seleção musical variada para todos os gostos.\nDo clássico ao contemporâneo, sem sair do ritmo.",
-      "apresentador_programa": "Juliana Costa"
+      "apresentador_programa": 4
     }
   },
-    {
+  {
     "model": "radio.programa",
     "pk": 5,
     "fields": {
-        "banner_programa": "img_programa/programa5.jpg",
-        "nome_programa": "Tecnologia em Pauta",
-        "descricao_programa": "Debates sobre tecnologia, inovação e tendências digitais.\nAnálises acessíveis sobre o impacto da tecnologia no cotidiano.",
-        "apresentador_programa": "Ricardo Almeida"
+      "nome_programa": "Radar Esportivo",
+      "descricao_programa": "Notícias, comentários e resultados do mundo dos esportes.",
+      "banner_programa": "img_programa/programa5.jpg",
+      "apresentador_programa": 5
     }
   },
   {
     "model": "radio.programa",
     "pk": 6,
     "fields": {
+      "nome_programa": "Noite Cultural",
+      "descricao_programa": "Programa voltado à cultura, literatura, cinema e arte.",
       "banner_programa": "img_programa/programa6.jpg",
-      "nome_programa": "Esporte em Foco",
-      "descricao_programa": "Análises, notícias e comentários sobre o mundo esportivo.\nTudo o que acontece dentro e fora das quadras.",
-      "apresentador_programa": "Felipe Souza"
+      "apresentador_programa": 6
     }
   }
 ]

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Pedido, Programa, Programacao,Episodio,Sugestao
+from .models import Pedido, Apresentador,Programa, Programacao,Episodio,Sugestao
 
 class PedidoModelForm(forms.ModelForm):
     class Meta:
@@ -44,6 +44,12 @@ class SugestaoModelForm(forms.ModelForm):
             }),
                }
         
+class ApresentadorModelForm(forms.ModelForm):
+    class Meta:
+        model = Apresentador
+        fields = '__all__'
+
+
 class ProgramaModelForm(forms.ModelForm):
     class Meta:
         model = Programa

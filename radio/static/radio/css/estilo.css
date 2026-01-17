@@ -1208,3 +1208,86 @@ padding: 60px 0;
 .sobre-historia-section{
   font-family: 'Montserrat',  'sans-serif';
 }
+
+.modal-perfil-clean {
+  border-radius: 18px;
+  overflow: hidden;
+  border: none;
+}
+
+/* Header roxo */
+.perfil-header {
+  background: linear-gradient(90deg, #b3d5bf 100%);
+  padding: 10px;
+  position: relative;
+}
+
+/* Conteúdo do header */
+.perfil-header-content {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+/* Avatar à esquerda */
+.perfil-avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid #fff;
+  background: #fff;
+  margin-bottom: -55px; /* invade o branco */
+  flex-shrink: 0;
+}
+
+.perfil-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Nome no roxo */
+.perfil-header-text h5 {
+  color: #fff;
+  font-size:27px;
+  margin: 0;
+}
+
+/* Botão fechar */
+.fechar-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+/* Corpo branco */
+.perfil-body {
+   padding: 70px 20px 20px;
+}
+
+/* Instagram logo */
+.perfil-social {
+  margin-left: 0px; /* alinha abaixo do nome */
+  margin-top: 30px;
+  text-align: left;
+}
+
+.perfil-social a {
+  color: #5c5b7a;
+  font-size: 1.5rem;
+  transition: 0.3s;
+}
+
+.perfil-social a:hover {
+  color: #8a88c9;
+}
+
+/* Descrição */
+.perfil-descricao {
+  margin-left: 0;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: left;
+}

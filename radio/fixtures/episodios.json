@@ -8,7 +8,7 @@
       "titulo": "Sustentabilidade no Cotidiano",
       "descricao": "Práticas sustentáveis aplicadas à rotina das pessoas.\nPequenas ações diárias que contribuem para a preservação do meio ambiente.",
       "audio": "https://www.instagram.com",
-      "apresentador": "Carlos Silva",
+      "apresentador": 1,
       "data_publicacao": "2024-10-15"
     }
   },
@@ -21,7 +21,7 @@
       "titulo": "Consumo Consciente",
       "descricao": "Reflexão sobre hábitos de consumo responsáveis e sustentáveis.\nEscolhas conscientes que impactam positivamente a sociedade e o planeta.",
       "audio": "https://www.instagram.com",
-      "apresentador": "Carlos Silva",
+      "apresentador": 1,
       "data_publicacao": "2024-10-15"
     }
   },
@@ -34,7 +34,7 @@
       "titulo": "Educação Ambiental",
       "descricao": "A educação ambiental como ferramenta de transformação social.\nFormação de cidadãos mais conscientes e comprometidos com o futuro.",
       "audio": "https://www.instagram.com",
-      "apresentador": "Carlos Silva",
+      "apresentador": 1,
       "data_publicacao": "2024-10-15"
     }
   },
@@ -47,7 +47,7 @@
       "titulo": "Mudanças Climáticas",
       "descricao": "Impactos das mudanças climáticas no meio ambiente e na sociedade.\nO papel coletivo na redução dos danos e na adaptação ao cenário atual.",
       "audio": "https://www.instagram.com",
-      "apresentador": "Carlos Silva",
+      "apresentador": 1,
       "data_publicacao": "2024-10-15"
     }
   },
@@ -61,7 +61,7 @@
       "titulo": "Arte e Identidade Cultural",
       "descricao": "A arte como forma de expressão social e cultural.\nConstrução da identidade por meio da música, da dança e das artes visuais.",
       "audio": "https://www.instagram.com",
-      "apresentador": "Ana Paula",
+      "apresentador": 6,
       "data_publicacao": "2024-10-15"
     }
   },
@@ -74,7 +74,7 @@
       "titulo": "Literatura Brasileira",
       "descricao": "Autores e obras que marcaram a literatura nacional.\nA importância da leitura na formação cultural e educacional.",
       "audio": "https://www.instagram.com",
-      "apresentador": "Ana Paula",
+      "apresentador": 6,
       "data_publicacao": "2024-10-15"
     }
   },
@@ -87,7 +87,7 @@
       "titulo": "Música Popular",
       "descricao": "Ritmos, estilos e histórias da música brasileira.\nA música como elemento de identidade e expressão cultural.",
       "audio": "https://www.instagram.com",
-      "apresentador": "Ana Paula",
+      "apresentador": 6,
       "data_publicacao": "2024-10-15"
     }
   },
@@ -101,7 +101,7 @@
       "titulo": "Clássicos da Música",
       "descricao": "Grandes sucessos musicais que marcaram gerações.\nCanções atemporais que continuam presentes na memória do público.",
       "audio": "https://www.instagram.com",
-      "apresentador": "Juliana Costa",
+      "apresentador": 4,
       "data_publicacao": "2024-10-15"
     }
   },
@@ -114,7 +114,7 @@
       "titulo": "Novos Talentos",
       "descricao": "Artistas em ascensão no cenário musical atual.\nEspaço para divulgar novas vozes e produções independentes.",
       "audio": "https://www.instagram.com",
-      "apresentador": "Juliana Costa",
+      "apresentador": 4,
       "data_publicacao": "2024-10-15"
     }
   },
@@ -128,7 +128,7 @@
       "titulo": "Resumo Esportivo",
       "descricao": "Principais notícias e resultados do esporte.\nUm panorama completo dos acontecimentos da semana.",
       "audio": "https://www.instagram.com",
-      "apresentador": "Felipe Souza",
+      "apresentador": 5,
       "data_publicacao": "2024-10-15"
     }
   },
@@ -141,7 +141,7 @@
       "titulo": "Análise das Partidas",
       "descricao": "Análises técnicas e táticas das partidas disputadas.\nComentários especializados sobre o desempenho das equipes.",
       "audio": "https://www.instagram.com",
-      "apresentador": "Felipe Souza",
+      "apresentador": 5,
       "data_publicacao": "2024-10-15"
     }
   },
@@ -154,7 +154,7 @@
       "titulo": "Entrevistas Esportivas",
       "descricao": "Conversas com atletas, treinadores e profissionais do esporte.\nRelatos, experiências e bastidores das competições.",
       "audio": "https://www.instagram.com",
-      "apresentador": "Felipe Souza",
+      "apresentador": 5,
       "data_publicacao": "2024-10-15"
     }
   },
@@ -167,7 +167,7 @@
       "titulo": "Histórias do Esporte",
       "descricao": "Momentos históricos que marcaram o esporte mundial.\nConquistas, superações e trajetórias inspiradoras.",
       "audio": "https://www.instagram.com",
-      "apresentador": "Felipe Souza",
+      "apresentador": 5,
       "data_publicacao": "2024-10-15"
     }
   },
@@ -180,7 +180,7 @@
       "titulo": "Curiosidades Esportivas",
       "descricao": "Fatos curiosos e pouco conhecidos do esporte.\nInformação e entretenimento para os apaixonados por esportes.",
       "audio": "https://www.instagram.com",
-      "apresentador": "Felipe Souza",
+      "apresentador": 5,
       "data_publicacao": "2024-10-15"
     }
   }

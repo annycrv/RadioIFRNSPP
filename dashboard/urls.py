@@ -4,6 +4,11 @@ from . import views
 app_name = "dashboard"
 urlpatterns = [
     path('', views.index, name='index'),
+    path("apresentadores/", views.apresentadores, name="apresentadores"),
+    path("apresentadores/novo/", views.apresentador_novo, name="apresentador_novo"),
+    path("apresentadores/<int:id_apresentador>/editar/", views.apresentador_editar, name="apresentador_editar"),
+    path("apresentadores/<int:id_apresentador>/remover/", views.apresentador_remover, name="apresentador_remover"),
+    path("apresentadores/<int:id_apresentador>/detalhar/", views.apresentador_detalhar, name="apresentador_detalhar"),
     path('programas/', views.programas, name='programas'),
     path('programas/novo/', views.programa_novo, name='programa_novo'),
     path('programas/<int:id_programa>/', views.programas, name='programa'),

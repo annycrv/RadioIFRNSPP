@@ -1,0 +1,56 @@
+[
+  {
+    "model": "radio.apresentador",
+    "pk": 1,
+    "fields": {
+      "nome": "Ana Clara Silva",
+      "foto": "apresentadores/apresentador1.jpg",
+      "descricao": "Ana Clara Silva é apresentadora e comunicadora com experiência em programas informativos e entrevistas. Atua na cobertura de notícias locais, trazendo informação clara, ética e acessível ao público. Seu estilo é dinâmico e acolhedor, buscando sempre aproximar a rádio da comunidade."
+    }
+  },
+  {
+    "model": "radio.apresentador",
+    "pk": 2,
+    "fields": {
+      "nome": "Lucas Fernandes",
+      "foto": "apresentadores/apresentador2.jpg",
+      "descricao": "Lucas Fernandes é comunicador jovem, criativo e conectado às novas tendências culturais. Tem afinidade com música, cultura pop e temas atuais, conduzindo seus programas com linguagem leve e interativa. Valoriza a participação do público e o diálogo com a juventude."
+    }
+  },
+  {
+    "model": "radio.apresentador",
+    "pk": 3,
+    "fields": {
+      "nome": "Mariana Costa",
+      "foto": "apresentadores/apresentador3.jpg",
+      "descricao": "Mariana Costa é apresentadora dedicada a pautas sociais e comunitárias. Atua em debates, entrevistas e projetos voltados à cidadania, dando voz a diferentes grupos da sociedade. Seu trabalho busca promover reflexão, inclusão e participação popular por meio da comunicação."
+    }
+  },
+  {
+    "model": "radio.apresentador",
+    "pk": 4,
+    "fields": {
+      "nome": "Rafael Oliveira",
+      "foto": "apresentadores/apresentador4.jpg",
+      "descricao": "Rafael Oliveira é apaixonado por música e comunicação. Com uma apresentação leve e descontraída, conduz programas musicais variados, explorando diferentes estilos e épocas. Seu objetivo é criar uma experiência agradável para o ouvinte, unindo informação e entretenimento."
+    }
+  },
+  {
+    "model": "radio.apresentador",
+    "pk": 5,
+    "fields": {
+      "nome": "Bruno Santos",
+      "foto": "apresentadores/apresentador5.jpg",
+      "descricao": "Bruno Santos é comentarista e apresentador esportivo, com foco em notícias, análises e resultados do esporte local e nacional. Possui uma comunicação direta e objetiva, buscando informar e envolver o público apaixonado por esportes."
+    }
+  },
+  {
+    "model": "radio.apresentador",
+    "pk": 6,
+    "fields": {
+      "nome": "Juliana Ribeiro",
+      "foto": "apresentadores/apresentador6.jpg",
+      "descricao": "Juliana Ribeiro é apresentadora com interesse em cultura, literatura, cinema e arte. Desenvolve programas que valorizam a produção cultural e incentivam o pensamento crítico. Sua abordagem é reflexiva e sensível, aproximando o público de diferentes expressões artísticas."
+    }
+  }
+]

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
-from radio.models import Programa, Programacao,Episodio, Sugestao, Pedido
+from radio.models import Apresentador, Programa, Programacao,Episodio, Sugestao, Pedido
+from radio.forms import ApresentadorModelForm
 from radio.forms import ProgramaModelForm
 from radio.forms import ProgramacaoModelForm
 from radio.forms import EpisodioModelForm
@@ -22,6 +23,115 @@ def index(request):
 
     }
     return render(request, "dashboard/index.html", context)
+
+
+
+#apresentadores
+
+@login_required
+@permission_required("radio.view_apresentador", raise_exception=True)
+def apresentadores(request):
+    lista = Apresentador.objects.all().order_by("id")
+
+    paginator = Paginator(lista, 6)
+    pagina_atual = request.GET.get("page")
+    page_obj = paginator.get_page(pagina_atual)
+
+    context = {
+        "apresentadores": page_obj,
+        "titulo_pagina": "Apresentadores",
+        "subtitulo_pagina": "Gerencie os apresentadores da rádio",
+        "url_novo": "dashboard:apresentador_novo",
+        "partial_tabela": "dashboard/partials/_tabela_apresentadores.html",
+        "texto_botao_novo": "Adicionar Apresentador",
+        "page_obj": page_obj,
+    }
+    return render(request, "dashboard/listar.html", context)
+
+
+@login_required
+@permission_required("radio.add_apresentador", raise_exception=True)
+def apresentador_novo(request):
+    context = {
+        "titulo_pagina": "Adicionar apresentador",
+        "url_cancelar": "dashboard:apresentadores",
+    }
+
+    if request.method == "POST":
+        form = ApresentadorModelForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Apresentador registrado com sucesso!")
+            return redirect("dashboard:apresentadores")
+        else:
+            messages.error(request, "Falha ao registrar apresentador!")
+            context["form"] = form
+    else:
+        context["form"] = ApresentadorModelForm()
+
+    return render(request, "dashboard/novo.html", context)
+
+
+@login_required
+@permission_required("radio.change_apresentador", raise_exception=True)
+def apresentador_editar(request, id_apresentador):
+    apresentador = get_object_or_404(Apresentador, id=id_apresentador)
+
+    context = {
+        "apresentador": apresentador,
+        "titulo_pagina": "Editar apresentador",
+        "url_cancelar": "dashboard:apresentadores",
+    }
+
+    if request.method == "POST":
+        form = ApresentadorModelForm(
+            request.POST,
+            request.FILES,
+            instance=apresentador
+        )
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Apresentador alterado com sucesso!")
+            return redirect("dashboard:apresentadores")
+        else:
+            messages.error(request, "Falha ao alterar apresentador!")
+    else:
+        context["form"] = ApresentadorModelForm(instance=apresentador)
+
+    return render(request, "dashboard/editar.html", context)
+
+
+@login_required
+@permission_required("radio.delete_apresentador", raise_exception=True)
+def apresentador_remover(request, id_apresentador):
+    apresentador = get_object_or_404(Apresentador, id=id_apresentador)
+
+    context = {
+        "tipo": "apresentador",
+        "objeto": apresentador.nome,
+    }
+
+    if request.method == "POST":
+        apresentador.delete()
+        messages.success(request, "Apresentador removido com sucesso!")
+        return redirect("dashboard:apresentadores")
+    else:
+        return render(request, "dashboard/remover.html", context)
+    
+    
+@login_required
+@permission_required("radio.view_apresentador", raise_exception=True)
+def apresentador_detalhar(request, id_apresentador):
+    apresentador = get_object_or_404(Apresentador, id=id_apresentador)
+
+    context = {
+        "apresentador": apresentador,
+        "titulo_pagina": "Apresentador",
+        "partial_detalhe": "dashboard/partials/_detalhar_apresentador.html",
+        "url_cancelar": "dashboard:apresentadores",
+    }
+    return render(request, "dashboard/detalhar.html", context)
+
 
 
 # programas
@@ -440,3 +550,5 @@ def editar_perfil(request):
     context["form"] = form
 
     return render(request, "dashboard/editar.html", context)
+
+
