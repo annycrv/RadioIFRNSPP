@@ -14,6 +14,7 @@ urlpatterns = [
     path("ajax/programa/novo/", views.ajax_criar_programa, name="ajax_criar_programa"),
     path('programas/<int:id_programa>/', views.programas, name='programa'),
     path('programas/<int:id_programa>/editar/', views.programa_editar, name='programa_editar'),
+    path("programa/<int:id_programa>/ajax", views.ajax_detalhar_programa, name="ajax_detalhar_programa"),
     path('programas/remover/<int:id_programa>/', views.programa_remover, name='programa_remover'),
     path('programas/detalhar/<int:id_programa>/', views.programa_detalhar, name='programa_detalhar'),
     path('programacao/', views.programacao, name='programacao'),

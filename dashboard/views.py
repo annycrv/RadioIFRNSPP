@@ -9,7 +9,9 @@ from usuarios.forms import UsuarioChangeForm
 from usuarios.models import Usuario
 from django.core.paginator import Paginator
 from django.contrib import messages
-from django.http import JsonResponse
+from django.http import JsonResponse 
+import time
+
 
 @login_required
 def index(request):
@@ -229,9 +231,8 @@ def programa_detalhar(request, id_programa):
 
 #ajax
 @login_required
-def ajax_detalhar_programa(request, id):
-    programa = get_object_or_404(Programa, id=id)
-
+def ajax_detalhar_programa(request, id_programa):
+    programa = get_object_or_404(Programa, id=id_programa)
     return render(request, "dashboard/partials/_detalhar_programa.html", {"programa": programa})
 
 @login_required
