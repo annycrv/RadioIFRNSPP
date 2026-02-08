@@ -1,0 +1,12 @@
+{% load static crispy_forms_filters %}
+<form id="form-programa" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="d-flex gap-2 mt-3">
+        <button type="submit" class="salvar px-4">Salvar</button>
+        <button type="button" onclick="fecharFormulario()" 
+                class="btn btn-outline-secondary px-4">
+            Cancelar
+        </button>
+    </div>
+</form>

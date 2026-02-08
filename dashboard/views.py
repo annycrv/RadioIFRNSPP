@@ -9,6 +9,7 @@ from usuarios.forms import UsuarioChangeForm
 from usuarios.models import Usuario
 from django.core.paginator import Paginator
 from django.contrib import messages
+from django.http import JsonResponse
 
 @login_required
 def index(request):
@@ -225,6 +226,36 @@ def programa_detalhar(request, id_programa):
         "url_cancelar": "dashboard:programas",
     }
     return render(request, 'dashboard/detalhar.html', context)
+
+#ajax
+@login_required
+def ajax_detalhar_programa(request, id):
+    programa = get_object_or_404(Programa, id=id)
+
+    return render(request, "dashboard/partials/_detalhar_programa.html", {"programa": programa})
+
+@login_required
+@permission_required("radio.add_programa", raise_exception=True)
+def ajax_criar_programa(request):
+    if request.method == 'POST':
+        form = ProgramaModelForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return JsonResponse({"mensagem": "Programa criado com sucesso!"}, status=201)
+        else:
+            status = 400
+
+    else:
+        status = 200
+        form = ProgramaModelForm()
+
+    return render(
+        request,
+        "dashboard/partials/_criar_programa_form.html",
+        {"form": form},
+        status=status
+    )
 
 
 # Programacao

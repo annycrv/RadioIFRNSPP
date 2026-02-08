@@ -8,16 +8,15 @@
     </p>
   </div>
   {% if url_novo %}
-  <a href="{% url url_novo %}" class=" px-4 py-2 novo_programa">
-    
-    <i class="bi bi-plus-lg me-2"></i> {{ texto_botao_novo }}
-  </a>
+<a href="javascript:void(0)" onclick="abrirFormularioNovo()" class="px-4 py-2 novo_programa">
+   <i class="bi bi-plus-lg me-2"></i> {{ texto_botao_novo }}
+</a>
   {% endif %}
 </div>
-
-    <div>
-        {% include partial_tabela %}
-    </div>
+<div id="form-container"></div>
+<div id="lista-programas" class="mb-4">
+    {% include partial_tabela %}
+</div>
 
 {% comment %} paginação {% endcomment %}
 {% include "dashboard/partials/_tabela_paginacao.html" with page_obj=programas %}
@@ -30,3 +29,50 @@
 
 
 {% endblock content %}
+{% block scripts %}
+<script>
+document.addEventListener("submit", function (evento) {
+
+    if (evento.target && evento.target.id === "form-programa") {
+
+        evento.preventDefault(); // evita submit normal
+
+        fetch("{% url 'dashboard:ajax_criar_programa' %}", {
+            method: "POST",
+            body: new FormData(evento.target)
+        })
+        .then(response => response.json())
+        .then(resposta => {
+            alert(resposta.mensagem);
+            location.reload();
+        })
+        .catch(error => {
+            alert("Erro ao salvar");
+        });
+
+    }
+
+});
+</script>
+<script>
+function abrirFormularioNovo() {
+    fetch("{% url 'dashboard:ajax_criar_programa' %}")
+        .then(response => response.text())
+        .then(html => {
+            document.querySelector("#form-container").innerHTML = html;
+            document.querySelector("#lista-programas").style.display = "none";
+        })
+        .catch(error => alert("Erro ao carregar formulário"));
+}
+
+</script>
+
+<script>
+function fecharFormulario() {
+    document.querySelector("#form-container").innerHTML = "";
+    document.querySelector("#lista-programas").style.display = "block";
+}
+</script>
+
+
+{% endblock %}

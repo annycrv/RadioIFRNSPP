@@ -9,17 +9,7 @@
         {{ titulo_pagina }}
     </h3>
 
-    <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form|crispy }}
-      {% if partial_tabela %}
-          {% include partial_tabela %}
-      {% endif %}
-      <div class="d-flex gap-2 mt-3">
-        <button type="submit" class="salvar px-4">Salvar</button>
-        <a href="{% url url_cancelar %}" class="btn btn-outline-secondary px-4">Cancelar</a>
-      </div>
-    </form>
+{% include 'dashboard/partials/_form_programa.html' %}
   </div>
 </div>
 {% endblock %}
