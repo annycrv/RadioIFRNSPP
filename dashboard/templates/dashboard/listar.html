@@ -8,7 +8,7 @@
     </p>
   </div>
   {% if url_novo %}
-<a href="javascript:void(0)" onclick="abrirFormularioNovo()" class="px-4 py-2 novo_programa">
+    <a href="{% url 'dashboard:programa_novo' %}" class="px-4 py-2 btn-novo novo_programa">
    <i class="bi bi-plus-lg me-2"></i> {{ texto_botao_novo }}
 </a>
   {% endif %}
@@ -31,48 +31,63 @@
 {% endblock content %}
 {% block scripts %}
 <script>
-document.addEventListener("submit", function (evento) {
+    const meuModal = new bootstrap.Modal(document.querySelector(".modal"));
 
-    if (evento.target && evento.target.id === "form-programa") {
-
-        evento.preventDefault(); // evita submit normal
-
-        fetch("{% url 'dashboard:ajax_criar_programa' %}", {
-            method: "POST",
-            body: new FormData(evento.target)
-        })
-        .then(response => response.json())
-        .then(resposta => {
-            alert(resposta.mensagem);
-            location.reload();
-        })
-        .catch(error => {
-            alert("Erro ao salvar");
-        });
-
+    function buscarMensagens() {
+        const divMensagens = document.querySelector("#div-mensagens")
+        console.log(divMensagens.dataset.url);
+    fetch(divMensagens.dataset.url)
+    .then(response => response.text())
+    .then(resposta => {
+        divMensagens.innerHTML = resposta;
+    });
     }
 
-});
-</script>
-<script>
-function abrirFormularioNovo() {
-    fetch("{% url 'dashboard:ajax_criar_programa' %}")
-        .then(response => response.text())
-        .then(html => {
-            document.querySelector("#form-container").innerHTML = html;
-            document.querySelector("#lista-programas").style.display = "none";
+    document.querySelector(".btn-novo").addEventListener("click", function (evento) {
+        evento.preventDefault();
+
+        fetch(this.href)
+            .then(response => response.text())
+            .then(conteudo => {
+                document.querySelector(".modal-title").innerHTML = "Novo Programa";
+                document.querySelector(".modal-body").innerHTML = conteudo;
+                document.getElementById("form-programa").action = this.href;
+                meuModal.show();
+            });
+    });
+
+    document.addEventListener("click", function (evento) {
+        if (evento.target.classList.contains("btn-salvar")) {
+            evento.preventDefault();
+
+            const formPrograma = document.querySelector("#form-programa");
+
+            fetch(formPrograma.action, {method: "POST",body: new FormData(formPrograma)
+            })
+            .then(response => response.json())
+            .then(conteudo => {
+                meuModal.hide();
+                console.log(conteudo);
+
+            });
+        }
+    });
+
+    document.querySelectorAll(".btn-editar").forEach(botao =>{
+        botao.addEventListener("click",evento => {
+            evento.preventDefault();
+            fetch(botao.href)
+                .then(response => response.text())
+                .then(conteudo =>{
+                    document.querySelector(".modal-title").innerHTML = "Editar Programa";
+                    document.querySelector(".modal-body").innerHTML = conteudo;
+                    document.getElementById("form-programa").action = botao.href;
+                    meuModal.show();
+                })
         })
-        .catch(error => alert("Erro ao carregar formulário"));
-}
-
+    })
 </script>
 
-<script>
-function fecharFormulario() {
-    document.querySelector("#form-container").innerHTML = "";
-    document.querySelector("#lista-programas").style.display = "block";
-}
-</script>
 
 
 {% endblock %}

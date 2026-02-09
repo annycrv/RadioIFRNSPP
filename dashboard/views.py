@@ -9,6 +9,7 @@ from usuarios.forms import UsuarioChangeForm
 from usuarios.models import Usuario
 from django.core.paginator import Paginator
 from django.contrib import messages
+from django.contrib.messages import get_messages
 from django.http import JsonResponse 
 import time
 
@@ -28,7 +29,9 @@ def index(request):
     return render(request, "dashboard/index.html", context)
 
 
-
+def ajax_mensagens(request):
+    messages = get_messages(request)
+    return render(request, 'dashboard/partials/_messages.html', {'messages': messages})
 #apresentadores
 
 @login_required
@@ -171,13 +174,13 @@ def programa_novo(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Programa registrado com sucesso!")
-            return redirect("dashboard:programas")
+            return JsonResponse({"mensagem":"Programa criado com sucesso"},status=201)
         else:
             messages.error(request, "Falha ao registrar Programa!")
             context["form"] = form
     else:
         context["form"] = ProgramaModelForm()
-    return render(request, "dashboard/novo.html", context)
+    return render(request, "dashboard/partials/_criar_programa_form.html", context)
 
 
 @login_required
@@ -235,28 +238,6 @@ def ajax_detalhar_programa(request, id_programa):
     programa = get_object_or_404(Programa, id=id_programa)
     return render(request, "dashboard/partials/_detalhar_programa.html", {"programa": programa})
 
-@login_required
-@permission_required("radio.add_programa", raise_exception=True)
-def ajax_criar_programa(request):
-    if request.method == 'POST':
-        form = ProgramaModelForm(request.POST, request.FILES)
-
-        if form.is_valid():
-            form.save()
-            return JsonResponse({"mensagem": "Programa criado com sucesso!"}, status=201)
-        else:
-            status = 400
-
-    else:
-        status = 200
-        form = ProgramaModelForm()
-
-    return render(
-        request,
-        "dashboard/partials/_criar_programa_form.html",
-        {"form": form},
-        status=status
-    )
 
 
 # Programacao

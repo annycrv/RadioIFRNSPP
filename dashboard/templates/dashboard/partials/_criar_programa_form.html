@@ -3,9 +3,8 @@
     {% csrf_token %}
     {{ form|crispy }}
     <div class="d-flex gap-2 mt-3">
-        <button type="submit" class="salvar px-4">Salvar</button>
-        <button type="button" onclick="fecharFormulario()" 
-                class="btn btn-outline-secondary px-4">
+        <button type="submit" class="btn-salvar salvar px-4">Salvar</button>
+        <button type="button" class="btn btn-outline-secondary px-4">
             Cancelar
         </button>
     </div>

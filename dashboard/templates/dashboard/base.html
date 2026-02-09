@@ -26,7 +26,7 @@
 <body class="index">
 
   <!-- MENSAGENS (agora dentro do body, correto) -->
-  <div id="div-mensagens">
+  <div id="div-mensagens" data-url="{% url 'dashboard:ajax_mensagens' %}">
     {% include 'dashboard/partials/_messages.html' %}
   </div>
 
@@ -63,7 +63,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" arial-label="Close"></button>
           </div>
           <div class="modal-body"></div>
         </div>
