@@ -34,15 +34,16 @@
 
 
 <script>
+
     const meuModal = new bootstrap.Modal(document.querySelector(".modal"));
 
     function buscarMensagens() {
         const divMensagens = document.querySelector("#div-mensagens")
         console.log(divMensagens.dataset.url);
-    fetch(divMensagens.dataset.url)
-    .then(response => response.text())
-    .then(resposta => {
-        divMensagens.innerHTML = resposta;
+        fetch(divMensagens.dataset.url)
+            .then(response => response.text())
+            .then(resposta => {
+            divMensagens.innerHTML = resposta;
     });
     }
 
@@ -76,19 +77,18 @@
         }
     });
 
-    document.querySelectorAll(".btn-editar").forEach(botao =>{
-        botao.addEventListener("click",evento => {
-            evento.preventDefault();
+    document.querySelectorAll(".btn-editar").forEach(botao => {
+        botao.addEventListener("click", function (e) {
+            e.preventDefault();
             fetch(botao.href)
                 .then(response => response.text())
-                .then(conteudo =>{
-                    document.querySelector(".modal-title").innerHTML = "Editar Programa";
-                    document.querySelector(".modal-body").innerHTML = conteudo;
-                    document.getElementById("form-programa").action = botao.href;
-                    meuModal.show();
-                })
-        })
-    })
+                .then(html => {
+                document.querySelector("#modal .modal-body").innerHTML = html;
+            meuModal.show();
+            })
+            .catch(err => console.error("Erro AJAX:", err));
+        });
+    });
 
     document.querySelectorAll(".detalhar").forEach(botao => {
         botao.addEventListener("click", function (e) {

@@ -201,7 +201,7 @@ def programa_editar(request, id_programa):
             messages.error(request, "Falha ao alterar programa!")
     else:
         context["form"] = ProgramaModelForm(instance=context["programa"])
-    return render(request, "dashboard/editar.html", context)
+    return render(request, "dashboard/partials/_editar_programa.html", context)
 
 @login_required
 @permission_required("radio.delete_programa", raise_exception=True)
