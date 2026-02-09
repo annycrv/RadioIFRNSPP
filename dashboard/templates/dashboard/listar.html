@@ -68,7 +68,7 @@
 
             fetch(formPrograma.action, {method: "POST",body: new FormData(formPrograma)
             })
-            .then(response => response.json())
+            .then(response => response.text())
             .then(conteudo => {
                 meuModal.hide();
                 console.log(conteudo);
@@ -84,6 +84,7 @@
                 .then(response => response.text())
                 .then(html => {
                 document.querySelector("#modal .modal-body").innerHTML = html;
+                document.getElementById("form-programa").action = botao.href;
             meuModal.show();
             })
             .catch(err => console.error("Erro AJAX:", err));
@@ -121,7 +122,7 @@
     document.querySelector(".confirmar").addEventListener("click", function(evento) {
         const formRemover = document.querySelector(".form-remover");
         fetch(formRemover.action, {"method": "POST", "body": new FormData(formRemover)})
-            .then(response => response.json()
+            .then(response => response.text()
             .then(html => {
                 meuModal.hide();
                 buscarMensagens();
