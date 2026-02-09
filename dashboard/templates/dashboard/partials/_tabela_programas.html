@@ -20,16 +20,16 @@
         <div class="d-flex flex-column gap-2 mt-auto">
 
           <a href="{% url 'dashboard:ajax_detalhar_programa' programa.id %}"
-            class="btn btn-warning btn-sm w-100 detalhar"> Detalhar Programa
+            class="detalhar btn btn-warning btn-sm w-100"> Detalhar Programa
           </a>
 
           <a href="{% url 'dashboard:programa_editar' programa.id %}" 
-             class="btn btn-outline-secondary btn-sm w-100 btn-editar">
+             class="btn btn-outline-secondary btn-sm w-100">
             <i class="bi bi-pencil-square"></i> Editar Programa
           </a>
 
           <a href="{% url 'dashboard:programa_remover' id_programa=programa.id %}" 
-             class="btn btn-danger btn-sm w-100">
+             class="remover btn btn-danger btn-sm w-100">
             <i class="bi bi-trash"></i> Excluir Programa
           </a>
 
@@ -55,27 +55,6 @@
     </div>
   {% endfor %}
 
-</div>  
-<script>
-  document.querySelectorAll(".detalhar").forEach(botao => {
-      botao.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const url = this.getAttribute("href");
-
-      fetch(url)
-          .then(resp => resp.text())
-          .then(html => {
-          document.querySelector("#modal .modal-body").innerHTML = html;
-
-          const modal = new bootstrap.Modal(
-              document.getElementById("modal")
-          );
-          modal.show();
-          })
-          .catch(err => console.error("Erro AJAX:", err));
-      });
-  });
-</script>
+</div>
 
 

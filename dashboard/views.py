@@ -217,7 +217,7 @@ def programa_remover(request, id_programa):
         messages.success(request, "Programa removido com sucesso!")
         return redirect("dashboard:programas")
     else:
-        return render(request, "dashboard/remover.html", context)
+        return render(request, "dashboard/partials/_remover_programa.html", context)
     
 @login_required
 @permission_required("radio.view_programa", raise_exception=True)

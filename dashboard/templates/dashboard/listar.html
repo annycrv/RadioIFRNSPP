@@ -30,6 +30,9 @@
 
 {% endblock content %}
 {% block scripts %}
+
+
+
 <script>
     const meuModal = new bootstrap.Modal(document.querySelector(".modal"));
 
@@ -86,8 +89,45 @@
                 })
         })
     })
+
+    document.querySelectorAll(".detalhar").forEach(botao => {
+        botao.addEventListener("click", function (e) {
+            e.preventDefault();
+            fetch(botao.href)
+                .then(response => response.text())
+                .then(html => {
+                document.querySelector("#modal .modal-body").innerHTML = html;
+
+            meuModal.show();
+            })
+            .catch(err => console.error("Erro AJAX:", err));
+        });
+    });
+
+    document.querySelectorAll(".remover").forEach(botao => {
+        botao.addEventListener("click", function (e) {
+            e.preventDefault();
+            fetch(botao.href)
+                .then(response => response.text())
+                .then(html => {
+                document.querySelector("#modal .modal-body").innerHTML = html;
+                document.querySelector(".form-remover").action = botao.href;
+            meuModal.show();
+            })
+            .catch(err => console.error("Erro AJAX:", err));
+        });
+    });
+
+    document.querySelector(".confirmar").addEventListener("click", function(evento) {
+        const formRemover = document.querySelector(".form-remover");
+        fetch(formRemover.action, {"method": "POST", "body": new FormData(formRemover)})
+            .then(response => response.json()
+            .then(html => {
+                meuModal.hide();
+                buscarMensagens();
+            }))
+    })
+
 </script>
-
-
 
 {% endblock %}
