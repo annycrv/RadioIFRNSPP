@@ -143,6 +143,22 @@ def apresentador_detalhar(request, id_apresentador):
 # programas
 
 @login_required
+def ajax_listar_programas(request):
+
+    lista = Programa.objects.all().order_by("id")
+
+    paginator = Paginator(lista, 6)
+    pagina_atual = request.GET.get("page")
+    page_obj = paginator.get_page(pagina_atual)
+
+    context = {
+        "programas": page_obj,
+        "page_obj": page_obj,
+    }
+
+    return render(request, "dashboard/partials/_tabela_programas.html", context)
+
+@login_required
 @permission_required("radio.view_programas", raise_exception=True)
 def programas(request):
     lista = Programa.objects.all().order_by("id")
@@ -161,6 +177,7 @@ def programas(request):
         "page_obj": page_obj,  
     }
     return render(request, "dashboard/listar.html", context)
+
 
 @login_required
 @permission_required("radio.add_programa", raise_exception=True)

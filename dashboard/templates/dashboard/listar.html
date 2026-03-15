@@ -1,20 +1,23 @@
 {% extends "dashboard/base.html" %}
 {% block title %}{{ titulo_pagina }}{% endblock title %}
 {% block content %}
+
 <div class="d-flex justify-content-between align-items-center mb-4">
   <div>
     <p class="text-muted">
         {{ subtitulo_pagina }}
     </p>
   </div>
+
   {% if url_novo %}
     <a href="{% url 'dashboard:programa_novo' %}" class="px-4 py-2 btn-novo novo_programa">
-   <i class="bi bi-plus-lg me-2"></i> {{ texto_botao_novo }}
-</a>
+   <i class="bi bi-plus-lg me-2"></i> {{ texto_botao_novo }}</a>
   {% endif %}
+
 </div>
+
 <div id="form-container"></div>
-<div id="lista-programas" class="mb-4">
+<div id="lista-programas" class="mb-4" data-url="{% url 'dashboard:ajax_listar_programas' %}">
     {% include partial_tabela %}
 </div>
 
@@ -45,6 +48,18 @@
             .then(resposta => {
             divMensagens.innerHTML = resposta;
     });
+        }
+
+            function atualizarLista(seletor) {
+
+        const divLista = document.querySelector(seletor)
+
+        fetch(divLista.dataset.url)
+            .then(response => response.text())
+            .then(html => {
+                divLista.innerHTML = html
+            })
+
     }
 
     document.querySelector(".btn-novo").addEventListener("click", function (evento) {
@@ -72,7 +87,7 @@
             .then(conteudo => {
                 meuModal.hide();
                 console.log(conteudo);
-
+                atualizarLista("#lista-programas");
             });
         }
     });
@@ -122,12 +137,15 @@
     document.querySelector(".confirmar").addEventListener("click", function(evento) {
         const formRemover = document.querySelector(".form-remover");
         fetch(formRemover.action, {"method": "POST", "body": new FormData(formRemover)})
-            .then(response => response.text()
+            .then(response => response.text())
             .then(html => {
                 meuModal.hide();
                 buscarMensagens();
-            }))
+                atualizarLista("#lista-programas");
+            });
     })
+
+
 
 </script>
 
