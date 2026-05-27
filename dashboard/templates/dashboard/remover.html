@@ -1,19 +1,33 @@
-{% extends 'dashboard/base.html' %}
-
-{% block content %}
 <div class="card shadow-sm">
+
     <div class="card-body">
 
-        <h3 class="mb-3">Remover {{ tipo }}</h3>
+        <h3 class="mb-3">
+            Remover {{ tipo }}
+        </h3>
 
-        <p>Tem certeza que deseja remover <strong>{{ objeto }}</strong>?</p>
+        <p>
+            Tem certeza que deseja remover
+            <strong>{{ objeto }}</strong>?
+        </p>
 
-        <form method="post">
+        <form
+            method="POST"
+            class="form-remover"
+            action="{{ url_remover }}"
+        >
+
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Sim, remover</button>
-            <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
+
+            <button
+                type="submit"
+                class="confirmar btn btn-danger"
+            >
+                Sim, remover
+            </button>
+
         </form>
-        
+
     </div>
+
 </div>
-{% endblock %}

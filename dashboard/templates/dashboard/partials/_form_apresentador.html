@@ -1,5 +1,5 @@
 {% load static crispy_forms_filters %}
-<form method="POST" enctype="multipart/form-data" class="form-modal">
+<form method="POST" enctype="multipart/form-data" class="form-modal" action="{{ url_salvar }}">
     {% csrf_token %}
     {{ form|crispy }}
     <div class="d-flex gap-2 mt-3">

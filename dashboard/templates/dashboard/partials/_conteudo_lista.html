@@ -1,0 +1,11 @@
+<div id="lista-dados" class="mb-4">
+
+    {% include partial_tabela with page_obj=page_obj %}
+
+</div>
+
+<div id="paginacao-dados">
+
+    {% include "dashboard/partials/_tabela_paginacao.html" with page_obj=page_obj %}
+
+</div>

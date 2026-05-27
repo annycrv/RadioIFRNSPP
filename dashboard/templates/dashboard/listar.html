@@ -1,35 +1,49 @@
 {% extends "dashboard/base.html" %}
-{% block title %}{{ titulo_pagina }}{% endblock title %}
+
+{% block title %}
+    {{ titulo_pagina }}
+{% endblock title %}
+
 {% block content %}
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-  <div>
-    <p class="text-muted">
-        {{ subtitulo_pagina }}
-    </p>
-  </div>
 
-  {% if url_novo %}
-    <a href="{% url 'dashboard:programa_novo' %}" class="px-4 py-2 btn-novo novo_programa">
-   <i class="bi bi-plus-lg me-2"></i> {{ texto_botao_novo }}</a>
-  {% endif %}
+    <div>
+
+        <p class="text-muted">
+            {{ subtitulo_pagina }}
+        </p>
+
+    </div>
+
+    {% if url_novo %}
+
+        <a
+            href="{% url url_novo %}"
+            class="px-4 py-2 btn-novo"
+            data-titulo="{{ titulo_pagina }}"
+        >
+
+            <i class="bi bi-plus-lg me-2"></i>
+
+            {{ texto_botao_novo }}
+
+        </a>
+
+    {% endif %}
 
 </div>
 
 <div id="form-container"></div>
-<div id="lista-programas" class="mb-4" data-url="{% url 'dashboard:ajax_listar_programas' %}">
-    {% include partial_tabela %}
+
+<div
+    id="container-lista"
+    data-url="{{ url_ajax }}"
+>
+
+    {% include "dashboard/partials/_conteudo_lista.html" %}
+
 </div>
-
-{% comment %} paginação {% endcomment %}
-{% include "dashboard/partials/_tabela_paginacao.html" with page_obj=programas %}
-{% include "dashboard/partials/_tabela_paginacao.html" with page_obj=programacao %}
-{% include "dashboard/partials/_tabela_paginacao.html" with page_obj=usuarios %}
-{% include "dashboard/partials/_tabela_paginacao.html" with page_obj=pedidos %}
-{% include "dashboard/partials/_tabela_paginacao.html" with page_obj=sugestao %}
-{% include "dashboard/partials/_tabela_paginacao.html" with page_obj=curtidos %}
-{% include "dashboard/partials/_tabela_paginacao.html" with page_obj=episodios %}
-
 
 {% endblock content %}
 {% block scripts %}
@@ -37,8 +51,10 @@
 
 
 <script>
+    console.log("JS carregou");
+    const modalElemento = document.querySelector("#modal");
 
-    const meuModal = new bootstrap.Modal(document.querySelector(".modal"));
+    const meuModal = new bootstrap.Modal(modalElemento);
 
     function buscarMensagens() {
         const divMensagens = document.querySelector("#div-mensagens")
@@ -50,100 +66,227 @@
     });
         }
 
-            function atualizarLista(seletor) {
+function atualizarLista(seletor) {
 
-        const divLista = document.querySelector(seletor)
+    const divLista = document.querySelector(seletor);
 
-        fetch(divLista.dataset.url)
+    console.log(divLista);
+
+    console.log(divLista.dataset.url);
+
+    fetch(divLista.dataset.url)
+
+        .then(response => response.text())
+
+        .then(html => {
+
+            console.log(html);
+
+            divLista.innerHTML = html;
+
+        });
+
+}
+
+    document.addEventListener("click", function (evento) {
+
+    const botao = evento.target.closest(".btn-novo");
+
+    if (botao) {
+
+        evento.preventDefault();
+
+        console.log("clicou");
+
+        fetch(botao.href)
+
             .then(response => response.text())
-            .then(html => {
-                divLista.innerHTML = html
-            })
+
+            .then(conteudo => {
+
+                document.querySelector(
+                    ".modal-title"
+                ).innerHTML = botao.dataset.titulo;
+
+                document.querySelector(
+                    ".modal-body"
+                ).innerHTML = conteudo;
+
+                const form =
+                    document.querySelector(".form-modal");
+
+                form.action = botao.href;
+
+                meuModal.show();
+
+            });
 
     }
 
-    document.querySelector(".btn-novo").addEventListener("click", function (evento) {
-        evento.preventDefault();
-
-        fetch(this.href)
-            .then(response => response.text())
-            .then(conteudo => {
-                document.querySelector(".modal-title").innerHTML = "Novo Programa";
-                document.querySelector(".modal-body").innerHTML = conteudo;
-                document.getElementById("form-programa").action = this.href;
-                meuModal.show();
-            });
-    });
-
+});
     document.addEventListener("click", function (evento) {
+
         if (evento.target.classList.contains("btn-salvar")) {
+            console.log("salvando");
+
             evento.preventDefault();
 
-            const formPrograma = document.querySelector("#form-programa");
+            const form = document.querySelector(".form-modal");
 
-            fetch(formPrograma.action, {method: "POST",body: new FormData(formPrograma)
+            fetch(form.action, {
+                method: "POST",
+                body: new FormData(form)
             })
+
             .then(response => response.text())
+
             .then(conteudo => {
-                meuModal.hide();
                 console.log(conteudo);
-                atualizarLista("#lista-programas");
+
+                if (conteudo === "ok") {
+
+                    document.activeElement.blur();
+
+                    meuModal.hide();
+
+                    atualizarLista("#container-lista");
+
+                } else {
+
+                    document.querySelector(".modal-body").innerHTML =
+                        conteudo;
+
+                }
+
             });
+
         }
+
     });
 
-    document.querySelectorAll(".btn-editar").forEach(botao => {
-        botao.addEventListener("click", function (e) {
-            e.preventDefault();
-            fetch(botao.href)
-                .then(response => response.text())
-                .then(html => {
-                document.querySelector("#modal .modal-body").innerHTML = html;
-                document.getElementById("form-programa").action = botao.href;
-            meuModal.show();
-            })
-            .catch(err => console.error("Erro AJAX:", err));
-        });
-    });
+document.addEventListener("click", function (evento) {
 
-    document.querySelectorAll(".detalhar").forEach(botao => {
-        botao.addEventListener("click", function (e) {
-            e.preventDefault();
-            fetch(botao.href)
-                .then(response => response.text())
-                .then(html => {
-                document.querySelector("#modal .modal-body").innerHTML = html;
+    const botao = evento.target.closest(".btn-editar");
 
-            meuModal.show();
-            })
-            .catch(err => console.error("Erro AJAX:", err));
-        });
-    });
+    if (botao) {
 
-    document.querySelectorAll(".remover").forEach(botao => {
-        botao.addEventListener("click", function (e) {
-            e.preventDefault();
-            fetch(botao.href)
-                .then(response => response.text())
-                .then(html => {
-                document.querySelector("#modal .modal-body").innerHTML = html;
-                document.querySelector(".form-remover").action = botao.href;
-            meuModal.show();
-            })
-            .catch(err => console.error("Erro AJAX:", err));
-        });
-    });
+        evento.preventDefault();
 
-    document.querySelector(".confirmar").addEventListener("click", function(evento) {
-        const formRemover = document.querySelector(".form-remover");
-        fetch(formRemover.action, {"method": "POST", "body": new FormData(formRemover)})
+        fetch(botao.href)
+
             .then(response => response.text())
+
             .then(html => {
-                meuModal.hide();
-                buscarMensagens();
-                atualizarLista("#lista-programas");
+
+                document.querySelector(
+                    "#modal .modal-body"
+                ).innerHTML = html;
+
+                const form =
+                    document.querySelector(".form-modal");
+
+                form.action = botao.href;
+
+                meuModal.show();
+
             });
-    })
+
+    }
+
+});
+
+document.addEventListener("click", function (evento) {
+
+    const botao = evento.target.closest(".detalhar");
+
+    if (botao) {
+
+        evento.preventDefault();
+
+        fetch(botao.href)
+
+            .then(response => response.text())
+
+            .then(html => {
+
+                document.querySelector(
+                    "#modal .modal-body"
+                ).innerHTML = html;
+
+                meuModal.show();
+
+            });
+
+    }
+
+});
+
+document.addEventListener("click", function (evento) {
+
+    const botao = evento.target.closest(".remover");
+
+    if (botao) {
+
+        evento.preventDefault();
+
+        fetch(botao.href)
+
+            .then(response => response.text())
+
+            .then(html => {
+
+                document.querySelector(
+                    "#modal .modal-body"
+                ).innerHTML = html;
+
+                meuModal.show();
+
+            });
+
+    }
+
+});
+
+document.addEventListener("click", function (evento) {
+
+    if (evento.target.classList.contains("confirmar")) {
+
+        evento.preventDefault();
+
+        const formRemover =
+            document.querySelector(".form-remover");
+
+        fetch(formRemover.action, {
+            method: "POST",
+            body: new FormData(formRemover)
+        })
+
+        .then(response => response.text())
+
+        .then(conteudo => {
+
+            if (conteudo === "ok") {
+
+                document.activeElement.blur();
+
+                meuModal.hide();
+
+                atualizarLista("#container-lista");
+
+            } else {
+
+                document.querySelector(
+                    ".modal-body"
+                ).innerHTML = conteudo;
+
+            }
+
+        });
+
+    }
+
+});
+
 
 
 

@@ -1,21 +1,24 @@
 {% extends "dashboard/base.html" %}
 {% load static crispy_forms_filters %}
-{% block title %}{{ titulo_pagina }}{% endblock title %}
-{% load static %}
+
+{% block title %}
+    {{ titulo_pagina }}
+{% endblock title %}
+
 {% block content %}
+
 <div class="container">
-  <div class="card shadow-sm p-4 rounded-4">
-    <h3 class="fw-bold mb-4">{{ titulo_pagina }}</h3>
 
-    <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form|crispy }}
+    <div class="card shadow-sm p-4 rounded-4">
 
-      <div class="d-flex gap-2 mt-3">
-        <button type="submit" class="salvar px-4">Salvar</button>
-        <a href="{% url url_cancelar %}" class="btn btn-outline-secondary px-4">Cancelar</a>
-      </div>
-    </form>
-  </div>
+        <h3 class="fw-bold mb-4">
+            {{ titulo_pagina }}
+        </h3>
+
+        {% include partial_form %}
+
+    </div>
+
 </div>
+
 {% endblock %}
