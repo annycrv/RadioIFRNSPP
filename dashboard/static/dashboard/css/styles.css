@@ -842,3 +842,9 @@ form label {
   transition: all 0.3s ease;
 
 }
+
+.btn-novo{
+    background-color:#9DC9AC;
+    color: #000000;
+    border-radius: 30px;
+}

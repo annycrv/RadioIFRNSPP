@@ -15,18 +15,17 @@
                     <p><strong>Apresentador:</strong> {{ episodio.apresentador }}</p>
 
                     <div class="mt-auto d-flex gap-2">
+
                         <a href="{% url 'dashboard:episodio_editar' episodio.id %}"
-                           class="btn btn-outline-secondary btn-sm flex-fill">
+                        class="btn btn-outline-secondary btn-sm flex-fill btn-editar">
                             <i class="bi bi-pencil-square"></i> Editar
                         </a>
 
-                        <form method="post"
-                              action="{% url 'dashboard:episodio_remover' episodio.id %}" class="flex-fill">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm w-100">
-                                <i class="bi bi-trash"></i> Excluir
-                            </button>
-                        </form>
+                        <a href="{% url 'dashboard:episodio_remover' episodio.id %}"
+                        class="btn btn-danger btn-sm flex-fill remover">
+                            <i class="bi bi-trash"></i> Excluir
+                        </a>
+
                     </div>
                 </div>
 

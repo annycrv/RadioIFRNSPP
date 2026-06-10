@@ -23,8 +23,8 @@
     </li>
 
     <li class="nav-item mb-1">
-      <a class="nav-link {% if request.resolver_match.url_name == 'meus_curtidos' %}ativo{% endif %}"
-         href="{% url 'dashboard:meus_curtidos' %}">
+      <a class="nav-link {% if request.resolver_match.url_name == 'curtidos' %}ativo{% endif %}"
+         href="{% url 'dashboard:curtidos' %}">
          <i class="bi bi-heart me-2"></i> Meus Curtidos
       </a>
     </li>

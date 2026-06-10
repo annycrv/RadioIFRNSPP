@@ -10,13 +10,17 @@
           <p class="mb-3"><strong>Apresentador:</strong> {{ episodio.apresentador }}</p>
 
           <div class="mt-auto d-flex justify-content-between gap-2 flex-wrap">
-            <a href="{% url 'dashboard:episodio_editar' episodio.id %}" class="btn btn-outline-secondary btn-sm flex-fill">
-              <i class="bi bi-pencil-square"></i> Editar
-            </a>
-            
-              <a href="{% url 'dashboard:episodio_remover' id_item=episodio.id %}" class="btn btn-danger btn-sm w-100">
+
+              <a href="{% url 'dashboard:episodio_editar' episodio.id %}"
+                class="btn btn-outline-secondary btn-sm flex-fill btn-editar">
+                  <i class="bi bi-pencil-square"></i> Editar
+              </a>
+
+              <a href="{% url 'dashboard:episodio_remover' episodio.id %}"
+                class="btn btn-danger btn-sm flex-fill remover">
                   <i class="bi bi-trash"></i> Excluir
-              </a>  
+              </a>
+
           </div>
         </div>
       </div>
