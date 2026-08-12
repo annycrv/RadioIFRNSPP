@@ -5,38 +5,38 @@
   <a class="navbar-brand-dash" href="{% url 'radio:index' %}">
     <img src="{% static 'radio/img/logoifrn.png' %}" class="logo " alt="Logo IFRN">
   </a>
-  <h6 class="text-uppercase text-muted mb-3 titu_nav mt-2">Menu</h6>
+  <h6 class=" titu_nav text-uppercase  mb-3 mt-2">Menu</h6>
 
   <ul class="navbar-nav flex-column">
 
     <li class="nav-item mb-1">
       <a class="nav-link {% if request.resolver_match.url_name == 'index' %}ativo{% endif %}"
          href="{% url 'dashboard:index' %}">
-          <i class="bi bi-grid me-2"></i></i> Meu Painel
+          <i class="bi bi-grid me-2" style="color: #ffffff;"></i> Meu Painel
       </a>
     </li>
 
     <li class="nav-item mb-1">
       <a class="nav-link {% if request.resolver_match.url_name == 'perfil' %}ativo{% endif %}" href="{% url 'dashboard:perfil' %}">
-        <i class="bi bi-person me-2"></i> Meu Perfil
+        <i class="bi bi-person me-2"style="color: #ffffff;"></i> Meu Perfil
       </a>
     </li>
 
     <li class="nav-item mb-1">
       <a class="nav-link {% if request.resolver_match.url_name == 'curtidos' %}ativo{% endif %}"
          href="{% url 'dashboard:curtidos' %}">
-         <i class="bi bi-heart me-2"></i> Meus Curtidos
+         <i class="bi bi-heart me-2" style="color: #ffffff;"></i> Meus Curtidos
       </a>
     </li>
 
     {% if user.is_staff %}
     <hr class="my-3">
-      <h6 class="text-uppercase text-muted mb-3 titu_nav">ÁREA ADMINISTRATIVA</h6>
+      <h6 class="text-uppercase mb-3 titu_nav">ÁREA ADMINISTRATIVA</h6>
 
     <li class="nav-item mb-1">
       <a class="nav-link {% if request.resolver_match.url_name == 'programas' %}ativo{% endif %}"
          href="{% url 'dashboard:programas' %}">
-         <i class="bi bi-broadcast me-2"></i> Programas
+         <i class="bi bi-broadcast me-2" style="color: #ffffff;"></i> Programas
       </a>
     </li>
 
@@ -45,7 +45,7 @@
       <li>
         <a class="nav-link {% if request.resolver_match.url_name == 'episodios' %}ativo{% endif %}"
            href="{% url 'dashboard:episodios' %}">
-           <i class="bi bi-music-note-list me-2"></i> Episódios
+           <i class="bi bi-music-note-list me-2" style="color: #ffffff;"></i> Episódios
         </a>
       </li>
     </ul>
@@ -53,49 +53,49 @@
     <li class="nav-item mb-1">
       <a class="nav-link {% if request.resolver_match.url_name == 'apresentadores' %}ativo{% endif %}"
          href="{% url 'dashboard:apresentadores' %}">
-         <i class="bi bi-mic me-2"></i> Apresentadores
+         <i class="bi bi-mic me-2" style="color: #ffffff;"></i> Apresentadores
       </a>
     </li>
 
     <li class="nav-item mb-1">
       <a class="nav-link {% if request.resolver_match.url_name == 'programacao' %}ativo{% endif %}"
          href="{% url 'dashboard:programacao' %}">
-         <i class="bi bi-calendar-week me-2"></i> Programação
+         <i class="bi bi-calendar-week me-2" style="color: #ffffff;"></i> Programação
       </a>
     </li>
 
     <li class="nav-item mb-1">
       <a class="nav-link {% if request.resolver_match.url_name == 'usuarios' %}ativo{% endif %}"
          href="{% url 'usuarios:usuarios' %}">
-         <i class="bi bi-people me-2"></i> Usuários
+         <i class="bi bi-people me-2" style="color: #ffffff;"></i> Usuários
       </a>
     </li>
 
     <li class="nav-item mb-1">
       <a class="nav-link {% if request.resolver_match.url_name == 'sugestoes' %}ativo{% endif %}"
          href="{% url 'dashboard:sugestoes' %}">
-         <i class="bi bi-lightbulb me-2"></i> Sugestões
+         <i class="bi bi-lightbulb me-2" style="color: #ffffff;"></i> Sugestões
       </a>
     </li>
 
     <li class="nav-item mb-1">
       <a class="nav-link {% if request.resolver_match.url_name == 'pedidos' %}ativo{% endif %}"
          href="{% url 'dashboard:pedidos' %}">
-         <i class="bi bi-file-music me-2"></i> Pedidos
+         <i class="bi bi-file-music me-2" style="color: #ffffff;"></i> Pedidos
       </a>
     </li>
     {% endif %}
     
     <li class="nav-item mb-1">
       <a class="nav-link" href="{% url 'radio:index' %}">
-       <i class="bi bi-house-door me-2"></i> Ir ao site
+       <i class="bi bi-house-door me-2" style="color: #ffffff;"></i> Ir ao site
       </a>
     </li>
 
     <li class="nav-item mb-1">
       <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
-        <button class="dropdown-item py-1 ms-2" type="submit">
+        <button class="dropdown-item py-1 ms-2" type="submit" style="color: #ffffff;">
           <i class="bi bi-box-arrow-right me-2"></i> Sair
         </button>
       </form>

@@ -205,9 +205,25 @@ def ajax_listar_programas(request):
 @login_required
 @permission_required("radio.view_programas", raise_exception=True)
 def programas(request):
-    lista = Programa.objects.all().order_by("id")
+    filtro = request.GET.get("f")
 
-    paginator = Paginator(lista, 6)
+    programas_filtrados = Programa.objects.select_related(
+        "apresentador_programa"
+    ).all()
+
+    if filtro:
+        programas_filtrados = (
+            programas_filtrados.filter(
+                nome_programa__icontains=filtro
+            ) |
+            programas_filtrados.filter(
+                apresentador_programa__nome__icontains=filtro
+            )
+        )
+
+    programas_filtrados = programas_filtrados.order_by("nome_programa")
+
+    paginator = Paginator(programas_filtrados, 6)
     pagina_atual = request.GET.get("page")
     page_obj = paginator.get_page(pagina_atual)
 
@@ -219,10 +235,11 @@ def programas(request):
         "url_ajax": reverse("dashboard:ajax_listar_programas"),
         "partial_tabela": "dashboard/partials/_tabela_programas.html",
         "texto_botao_novo": "Adicionar Programa",
-        "page_obj": page_obj,  
+        "page_obj": page_obj,
+        "filtro": filtro,
     }
-    return render(request, "dashboard/listar.html", context)
 
+    return render(request, "dashboard/listar.html", context)
 
 @login_required
 @permission_required("radio.add_programa", raise_exception=True)
@@ -559,10 +576,24 @@ def ajax_listar_episodios(request):
 @login_required
 @permission_required("radio.view_episodio", raise_exception=True)
 def episodios(request):
+    filtro = request.GET.get("f")
+
+    episodios_filtrados = Episodio.objects.select_related(
+        "programa"
+    ).all()
+
+    if filtro:
+        episodios_filtrados = (
+            episodios_filtrados.filter(
+                titulo__icontains=filtro
+            )
+        )
+
+    episodios_filtrados = episodios_filtrados.order_by("titulo")
 
     lista = Episodio.objects.all().order_by("id")
 
-    paginator = Paginator(lista, 6)
+    paginator = Paginator(episodios_filtrados, 6)
     pagina_atual = request.GET.get("page")
     page_obj = paginator.get_page(pagina_atual)
 

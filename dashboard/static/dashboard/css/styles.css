@@ -20,7 +20,13 @@ body {
 /* === Sidebar === */
 .sidebar {
   width: 260px;
-  background-color: #9DC9AC; 
+  background: linear-gradient(
+    180deg,
+    #0F766E 0%,
+    #147D70 35%,
+    #1A8D7E 70%,
+    #1F9B8C 100%
+); 
   color: #000000;
   flex-shrink: 0;
 }
@@ -41,7 +47,7 @@ body {
 
 /* Links do menu */
 .nav-link {
-  color: #000000; 
+  color: #f9f9f9d1; 
   font-weight: 500;
   transition: all 0.2s;
   border-radius: 0.375rem;
@@ -51,7 +57,7 @@ body {
 /* Hover e link ativo */
 .nav-link:hover,
 .nav-link.ativo {
-  background-color: #34A853; 
+  background-color: rgba(238, 238, 230, 0.168); 
   color: #fff;
 }
 
@@ -370,7 +376,7 @@ form label {
 }
 
 .titu_nav{
-  color: #34A853;
+  color: #f3f5f6;
 }
 
 /* ---------------------------
@@ -847,4 +853,168 @@ form label {
     background-color:#9DC9AC;
     color: #000000;
     border-radius: 30px;
+}
+
+
+
+/* parte nova de programas */
+.banner-programa{
+    width:56px;
+    height:56px;
+    object-fit:cover;
+    border-radius:14px;
+    display:block;
+}
+
+.tabela-programas{
+    background:#fff;
+    border:1px solid #dce5e4;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:
+        0 2px 8px rgba(15,23,42,.05),
+        0 10px 30px rgba(15,23,42,.05);
+}
+
+.tabela-programas thead th{
+    padding:18px;
+    font-size:15px;
+    font-weight:600;
+    color:#4f6174;
+    border-bottom:1px solid #dde7e7;
+    background:#fff;
+}
+
+.tabela-programas tbody td{
+    padding:14px 18px;
+    vertical-align:middle;
+}
+
+.tabela-programas tbody tr{
+    transition:.2s;
+}
+
+.tabela-programas tbody tr:hover{
+    background:#f8fbfb;
+}
+
+.nome-programa{
+    font-size:14px;
+    font-weight:600;
+    color:#08253c;
+}
+.descricao-programa{
+    font-size: 14px;
+    color:#6b7280;
+    max-width:350px;
+}
+.apresentador-programa{
+    color:#475569;
+    font-size: 14px;
+}
+
+.acoes{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+}
+
+.acoes a{
+    width:36px;
+    height:36px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:10px;
+    color:#1f2937;
+    text-decoration:none;
+    transition:.2s;
+}
+
+.acoes a:hover{
+    background:#eef7f6;
+    color:#0f766e;
+}
+
+.remover:hover{
+    background:#fee2e2 !important;
+    color:#dc2626 !important;
+}
+
+
+/* pesquisar programa */
+.filtros-programas{
+    background:#fff;
+    border:1px solid #dce6e5;
+    border-radius:22px;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:18px;
+
+    box-shadow:
+        0 2px 6px rgba(15,23,42,.05),
+        0 10px 24px rgba(15,23,42,.05);
+}
+
+.search-wrapper{
+    position:relative;
+    width:100%;
+}
+
+.search-wrapper i{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#64748b;
+    font-size:18px;
+}
+
+.search-wrapper input{
+    height:48px;
+    border-radius:14px;
+    padding-left:48px;
+    border:1px solid #d7e3e3;
+    box-shadow:0 2px 6px rgba(0,0,0,.05);
+}
+
+.search-wrapper input:focus{
+    border-color:#158a7b;
+    box-shadow:0 0 0 .15rem rgba(21,138,123,.15);
+}
+
+.btn-pesquisar{
+    height:48px;
+    padding:0 22px;
+    border-radius:14px;
+    border:1px solid #158a7b;
+    color:#158a7b;
+    background:#fff;
+    font-weight:600;
+}
+
+.btn-pesquisar:hover{
+    background:#158a7b;
+    color:#fff;
+}
+
+.btn-novo-programa{
+    height:48px;
+    padding:0 22px;
+    border-radius:5px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    background:linear-gradient(180deg,#178a7d,#15776d);
+    color:#fff;
+    font-weight:600;
+    text-decoration:none;
+}
+
+.btn-novo-programa:hover{
+    color:#fff;
+    filter:brightness(.95);
 }
