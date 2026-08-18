@@ -5,6 +5,51 @@ from radio.forms import PedidoModelForm, SugestaoModelForm
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
+from django.http import JsonResponse
+
+def sugestao_ajax(request):
+    if request.method == "POST":
+
+        form = SugestaoModelForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            messages.success(
+                request,
+                "Sugestão registrada com sucesso!"
+            )
+
+            mensagens_html = render(
+                request,
+                "dashboard/partials/_messages.html"
+            ).content.decode("utf-8")
+
+            return JsonResponse({
+                "sucesso": True,
+                "mensagens": mensagens_html
+            })
+
+        messages.error(
+            request,
+            "Falha ao registrar sugestão!"
+        )
+
+        mensagens_html = render(
+            request,
+            "dashboard/partials/_messages.html"
+        ).content.decode("utf-8")
+
+        return JsonResponse({
+            "sucesso": False,
+            "mensagens": mensagens_html
+        }, status=400)
+
+    return JsonResponse(
+        {"erro": "Método não permitido"},
+        status=405
+    )
+
 def index(request):
     context = {
         "sugestao": Sugestao.objects.first()
@@ -20,6 +65,50 @@ def index(request):
     else:
         context["form"] = SugestaoModelForm()
     return render(request, "radio/index.html", context)
+
+@login_required
+def pedido_ajax(request):
+    if request.method == "POST":
+
+        form = PedidoModelForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            messages.success(
+                request,
+                "Pedido de música registrado com sucesso!"
+            )
+
+            mensagens_html = render(
+                request,
+                "dashboard/partials/_messages.html"
+            ).content.decode("utf-8")
+
+            return JsonResponse({
+                "sucesso": True,
+                "mensagens": mensagens_html
+            })
+
+        messages.error(
+            request,
+            "Falha ao registrar pedido de música!"
+        )
+
+        mensagens_html = render(
+            request,
+            "dashboard/partials/_messages.html"
+        ).content.decode("utf-8")
+
+        return JsonResponse({
+            "sucesso": False,
+            "mensagens": mensagens_html
+        }, status=400)
+
+    return JsonResponse(
+        {"erro": "Método não permitido"},
+        status=405
+    )
 
 @login_required
 def pedidos(request):
@@ -98,6 +187,31 @@ def episodios(request, id_programa):
 
 def sobre(request):
     return render(request, "radio/sobre.html")
+
+@login_required
+def curtida_ajax(request):
+    if request.method == "POST":
+        programa = get_object_or_404(
+            Programa,
+            id=request.POST["id_programa"]
+        )
+
+        if request.user in programa.curtidas.all():
+            programa.curtidas.remove(request.user)
+            curtido = False
+        else:
+            programa.curtidas.add(request.user)
+            curtido = True
+
+        return JsonResponse({
+            "curtido": curtido,
+            "total_curtidas": programa.curtidas.count()
+        })
+
+    return JsonResponse(
+        {"erro": "Método não permitido"},
+        status=405
+    )
     
 @login_required
 def registrar_curtida(request):

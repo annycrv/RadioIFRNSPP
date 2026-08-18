@@ -53,17 +53,27 @@
     </div>
 
     <div class="card-body p-4">
-      <form method="POST">
-        {% csrf_token %}
-        {{ form|crispy }}
+      <form
+          id="pedido-form"
+          method="POST"
+          data-url="{% url 'radio:pedido_ajax' %}">
+          {% csrf_token %}
 
-        <div class="d-grid mt-3">
-          <button type="submit" class="enviar rounded-pill">Enviar Pedido</button>
-        </div>
+          {{ form|crispy }}
+
+          <div class="d-grid mt-3">
+              <button type="submit" class="enviar rounded-pill">
+                  Enviar Pedido
+              </button>
+          </div>
       </form>
+
     </div>
 
   </div>
 </div>
+
+<script src="{% static 'radio/js/script.js' %}"></script>
+
 
 {% endblock %}

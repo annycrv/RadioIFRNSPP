@@ -79,26 +79,28 @@
 
             </div>
 
-            <form action="{% url 'radio:registrar_curtida' %}" method="POST" class="mt-3">
-              {% csrf_token %}
-              <input type="hidden" name="id_programa" value="{{ programa.id }}">
-              <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            <form class="mt-3">
+                  {% csrf_token %}
 
-              <button type="submit" 
-                      class="border-0 bg-transparent p-0"
+                  <button
+                      type="button"
+                      class="btn-curtir border-0 bg-transparent p-0"
+                      data-url="{% url 'radio:curtida_ajax' %}"
+                      data-id="{{ programa.id }}"
                       style="cursor:pointer;">
-                
-                {% if user.is_authenticated and user in programa.curtidas.all %}
-                  <i class="bi bi-heart-fill text-danger fs-4"></i>
-                {% else %}
-                  <i class="bi bi-heart fs-4 text-muted"></i>
-                {% endif %}
-              </button>
 
-              <span class="text-muted small ms-1">
-                {{ programa.curtidas.count }}
-              </span>
-            </form>
+                      {% if user.is_authenticated and user in programa.curtidas.all %}
+                          <i class="bi bi-heart-fill text-danger fs-4"></i>
+                      {% else %}
+                          <i class="bi bi-heart fs-4 text-muted"></i>
+                      {% endif %}
+
+                  </button>
+
+                  <span class="contador text-muted small ms-1">
+                      {{ programa.curtidas.count }}
+                  </span>
+              </form>
 
           </div>
             
@@ -212,5 +214,6 @@
 </div>
 {% endfor %}
 
+<script src="{% static 'radio/js/script.js' %}"></script>
 
 {% endblock %}

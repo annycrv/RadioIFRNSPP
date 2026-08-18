@@ -132,8 +132,12 @@
             Envie sugestões e ajude a construir uma rádio cada vez mais do nosso jeito
           </p>
 
-            <form method="POST">
+            <form
+                id="sugestao-form"
+                method="POST"
+                data-url="{% url 'radio:sugestao_ajax' %}">
                 {% csrf_token %}
+
                 {{ form|crispy }}
 
                 <div class="d-grid mt-3">
@@ -147,4 +151,5 @@
     </div>
   </div>
 </section>
+<script src="{% static 'radio/js/script.js' %}"></script>
 {% endblock %}
