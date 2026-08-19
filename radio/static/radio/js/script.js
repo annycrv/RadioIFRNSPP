@@ -195,3 +195,60 @@ const sugestaoForm =
         });
 
     }
+
+// =========================
+// PROGRAMAÇÃO
+// =========================
+
+const diasSemana = document.querySelectorAll(
+    ".dia-card[data-url]"
+);
+
+const programacaoConteudo = document.querySelector(
+    "#programacao-conteudo"
+);
+
+if (diasSemana.length && programacaoConteudo) {
+
+    diasSemana.forEach(function (dia) {
+
+        dia.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            fetch(dia.dataset.url)
+                .then(response => response.text())
+                .then(html => {
+
+                    // Troca os cards
+                    programacaoConteudo.innerHTML = html;
+
+                    // Troca o botão ativo
+                    diasSemana.forEach(function (item) {
+                        item.classList.remove("ativo");
+                    });
+
+                    dia.classList.add("ativo");
+
+                    // Atualiza a URL sem recarregar
+                    history.pushState(
+                        {},
+                        "",
+                        dia.href
+                    );
+
+                })
+                .catch(error => {
+
+                    console.error(
+                        "Erro ao carregar programação:",
+                        error
+                    );
+
+                });
+
+        });
+
+    });
+
+}

@@ -127,6 +127,36 @@ def pedidos(request):
         context["form"] = PedidoModelForm()
     return render(request, "radio/pedidos.html", context)
 
+def programacao_ajax(request, dia):
+
+    dias_validos = [
+        'segunda',
+        'terca',
+        'quarta',
+        'quinta',
+        'sexta'
+    ]
+
+    if dia not in dias_validos:
+        dia = 'segunda'
+
+    lista = Programacao.objects.filter(
+        dia=dia
+    ).order_by("programa")
+
+    paginator = Paginator(lista, 6)
+
+    page_number = request.GET.get("page")
+
+    page_obj = paginator.get_page(page_number)
+
+    return render(
+        request,
+        "radio/partials/_pub_programacao.html",
+        {
+            "programacao": page_obj,
+        }
+    )
 
 def programacao(request,dia):
     dias_validos = ['segunda', 'terca', 'quarta', 'quinta', 'sexta']
@@ -156,7 +186,7 @@ def programas(request):
         programas_filtrados = Programa.objects.filter(
             nome_programa__icontains=filtro,
         ) | Programa.objects.filter(
-            apresentador_programa__icontains=filtro,
+            apresentador_programa__nome__icontains=filtro,
         )
 
     programas_filtrados = programas_filtrados.order_by("nome_programa")

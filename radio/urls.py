@@ -9,6 +9,7 @@ urlpatterns = [
     path('pedidos/', views.pedidos, name='pedidos'),
     path('pedido_ajax/', views.pedido_ajax, name='pedido_ajax'),
     path('programacao/<str:dia>/', views.programacao, name='programacao'),
+    path('programacao_ajax/<str:dia>/', views.programacao_ajax, name='programacao_ajax'),
     path('programas/', views.programas, name='programas'),
     path('sobre/', views.sobre, name='sobre'),
     path('registrar_curtida/', views.registrar_curtida, name='registrar_curtida'),
