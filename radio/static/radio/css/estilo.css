@@ -1291,3 +1291,37 @@ padding: 60px 0;
   line-height: 1.6;
   text-align: left;
 }
+
+.banner-section {
+    position: relative;
+}
+
+.btn-voltar-programas {
+    position: absolute;
+    top: 25px;
+    left: 2.5%;
+
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+
+    background: #147D3F;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    font-size: 1.3rem;
+
+    z-index: 10;
+
+    transition: 0.2s ease;
+}
+
+.btn-voltar-programas:hover {
+    background: #0f6332;
+    color: white;
+    transform: translateX(-3px);
+}

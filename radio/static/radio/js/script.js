@@ -7,85 +7,76 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+// =========================
 // CURTIDAS
+// =========================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("click", function (event) {
 
-    const botoes = document.querySelectorAll(".btn-curtir");
+    const botao = event.target.closest(".btn-curtir");
 
-    botoes.forEach(function (botao) {
+    if (!botao) {
+        return;
+    }
 
-        botao.addEventListener("click", function () {
+    event.preventDefault();
 
-            const url = botao.dataset.url;
-            const idPrograma = botao.dataset.id;
+    const url = botao.dataset.url;
+    const idPrograma = botao.dataset.id;
 
-            const csrfToken = botao
-                .closest("form")
-                .querySelector("[name=csrfmiddlewaretoken]")
-                .value;
+    const form = botao.closest("form");
 
-            const formData = new FormData();
+    const csrfToken = form.querySelector(
+        "[name=csrfmiddlewaretoken]"
+    ).value;
 
-            formData.append("id_programa", idPrograma);
+    const formData = new FormData();
 
-            fetch(url, {
-                method: "POST",
-                body: formData,
-                headers: {
-                    "X-CSRFToken": csrfToken
-                }
-            })
-            .then(response => {
+    formData.append("id_programa", idPrograma);
 
-                console.log("Status:", response.status);
+    fetch(url, {
+        method: "POST",
+        body: formData,
+        headers: {
+            "X-CSRFToken": csrfToken
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
 
-                return response.json();
-            })
-            .then(data => {
+        const contador = form.querySelector(".contador");
+        const icone = botao.querySelector("i");
 
-                console.log("Resposta:", data);
+        contador.textContent = data.total_curtidas;
 
-                const contador = botao
-                    .closest("form")
-                    .querySelector(".contador");
+        if (data.curtido) {
 
-                const icone = botao.querySelector("i");
+            icone.classList.remove(
+                "bi-heart",
+                "text-muted"
+            );
 
-                contador.textContent = data.total_curtidas;
+            icone.classList.add(
+                "bi-heart-fill",
+                "text-danger"
+            );
 
-                if (data.curtido) {
+        } else {
 
-                    icone.classList.remove(
-                        "bi-heart",
-                        "text-muted"
-                    );
+            icone.classList.remove(
+                "bi-heart-fill",
+                "text-danger"
+            );
 
-                    icone.classList.add(
-                        "bi-heart-fill",
-                        "text-danger"
-                    );
+            icone.classList.add(
+                "bi-heart",
+                "text-muted"
+            );
+        }
 
-                } else {
-
-                    icone.classList.remove(
-                        "bi-heart-fill",
-                        "text-danger"
-                    );
-
-                    icone.classList.add(
-                        "bi-heart",
-                        "text-muted"
-                    );
-                }
-
-            })
-            .catch(error => {
-                console.error("Erro no AJAX:", error);
-            });
-
-        });
-
+    })
+    .catch(error => {
+        console.error("Erro no AJAX da curtida:", error);
     });
 
 });
@@ -248,6 +239,52 @@ if (diasSemana.length && programacaoConteudo) {
                 });
 
         });
+
+    });
+
+}
+
+// =========================
+// PESQUISA DE PROGRAMAS
+// =========================
+
+const pesquisaProgramas = document.querySelector("#pesquisa-programas");
+const programasConteudo = document.querySelector("#programas-conteudo");
+
+if (pesquisaProgramas && programasConteudo) {
+
+    pesquisaProgramas.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        const input = pesquisaProgramas.querySelector(
+            "input[name='f']"
+        );
+
+        const filtro = input.value;
+
+        const url = pesquisaProgramas.dataset.url;
+
+        fetch(`${url}?f=${encodeURIComponent(filtro)}`)
+            .then(response => response.text())
+            .then(html => {
+
+                programasConteudo.innerHTML = html;
+
+                // Atualiza a URL sem recarregar a página
+                history.pushState(
+                    {},
+                    "",
+                    `${url}?f=${encodeURIComponent(filtro)}`
+                );
+
+            })
+            .catch(error => {
+                console.error(
+                    "Erro no AJAX da pesquisa:",
+                    error
+                );
+            });
 
     });
 

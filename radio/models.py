@@ -8,6 +8,9 @@ class Sugestao(models.Model):
     class Meta:
         verbose_name_plural = "Sugestões"
 
+    def __str__ (self):
+            return self.nome
+
 class Apresentador(models.Model):
     nome = models.CharField(max_length=100)
     foto = models.ImageField(upload_to='apresentadores/',blank=True, null=True)

@@ -176,6 +176,29 @@ def programacao(request,dia):
     }
     return render(request, "radio/programacao.html", context)
 
+def programas_ajax(request):
+
+    filtro = request.GET.get("f", "")
+
+    programas_filtrados = Programa.objects.all()
+
+    if filtro:
+        programas_filtrados = programas_filtrados.filter(
+            nome_programa__icontains=filtro
+        ) | programas_filtrados.filter(
+            apresentador_programa__nome__icontains=filtro
+        )
+
+    programas_filtrados = programas_filtrados.order_by("nome_programa")
+
+    return render(
+        request,
+        "radio/partials/_pub_programas.html",
+        {
+            "programas": programas_filtrados,
+            "filtro": filtro,
+        }
+    )
 
 def programas(request):
     filtro = request.GET.get("f", "")
