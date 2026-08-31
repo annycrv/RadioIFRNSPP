@@ -1,0 +1,378 @@
+{% load static %}
+
+<form method="POST"
+      enctype="multipart/form-data"
+      class="form-modal"
+      action="{{ url_salvar }}"
+      id="form-programacao-lote">
+
+    {% csrf_token %}
+
+    {{ formset.management_form }}
+
+
+    <!-- ERROS GERAIS DO FORMSET -->
+
+    {% if formset.non_form_errors %}
+
+        <div class="alert alert-danger d-flex align-items-start gap-2 mb-4">
+
+            <i class="bi bi-exclamation-triangle-fill"></i>
+
+            <div>
+
+                {% for error in formset.non_form_errors %}
+
+                    <div>{{ error }}</div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+
+    <div id="programacoes-container">
+
+        {% for form in formset %}
+
+            <div class="programacao-item">
+
+
+                <!-- ERROS DESTE PROGRAMA -->
+
+                {% if form.non_field_errors %}
+
+                    <div class="alert alert-danger d-flex align-items-start gap-2 mb-4">
+
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+
+                        <div>
+
+                            {% for error in form.non_field_errors %}
+
+                                <div>{{ error }}</div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- CABEÇALHO -->
+
+                <div class="programacao-item-header">
+
+                    <div>
+
+                        <span class="programacao-numero">
+                            Programa {{ forloop.counter }}
+                        </span>
+
+                        <p class="programacao-descricao">
+                            Escolha o programa, os dias e os horários.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROGRAMA -->
+
+                <div class="mb-4">
+
+                    <label for="{{ form.programa.id_for_label }}"
+                           class="form-label">
+
+                        Programa
+
+                    </label>
+
+                    {{ form.programa }}
+
+                    {% if form.programa.errors %}
+
+                        <div class="text-danger small mt-1">
+
+                            {% for error in form.programa.errors %}
+
+                                <div>{{ error }}</div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- DIAS -->
+
+                <div class="campo-programacao mb-4">
+
+                    <label class="form-label titulo-campo-programacao">
+
+                        Dias da semana
+
+                    </label>
+
+                    <p class="descricao-campo-programacao">
+
+                        Selecione os dias em que o programa será transmitido.
+
+                    </p>
+
+                    <div class="opcoes-programacao dias-programacao">
+
+                        {% for checkbox in form.dias %}
+
+                            <label class="opcao-programacao">
+
+                                {{ checkbox.tag }}
+
+                                <span>
+                                    {{ checkbox.choice_label }}
+                                </span>
+
+                            </label>
+
+                        {% endfor %}
+
+                    </div>
+
+                    {% if form.dias.errors %}
+
+                        <div class="text-danger small mt-2">
+
+                            {% for error in form.dias.errors %}
+
+                                <div>{{ error }}</div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- HORÁRIOS -->
+
+                <div class="campo-programacao mb-4">
+
+                    <label class="form-label titulo-campo-programacao">
+
+                        Horários de transmissão
+
+                    </label>
+
+                    <p class="descricao-campo-programacao">
+
+                        Selecione um ou mais intervalos para este programa.
+
+                    </p>
+
+                    <div class="opcoes-programacao horarios-programacao">
+
+                        {% for checkbox in form.horarios %}
+
+                            <label class="opcao-programacao horario-opcao">
+
+                                {{ checkbox.tag }}
+
+                                <span>
+                                    {{ checkbox.choice_label }}
+                                </span>
+
+                            </label>
+
+                        {% endfor %}
+
+                    </div>
+
+                    {% if form.horarios.errors %}
+
+                        <div class="text-danger small mt-2">
+
+                            {% for error in form.horarios.errors %}
+
+                                <div>{{ error }}</div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- ADICIONAR OUTRO PROGRAMA -->
+
+    {% if not modo_edicao %}
+
+        <button type="button"
+                id="btn-adicionar-programacao"
+                class="btn-adicionar-programacao">
+
+            <i class="bi bi-plus-circle"></i>
+
+            Adicionar outro programa
+
+        </button>
+
+    {% endif %}
+
+
+    <!-- RODAPÉ -->
+
+    <div class="modal-footer">
+
+        <button type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal">
+
+            Cancelar
+
+        </button>
+
+        <button type="button"
+                class="btn btn-primary btn-salvar">
+
+            Salvar
+
+        </button>
+
+    </div>
+
+</form>
+
+
+<!-- =====================================================
+     FORMULÁRIO VAZIO PARA NOVOS PROGRAMAS
+     ===================================================== -->
+
+<template id="programacao-empty-form">
+
+    <div class="programacao-item">
+
+        <div class="programacao-item-header">
+
+            <div>
+
+                <span class="programacao-numero">
+                    Programa
+                </span>
+
+                <p class="programacao-descricao">
+                    Escolha o programa, os dias e os horários.
+                </p>
+
+            </div>
+
+            <button type="button"
+                    class="btn-remover-programacao"
+                    title="Remover programa">
+
+                <i class="bi bi-trash"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- PROGRAMA -->
+
+        <div class="mb-4">
+
+            <label class="form-label">
+                Programa
+            </label>
+
+            {{ formset.empty_form.programa }}
+
+        </div>
+
+
+        <!-- DIAS -->
+
+        <div class="campo-programacao mb-4">
+
+            <label class="form-label titulo-campo-programacao">
+                Dias da semana
+            </label>
+
+            <p class="descricao-campo-programacao">
+                Selecione os dias em que o programa será transmitido.
+            </p>
+
+            <div class="opcoes-programacao dias-programacao">
+
+                {% for checkbox in formset.empty_form.dias %}
+
+                    <label class="opcao-programacao">
+
+                        {{ checkbox.tag }}
+
+                        <span>
+                            {{ checkbox.choice_label }}
+                        </span>
+
+                    </label>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <!-- HORÁRIOS -->
+
+        <div class="campo-programacao mb-4">
+
+            <label class="form-label titulo-campo-programacao">
+                Horários de transmissão
+            </label>
+
+            <p class="descricao-campo-programacao">
+                Selecione um ou mais intervalos para este programa.
+            </p>
+
+            <div class="opcoes-programacao horarios-programacao">
+
+                {% for checkbox in formset.empty_form.horarios %}
+
+                    <label class="opcao-programacao horario-opcao">
+
+                        {{ checkbox.tag }}
+
+                        <span>
+                            {{ checkbox.choice_label }}
+                        </span>
+
+                    </label>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</template>

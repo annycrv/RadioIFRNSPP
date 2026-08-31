@@ -77,6 +77,13 @@ class Programacao(models.Model):
     class Meta:
         verbose_name_plural = "programação"
 
+    constraints = [
+            models.UniqueConstraint(
+                fields=['dia', 'horario'],
+                name='unico_programa_por_dia_horario'
+            )
+        ]
+    
     def __str__ (self):
         return self.programa.nome_programa
     

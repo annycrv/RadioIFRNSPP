@@ -14,6 +14,8 @@ from django.http import JsonResponse
 import time
 from django.urls import reverse
 from django.http import HttpResponse
+from radio.forms import ProgramacaoFormSet
+from radio.forms import ProgramacaoEditFormSet
 
 
 @login_required
@@ -329,18 +331,70 @@ def programa_detalhar(request, id_programa):
 # Programacao
 
 @login_required
-@permission_required("radio.view_programacao", raise_exception=True)
+@permission_required(
+    "radio.view_programacao",
+    raise_exception=True
+)
 def ajax_listar_programacoes(request):
 
-    lista = Programacao.objects.all().order_by("id")
+    lista = (
+        Programacao.objects
+        .select_related("programa")
+        .order_by(
+            "programa__nome_programa",
+            "dia",
+            "horario"
+        )
+    )
+
+    programacoes_agrupadas = {}
+
+    for item in lista:
+
+        programa_id = item.programa.id
+
+        if programa_id not in programacoes_agrupadas:
+
+            programacoes_agrupadas[programa_id] = {
+                "id": item.id,
+                "programa": item.programa,
+                "dias": [],
+                "horarios": [],
+            }
+
+        grupo = programacoes_agrupadas[programa_id]
+
+        # DIA
+        dia = {
+            "valor": item.dia,
+            "nome": item.get_dia_display(),
+        }
+
+        if dia not in grupo["dias"]:
+            grupo["dias"].append(dia)
+
+        # HORÁRIO
+        horario = {
+            "valor": item.horario,
+            "nome": item.get_horario_display(),
+        }
+
+        if horario not in grupo["horarios"]:
+            grupo["horarios"].append(horario)
+
+    lista = list(programacoes_agrupadas.values())
 
     paginator = Paginator(lista, 6)
+
     pagina_atual = request.GET.get("page")
+
     page_obj = paginator.get_page(pagina_atual)
 
     context = {
         "programacao": page_obj,
-        "partial_tabela": "dashboard/partials/_tabela_programacoes.html",
+        "partial_tabela": (
+            "dashboard/partials/_tabela_programacoes.html"
+        ),
         "page_obj": page_obj,
     }
 
@@ -350,15 +404,64 @@ def ajax_listar_programacoes(request):
         context
     )
 
-
 @login_required
-@permission_required("radio.view_programacao", raise_exception=True)
+@permission_required(
+    "radio.view_programacao",
+    raise_exception=True
+)
 def programacao(request):
 
-    lista = Programacao.objects.all().order_by("id")
+    lista = (
+        Programacao.objects
+        .select_related("programa")
+        .order_by(
+            "programa__nome_programa",
+            "dia",
+            "horario"
+        )
+    )
+
+    programacoes_agrupadas = {}
+
+    for item in lista:
+
+        programa_id = item.programa.id
+
+        if programa_id not in programacoes_agrupadas:
+
+            programacoes_agrupadas[programa_id] = {
+                "id": item.id,
+                "programa": item.programa,
+                "dias": [],
+                "horarios": [],
+            }
+
+        grupo = programacoes_agrupadas[programa_id]
+
+        # DIA
+        dia = {
+            "valor": item.dia,
+            "nome": item.get_dia_display(),
+        }
+
+        if dia not in grupo["dias"]:
+            grupo["dias"].append(dia)
+
+        # HORÁRIO
+        horario = {
+            "valor": item.horario,
+            "nome": item.get_horario_display(),
+        }
+
+        if horario not in grupo["horarios"]:
+            grupo["horarios"].append(horario)
+
+    lista = list(programacoes_agrupadas.values())
 
     paginator = Paginator(lista, 6)
+
     pagina_atual = request.GET.get("page")
+
     page_obj = paginator.get_page(pagina_atual)
 
     context = {
@@ -382,12 +485,14 @@ def programacao(request):
         context
     )
 
-
 @login_required
-@permission_required("radio.add_programacao", raise_exception=True)
+@permission_required(
+    "radio.add_programacao",
+    raise_exception=True
+)
 def programacao_novo(request):
 
-    partial_form = "dashboard/partials/_form_generico.html"
+    partial_form = "dashboard/partials/_form_programacao.html"
 
     context = {
         "titulo_pagina": "Adicionar Programação",
@@ -399,13 +504,68 @@ def programacao_novo(request):
 
     if request.method == "POST":
 
-        form = ProgramacaoModelForm(
-            request.POST,
-            request.FILES
-        )
+        formset = ProgramacaoFormSet(request.POST)
 
-        if form.is_valid():
-            form.save()
+        if formset.is_valid():
+
+            conflitos = []
+
+            for form in formset:
+
+                programa = form.cleaned_data.get("programa")
+                dias = form.cleaned_data.get("dias")
+                horarios = form.cleaned_data.get("horarios")
+
+                if not programa or not dias or not horarios:
+                    continue
+
+                for dia in dias:
+
+                    for horario in horarios:
+
+                        existe = Programacao.objects.filter(
+                            dia=dia,
+                            horario=horario
+                        ).exists()
+
+                        if existe:
+
+                            dia_nome = dict(
+                                Programacao.DIAS_SEMANA
+                            ).get(dia)
+
+                            horario_nome = dict(
+                                Programacao.HORARIO
+                            ).get(horario)
+
+                            conflitos.append(
+                                f"{dia_nome} - {horario_nome}"
+                            )
+
+            if conflitos:
+
+                formset.non_form_errors().data.extend(
+                    [
+                        "Os seguintes horários já estão ocupados: "
+                        + ", ".join(conflitos)
+                    ]
+                )
+
+                context["formset"] = formset
+
+                return render(
+                    request,
+                    partial_form,
+                    context
+                )
+
+            # Só chega aqui se não houver conflito
+
+            for form in formset:
+
+                if form.cleaned_data:
+
+                    form.save()
 
             messages.success(
                 request,
@@ -414,66 +574,153 @@ def programacao_novo(request):
 
             return HttpResponse("ok")
 
-        messages.error(
+        context["formset"] = formset
+
+        return render(
             request,
-            "Falha ao registrar programação!"
+            partial_form,
+            context
         )
 
-        context["form"] = form
+    formset = ProgramacaoFormSet()
 
-    else:
-        context["form"] = ProgramacaoModelForm()
+    context["formset"] = formset
 
     return render(
         request,
         partial_form,
         context
     )
-
-
 @login_required
-@permission_required("radio.change_programacao", raise_exception=True)
+@permission_required(
+    "radio.change_programacao",
+    raise_exception=True
+)
 def programacao_editar(request, id_item):
 
-    partial_form = "dashboard/partials/_form_generico.html"
+    partial_form = "dashboard/partials/_form_programacao.html"
 
     programacao = get_object_or_404(
         Programacao,
         id=id_item
     )
 
+    programa_original = programacao.programa
+
     context = {
-        "programacao": programacao,
         "titulo_pagina": "Editar Programação",
         "url_cancelar": "dashboard:programacao",
         "url_salvar": reverse(
             "dashboard:programacao_editar",
             args=[programacao.id]
         ),
+        "modo_edicao": True,
     }
+
+    # Todas as programações pertencentes ao programa
+    programacoes = Programacao.objects.filter(
+        programa=programa_original
+    )
 
     if request.method == "POST":
 
-        form = ProgramacaoModelForm(
-            request.POST,
-            request.FILES
+        formset = ProgramacaoEditFormSet(
+            request.POST
         )
 
-        if form.is_valid():
+        if formset.is_valid():
 
-            programa = form.cleaned_data["programa"]
-            dias = form.cleaned_data["dias"]
-            horarios = form.cleaned_data["horarios"]
+            # -----------------------------------------
+            # Verifica conflito com OUTROS programas
+            # -----------------------------------------
 
-            programacao.delete()
+            conflitos = []
 
-            for dia in dias:
-                for horario in horarios:
-                    Programacao.objects.create(
-                        programa=programa,
-                        dia=dia,
-                        horario=horario
-                    )
+            for form in formset:
+
+                if not form.cleaned_data:
+                    continue
+
+                programa = form.cleaned_data.get("programa")
+                dias = form.cleaned_data.get("dias")
+                horarios = form.cleaned_data.get("horarios")
+
+                if not programa or not dias or not horarios:
+                    continue
+
+                for dia in dias:
+
+                    for horario in horarios:
+
+                        conflito = Programacao.objects.filter(
+                            dia=dia,
+                            horario=horario
+                        ).exclude(
+                            programa=programa_original
+                        )
+
+                        if conflito.exists():
+
+                            dia_nome = dict(
+                                Programacao.DIAS_SEMANA
+                            ).get(dia)
+
+                            horario_nome = dict(
+                                Programacao.HORARIO
+                            ).get(horario)
+
+                            conflitos.append(
+                                f"{dia_nome} - {horario_nome}"
+                            )
+
+            if conflitos:
+
+                formset.non_form_errors().data.append(
+                    "Os seguintes horários já estão ocupados: "
+                    + ", ".join(conflitos)
+                )
+
+                context["formset"] = formset
+
+                return render(
+                    request,
+                    partial_form,
+                    context
+                )
+
+            # -----------------------------------------
+            # Tudo certo → remove programação antiga
+            # -----------------------------------------
+
+            Programacao.objects.filter(
+                programa=programa_original
+            ).delete()
+
+            # -----------------------------------------
+            # Cria as novas programações
+            # -----------------------------------------
+
+            for form in formset:
+
+                if not form.cleaned_data:
+                    continue
+
+                programa = form.cleaned_data.get("programa")
+                dias = form.cleaned_data.get("dias")
+                horarios = form.cleaned_data.get("horarios")
+
+                if not programa or not dias or not horarios:
+                    continue
+
+                for dia in dias:
+
+                    for horario in horarios:
+
+                        Programacao.objects.create(
+                            programa=programa,
+                            dia=dia,
+                            horario=horario
+                        )
 
             messages.success(
                 request,
@@ -482,30 +729,47 @@ def programacao_editar(request, id_item):
 
             return HttpResponse("ok")
 
-        messages.error(
+        context["formset"] = formset
+
+        return render(
             request,
-            "Falha ao alterar programação!"
+            partial_form,
+            context
         )
 
-        context["form"] = form
+    # -----------------------------------------
+    # GET
+    # -----------------------------------------
 
-    else:
+    dias_existentes = list(
+        programacoes
+        .values_list("dia", flat=True)
+        .distinct()
+    )
 
-        context["form"] = ProgramacaoModelForm(
-            initial={
-                "programa": programacao.programa,
-                "dias": [programacao.dia],
-                "horarios": [programacao.horario],
+    horarios_existentes = list(
+        programacoes
+        .values_list("horario", flat=True)
+        .distinct()
+    )
+
+    formset = ProgramacaoEditFormSet(
+        initial=[
+            {
+                "programa": programa_original,
+                "dias": dias_existentes,
+                "horarios": horarios_existentes,
             }
-        )
+        ]
+    )
+
+    context["formset"] = formset
 
     return render(
         request,
         partial_form,
         context
     )
-
-
 @login_required
 @permission_required("radio.delete_programacao", raise_exception=True)
 def programacao_remover(request, id_item):

@@ -857,164 +857,823 @@ form label {
 
 
 
-/* parte nova de programas */
-.banner-programa{
-    width:56px;
-    height:56px;
-    object-fit:cover;
-    border-radius:14px;
-    display:block;
-}
+/* =========================================================
+   PADRÃO DAS TABELAS DO CRUD
+   ========================================================= */
 
-.tabela-programas{
-    background:#fff;
-    border:1px solid #dce5e4;
-    border-radius:20px;
-    overflow:hidden;
+.tabela-crud {
+    background: #fff;
+    border: 1px solid #dce5e4;
+    border-radius: 20px;
+    overflow: hidden;
+
     box-shadow:
         0 2px 8px rgba(15,23,42,.05),
         0 10px 30px rgba(15,23,42,.05);
 }
 
-.tabela-programas thead th{
-    padding:18px;
-    font-size:15px;
-    font-weight:600;
-    color:#4f6174;
-    border-bottom:1px solid #dde7e7;
-    background:#fff;
+.tabela-crud thead th {
+    padding: 18px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #4f6174;
+    border-bottom: 1px solid #dde7e7;
+    background: #fff;
 }
 
-.tabela-programas tbody td{
-    padding:14px 18px;
-    vertical-align:middle;
+.tabela-crud tbody td {
+    padding: 14px 18px;
+    vertical-align: middle;
 }
 
-.tabela-programas tbody tr{
-    transition:.2s;
+.tabela-crud tbody tr {
+    transition: .2s;
 }
 
-.tabela-programas tbody tr:hover{
-    background:#f8fbfb;
-}
-
-.nome-programa{
-    font-size:14px;
-    font-weight:600;
-    color:#08253c;
-}
-.descricao-programa{
-    font-size: 14px;
-    color:#6b7280;
-    max-width:350px;
-}
-.apresentador-programa{
-    color:#475569;
-    font-size: 14px;
-}
-
-.acoes{
-    display:flex;
-    justify-content:center;
-    gap:16px;
-}
-
-.acoes a{
-    width:36px;
-    height:36px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    border-radius:10px;
-    color:#1f2937;
-    text-decoration:none;
-    transition:.2s;
-}
-
-.acoes a:hover{
-    background:#eef7f6;
-    color:#0f766e;
-}
-
-.remover:hover{
-    background:#fee2e2 !important;
-    color:#dc2626 !important;
+.tabela-crud tbody tr:hover {
+    background: #f8fbfb;
 }
 
 
-/* pesquisar programa */
-.filtros-programas{
-    background:#fff;
-    border:1px solid #dce6e5;
-    border-radius:22px;
-    padding:18px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:18px;
+/* =========================================================
+   AÇÕES
+   ========================================================= */
+
+.acoes {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.acoes a {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+
+    color: #1f2937;
+    text-decoration: none;
+
+    transition: .2s;
+}
+
+.acoes a:hover {
+    background: #eef7f6;
+    color: #0f766e;
+}
+
+.acoes .remover:hover {
+    background: #fee2e2 !important;
+    color: #dc2626 !important;
+}
+
+
+/* =========================================================
+   PESQUISA
+   ========================================================= */
+
+.filtros-crud {
+    background: #fff;
+    border: 1px solid #dce6e5;
+    border-radius: 22px;
+
+    padding: 18px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 18px;
 
     box-shadow:
         0 2px 6px rgba(15,23,42,.05),
         0 10px 24px rgba(15,23,42,.05);
 }
 
-.search-wrapper{
-    position:relative;
-    width:100%;
+.search-wrapper {
+    position: relative;
+    width: 100%;
 }
 
-.search-wrapper i{
-    position:absolute;
-    left:18px;
-    top:50%;
-    transform:translateY(-50%);
-    color:#64748b;
-    font-size:18px;
+.search-wrapper i {
+    position: absolute;
+
+    left: 18px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #64748b;
+    font-size: 18px;
 }
 
-.search-wrapper input{
-    height:48px;
-    border-radius:14px;
-    padding-left:48px;
-    border:1px solid #d7e3e3;
-    box-shadow:0 2px 6px rgba(0,0,0,.05);
+.search-wrapper input {
+    height: 48px;
+
+    border-radius: 14px;
+
+    padding-left: 48px;
+
+    border: 1px solid #d7e3e3;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,.05);
 }
 
-.search-wrapper input:focus{
-    border-color:#158a7b;
-    box-shadow:0 0 0 .15rem rgba(21,138,123,.15);
+.search-wrapper input:focus {
+    border-color: #158a7b;
+
+    box-shadow:
+        0 0 0 .15rem rgba(21,138,123,.15);
 }
 
-.btn-pesquisar{
-    height:48px;
-    padding:0 22px;
-    border-radius:14px;
-    border:1px solid #158a7b;
-    color:#158a7b;
-    background:#fff;
-    font-weight:600;
+
+/* =========================================================
+   APRESENTADORES
+   ========================================================= */
+
+.foto-apresentador {
+    width: 56px;
+    height: 56px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    display: block;
 }
 
-.btn-pesquisar:hover{
-    background:#158a7b;
-    color:#fff;
+.nome-apresentador {
+    font-size: 14px;
+    font-weight: 600;
+    color: #08253c;
 }
 
-.btn-novo-programa{
-    height:48px;
-    padding:0 22px;
-    border-radius:5px;
-    display:flex;
-    align-items:center;
-    gap:8px;
+/* =========================
+   TABELA DE PROGRAMAS
+   ========================= */
 
-    background:linear-gradient(180deg,#178a7d,#15776d);
-    color:#fff;
-    font-weight:600;
-    text-decoration:none;
+.banner-programa {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
 }
 
-.btn-novo-programa:hover{
-    color:#fff;
-    filter:brightness(.95);
+
+/* =========================
+   TABELA DE APRESENTADORES
+   ========================= */
+
+.foto-apresentador {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+/* =========================================================
+   USUÁRIOS
+   ========================================================= */
+
+.tabela-usuarios thead th a {
+    color: #4f6174;
+    text-decoration: none;
+}
+
+.tabela-usuarios thead th a:hover {
+    color: #0f766e;
+}
+
+
+/* Username */
+
+.username-usuario {
+    font-size: 14px;
+    font-weight: 600;
+    color: #08253c;
+}
+
+
+/* Nome */
+
+.nome-usuario {
+    font-size: 14px;
+    color: #475569;
+}
+
+
+/* Email */
+
+.email-usuario {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+
+/* =========================================================
+   SUGESTÕES
+   ========================================================= */
+
+.tabela-sugestoes thead th a {
+    color: #4f6174;
+    text-decoration: none;
+}
+
+.tabela-sugestoes thead th a:hover {
+    color: #0f766e;
+}
+
+
+/* Nome */
+
+.nome-sugestao {
+    font-size: 14px;
+    font-weight: 600;
+    color: #08253c;
+}
+
+
+/* Comentário */
+
+.comentario-sugestao {
+    font-size: 14px;
+    color: #6b7280;
+
+    max-width: 500px;
+
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* =========================================================
+   PEDIDOS
+   ========================================================= */
+
+.tabela-pedidos thead th a {
+    color: #4f6174;
+    text-decoration: none;
+}
+
+.tabela-pedidos thead th a:hover {
+    color: #0f766e;
+}
+
+
+/* Nome */
+
+.nome-pedido {
+    font-size: 14px;
+    font-weight: 600;
+    color: #08253c;
+}
+
+
+/* Música */
+
+.musica-pedido {
+    font-size: 14px;
+    color: #475569;
+    max-width: 220px;
+
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+
+/* Artista */
+
+.artista-pedido {
+    font-size: 14px;
+    color: #475569;
+    max-width: 200px;
+
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+
+/* Horário */
+
+.horario-pedido {
+    font-size: 14px;
+    color: #6b7280;
+    white-space: nowrap;
+}
+
+
+/* Observação */
+
+.observacao-pedido {
+    font-size: 14px;
+    color: #6b7280;
+    max-width: 300px;
+
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+
+/* =========================================================
+   MODAL - PROGRAMAÇÃO
+   ========================================================= */
+
+.modal-programacao .modal-dialog {
+    max-width: 850px;
+}
+
+#form-programacao-lote {
+    color: #08253c;
+}
+
+
+/* =========================================================
+   BLOCO DE CADA PROGRAMA
+   ========================================================= */
+
+.programacao-item {
+    position: relative;
+
+    background: #ffffff;
+
+    border: 1px solid #dce6e5;
+    border-radius: 18px;
+
+    padding: 22px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 2px 6px rgba(15, 23, 42, .04),
+        0 8px 20px rgba(15, 23, 42, .04);
+
+    transition: .2s;
+}
+
+.programacao-item:hover {
+    border-color: #c9d9d7;
+
+    box-shadow:
+        0 4px 10px rgba(15, 23, 42, .05),
+        0 12px 28px rgba(15, 23, 42, .05);
+}
+
+
+/* =========================================================
+   CABEÇALHO DO BLOCO
+   ========================================================= */
+
+.programacao-item-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding-bottom: 18px;
+
+    margin-bottom: 20px;
+
+    border-bottom: 1px solid #edf2f2;
+}
+
+.programacao-numero {
+    display: inline-flex;
+
+    align-items: center;
+
+    background: #eef7f6;
+
+    color: #0f766e;
+
+    border-radius: 10px;
+
+    padding: 7px 12px;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.programacao-descricao {
+    margin: 8px 0 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   LABELS
+   ========================================================= */
+
+#form-programacao-lote .form-label {
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   SELECT DO PROGRAMA
+   ========================================================= */
+
+#form-programacao-lote select {
+    width: 100%;
+
+    min-height: 46px;
+
+    border: 1px solid #d7e3e3;
+
+    border-radius: 12px;
+
+    padding: 8px 14px;
+
+    background: #fff;
+
+    color: #334155;
+
+    box-shadow: 0 2px 5px rgba(15, 23, 42, .03);
+
+    transition: .2s;
+}
+
+#form-programacao-lote select:focus {
+    border-color: #158a7b;
+
+    box-shadow:
+        0 0 0 .15rem rgba(21, 138, 123, .12);
+
+    outline: none;
+}
+
+
+/* =========================================================
+   TÍTULOS DOS CAMPOS
+   ========================================================= */
+
+.titulo-campo-programacao {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.descricao-campo-programacao {
+    margin: 0 0 14px;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   OPÇÕES DE DIAS E HORÁRIOS
+   ========================================================= */
+
+.opcoes-programacao {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+}
+
+
+/* Esconde o checkbox original */
+
+.opcao-programacao input[type="checkbox"] {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+/* Botão visual */
+
+.opcao-programacao {
+    cursor: pointer;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: 8px 15px;
+
+    border: 1px solid #d7e3e3;
+
+    border-radius: 11px;
+
+    background: #fff;
+
+    color: #475569;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: .2s;
+
+    user-select: none;
+}
+
+
+/* Hover */
+
+.opcao-programacao:hover {
+    border-color: #158a7b;
+
+    color: #0f766e;
+
+    background: #f4faf9;
+}
+
+
+/* Selecionado */
+
+.opcao-programacao:has(input[type="checkbox"]:checked) {
+    background: #158a7b;
+
+    border-color: #158a7b;
+
+    color: #fff;
+
+    box-shadow:
+        0 3px 8px rgba(21, 138, 123, .18);
+}
+
+
+/* =========================================================
+   HORÁRIOS
+   ========================================================= */
+
+.horarios-programacao .opcao-programacao {
+    min-width: 145px;
+}
+
+
+/* =========================================================
+   BOTÃO REMOVER PROGRAMA
+   ========================================================= */
+
+.btn-remover-programacao {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: 1px solid #fecaca;
+
+    border-radius: 10px;
+
+    background: #fff;
+
+    color: #dc2626;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.btn-remover-programacao:hover {
+    background: #fee2e2;
+
+    border-color: #fca5a5;
+
+    color: #b91c1c;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   ADICIONAR OUTRO PROGRAMA
+   ========================================================= */
+
+.btn-adicionar-programacao {
+    width: 100%;
+
+    min-height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    margin-top: 4px;
+    margin-bottom: 20px;
+
+    padding: 10px 18px;
+
+    border: 1px dashed #9cc8c2;
+
+    border-radius: 13px;
+
+    background: #f7fbfa;
+
+    color: #0f766e;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.btn-adicionar-programacao i {
+    font-size: 18px;
+}
+
+.btn-adicionar-programacao:hover {
+    background: #eef7f6;
+
+    border-color: #158a7b;
+
+    color: #0b665f;
+}
+
+
+/* =========================================================
+   ALERTAS DE ERRO
+   ========================================================= */
+
+#form-programacao-lote .alert-danger {
+    border: 1px solid #fecaca;
+
+    border-radius: 12px;
+
+    background: #fff7f7;
+
+    color: #b91c1c;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    margin-bottom: 18px;
+
+    padding: 13px 15px;
+}
+
+#form-programacao-lote .alert-danger i {
+    margin-top: 2px;
+}
+
+
+/* =========================================================
+   ERROS DOS CAMPOS
+   ========================================================= */
+
+#form-programacao-lote .text-danger {
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   RODAPÉ
+   ========================================================= */
+
+#form-programacao-lote .modal-footer {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding: 20px 0 0;
+
+    margin-top: 5px;
+
+    border-top: 1px solid #edf2f2;
+}
+
+#form-programacao-lote .modal-footer .btn {
+    min-height: 44px;
+
+    padding: 8px 20px;
+
+    border-radius: 11px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 576px) {
+
+    .programacao-item {
+        padding: 16px;
+
+        border-radius: 15px;
+    }
+
+    .programacao-item-header {
+        gap: 10px;
+    }
+
+    .programacao-descricao {
+        font-size: 12px;
+    }
+
+    .opcao-programacao {
+        flex: 1;
+
+        min-width: 70px;
+    }
+
+    .horarios-programacao .opcao-programacao {
+        min-width: 100%;
+    }
+
+    #form-programacao-lote .modal-footer {
+        flex-direction: column-reverse;
+    }
+
+    #form-programacao-lote .modal-footer .btn {
+        width: 100%;
+    }
+}
+
+.tabela-programacao {
+    margin-bottom: 0;
+}
+
+.tabela-programacao th {
+    font-weight: 600;
+    color: #344563;
+    white-space: nowrap;
+}
+
+.tabela-programacao td {
+    vertical-align: middle;
+}
+
+.programacao-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.dia-badge,
+.horario-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d8e2e5;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.dia-badge {
+    min-width: 45px;
+}
+
+.horario-badge {
+    min-width: 110px;
 }

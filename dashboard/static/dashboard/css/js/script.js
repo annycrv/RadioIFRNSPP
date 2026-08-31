@@ -89,44 +89,58 @@ if (botao) {
 });
 document.addEventListener("click", function (evento) {
 
-    if (evento.target.classList.contains("btn-salvar")) {
-        console.log("salvando");
-
-
-        const form = document.querySelector(".form-modal");
-
-        fetch(form.action, {
-            method: "POST",
-            body: new FormData(form)
-        })
-
-        .then(response => response.text())
-
-        .then(conteudo => {
-            console.log(conteudo);
-
-            if (conteudo === "ok") {
-
-                document.activeElement.blur();
-
-                meuModal.hide();
-
-                atualizarLista("#container-lista");
-                buscarMensagens();
-
-            } else {
-
-                document.querySelector(".modal-body").innerHTML =
-                    conteudo;
-
-            }
-
-        });
-
+    if (!evento.target.classList.contains("btn-salvar")) {
+        return;
     }
 
-});
+    console.log("salvando");
 
+    const form = document.querySelector(".form-modal");
+
+    if (!form) {
+        console.error("Formulário não encontrado.");
+        return;
+    }
+
+    fetch(form.action, {
+        method: "POST",
+        body: new FormData(form)
+    })
+
+    .then(response => response.text())
+
+    .then(conteudo => {
+
+        console.log(conteudo);
+
+        if (conteudo.trim() === "ok") {
+
+            document.activeElement.blur();
+
+            meuModal.hide();
+
+            atualizarLista("#container-lista");
+            buscarMensagens();
+
+        } else {
+
+            document.querySelector(".modal-body").innerHTML =
+                conteudo;
+
+        }
+
+    })
+
+    .catch(erro => {
+
+        console.error(
+            "Erro ao salvar:",
+            erro
+        );
+
+    });
+
+});
 document.addEventListener("click", function (evento) {
 
 const botao = evento.target.closest(".btn-editar");
@@ -251,3 +265,94 @@ if (evento.target.classList.contains("confirmar")) {
 
 });
 
+
+document.addEventListener("click", function (event) {
+
+    const botao = event.target.closest(
+        "#btn-adicionar-programacao"
+    );
+
+    if (!botao) {
+        return;
+    }
+
+    const container = document.getElementById(
+        "programacoes-container"
+    );
+
+    const totalForms = document.getElementById(
+        "id_form-TOTAL_FORMS"
+    );
+
+    const template = document.getElementById(
+        "programacao-empty-form"
+    );
+
+    if (!container || !totalForms || !template) {
+        console.error(
+            "Elementos do formulário de programação não encontrados."
+        );
+
+        return;
+    }
+
+    const indice = parseInt(
+        totalForms.value,
+        10
+    );
+
+    const html = template.innerHTML.replace(
+        /__prefix__/g,
+        indice
+    );
+
+    container.insertAdjacentHTML(
+        "beforeend",
+        html
+    );
+
+    totalForms.value = indice + 1;
+
+    atualizarNumeracao();
+
+});
+
+function atualizarNumeracao() {
+
+    document.querySelectorAll(
+        "#programacoes-container .programacao-item"
+    ).forEach(function (item, index) {
+
+        const numero = item.querySelector(
+            ".programacao-numero"
+        );
+
+        if (numero) {
+
+            numero.textContent =
+                `Programa ${index + 1}`;
+
+        }
+
+    });
+}
+
+
+document.addEventListener("click", function (event) {
+
+    const botao = event.target.closest(
+        ".btn-remover-programacao"
+    );
+
+    if (!botao) {
+        return;
+    }
+
+    const item = botao.closest(
+        ".programacao-item"
+    );
+
+    item.remove();
+
+    atualizarNumeracao();
+});

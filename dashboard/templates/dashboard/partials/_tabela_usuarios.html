@@ -1,37 +1,136 @@
+<div class="filtros-crud mb-4">
+
+    <form id="form-pesquisa-usuarios"
+          class="d-flex gap-3 align-items-center flex-grow-1">
+
+        <div class="search-wrapper flex-grow-1">
+
+            <i class="bi bi-search"></i>
+
+            <input
+                id="campo-pesquisa-usuario"
+                class="form-control"
+                type="search"
+                name="f"
+                value="{{ request.GET.f }}"
+                placeholder="Pesquisar por usuário, nome ou email...">
+
+        </div>
+
+    </form>
+
+</div>
+
+
 <div class="table-responsive">
-  <table class="table table-hover table-striped">
-    <thead>
-      <tr>
-        <th scope="col" class="col-4"><a href="{% querystring ordenar='username' %}" >Username<a></th>
-        <th scope="col" class="col-4"><a href="{% querystring ordenar='first_name' %}" >Nome</a></th>
-        <th scope="col" class="col-4"><a href="{% querystring ordenar='email' %}" >Email<a></th>
-        <th scope="col" class="col-2">Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-  {% for usuario in usuarios %}
-    <tr>
-      <td>
-        {{ usuario.username }} 
-      </td>  
-      <td>
-        {{ usuario.first_name }} 
-      </td>  
-      <td>
-        {{ usuario.email }} 
-      </td>    
-      <td class="text-nowrap">
-        <a href="{% url 'usuarios:usuarios_editar' usuario.id %}"
-          class="btn btn-outline-secondary btn-editar">
-            Editar
-        </a>
-        <a href="{% url 'usuarios:usuario_remover' usuario.id %}"
-          class="btn btn-danger remover">
-            Excluir
-        </a>   
-      </td>  
-    </tr>
-  {% endfor %}
-    </tbody>
-  </table>
+
+    <table class="table tabela-crud tabela-usuarios align-middle mb-0">
+
+        <thead>
+            <tr>
+
+                <th>
+                    <a href="{% querystring ordenar='username' %}">
+                        Username
+                    </a>
+                </th>
+
+                <th>
+                    <a href="{% querystring ordenar='first_name' %}">
+                        Nome
+                    </a>
+                </th>
+
+                <th>
+                    <a href="{% querystring ordenar='email' %}">
+                        Email
+                    </a>
+                </th>
+
+                <th class="text-center">
+                    Ações
+                </th>
+
+            </tr>
+        </thead>
+
+
+        <tbody>
+
+        {% for usuario in usuarios %}
+
+        <tr>
+
+            <td>
+                <div class="username-usuario">
+                    {{ usuario.username }}
+                </div>
+            </td>
+
+
+            <td>
+                <div class="nome-usuario">
+                    {{ usuario.first_name }}
+                </div>
+            </td>
+
+
+            <td>
+                <div class="email-usuario">
+                    {{ usuario.email }}
+                </div>
+            </td>
+
+
+            <td>
+
+                <div class="acoes">
+
+                    <a
+                        href="{% url 'usuarios:usuarios_editar' usuario.id %}"
+                        class="btn-editar"
+                        title="Editar">
+
+                        <i class="bi bi-pencil"></i>
+
+                    </a>
+
+
+                    <a
+                        href="{% url 'usuarios:usuario_remover' usuario.id %}"
+                        class="remover"
+                        title="Excluir">
+
+                        <i class="bi bi-trash"></i>
+
+                    </a>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+        {% empty %}
+
+        <tr>
+
+            <td colspan="4" class="text-center py-5">
+
+                <i class="bi bi-people fs-1 text-muted mb-3 d-block"></i>
+
+                <p class="text-muted mb-0">
+                    Nenhum usuário cadastrado.
+                </p>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
 </div>

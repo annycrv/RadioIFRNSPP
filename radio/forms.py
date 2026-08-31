@@ -1,5 +1,6 @@
 from django import forms
 from .models import Pedido, Apresentador,Programa, Programacao,Episodio,Sugestao
+from django.forms import BaseFormSet, formset_factory
 
 class PedidoModelForm(forms.ModelForm):
     class Meta:
@@ -57,13 +58,15 @@ class ProgramaModelForm(forms.ModelForm):
         fields = '__all__'
 
 
+
 class ProgramacaoModelForm(forms.ModelForm):
-    
+
     dias = forms.MultipleChoiceField(
         choices=Programacao.DIAS_SEMANA,
         widget=forms.CheckboxSelectMultiple,
         label="Dias"
     )
+
     horarios = forms.MultipleChoiceField(
         choices=Programacao.HORARIO,
         widget=forms.CheckboxSelectMultiple,
@@ -72,21 +75,105 @@ class ProgramacaoModelForm(forms.ModelForm):
 
     class Meta:
         model = Programacao
-        fields = ['programa']
+        fields = ["programa"]
 
     def save(self, commit=True):
-        programa = self.cleaned_data['programa']
-        dias = self.cleaned_data['dias']
-        horarios = self.cleaned_data['horarios']
 
-        instances = []
+        programa = self.cleaned_data["programa"]
+        dias = self.cleaned_data["dias"]
+        horarios = self.cleaned_data["horarios"]
+
+        programacoes = []
+
         for dia in dias:
+
             for horario in horarios:
-                instance = Programacao(programa=programa, dia=dia, horario=horario)
+
+                programacao = Programacao(
+                    programa=programa,
+                    dia=dia,
+                    horario=horario
+                )
+
                 if commit:
-                    instance.save()
-                instances.append(instance)
-        return instances
+                    programacao.save()
+
+                programacoes.append(programacao)
+
+        return programacoes
+          
+class BaseProgramacaoFormSet(BaseFormSet):
+
+    def clean(self):
+
+        super().clean()
+
+        combinacoes = {}
+        conflitos = []
+
+        for form in self.forms:
+
+            if not hasattr(form, "cleaned_data"):
+                continue
+
+            if not form.cleaned_data:
+                continue
+
+            programa = form.cleaned_data.get("programa")
+            dias = form.cleaned_data.get("dias")
+            horarios = form.cleaned_data.get("horarios")
+
+            if not programa or not dias or not horarios:
+                continue
+
+            for dia in dias:
+
+                for horario in horarios:
+
+                    combinacao = (dia, horario)
+
+                    if combinacao in combinacoes:
+
+                        programa_anterior = combinacoes[
+                            combinacao
+                        ]
+
+                        if programa_anterior != programa:
+
+                            dia_nome = dict(
+                                Programacao.DIAS_SEMANA
+                            ).get(dia)
+
+                            horario_nome = dict(
+                                Programacao.HORARIO
+                            ).get(horario)
+
+                            conflitos.append(
+                                f"{dia_nome} - {horario_nome} "
+                                f"já foi selecionado para "
+                                f"'{programa_anterior}' e também "
+                                f"para '{programa}'."
+                            )
+
+                    else:
+
+                        combinacoes[combinacao] = programa
+
+        if conflitos:
+
+            raise forms.ValidationError(conflitos)
+        
+ProgramacaoFormSet = formset_factory(
+    ProgramacaoModelForm,
+    formset=BaseProgramacaoFormSet,
+    extra=1
+)
+
+ProgramacaoEditFormSet = formset_factory(
+    ProgramacaoModelForm,
+    formset=BaseProgramacaoFormSet,
+    extra=0
+)
 
 class EpisodioModelForm(forms.ModelForm):
     class Meta:

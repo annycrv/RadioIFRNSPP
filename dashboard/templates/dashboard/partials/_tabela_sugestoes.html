@@ -1,44 +1,112 @@
-<div class="table-responsive">
-  <table class="table table-hover table-striped">
-    <thead>
-      <tr>
-        <th scope="col" class="col-4">
-          <a href="{% querystring ordenar='nome' %}">Nome</a>
-        </th>
+<div class="filtros-crud mb-4">
 
-        <th scope="col" class="col-6">
-          <a href="{% querystring ordenar='comentario' %}">Comentário</a>
-        </th>
+    <form id="form-pesquisa-sugestoes"
+          class="d-flex gap-3 align-items-center flex-grow-1">
 
-        <th scope="col" class="col-2">Ações</th>
-      </tr>
-    </thead>
+        <div class="search-wrapper flex-grow-1">
 
-    <tbody>
-      {% for item in sugestao %}
-      <tr>
-        <td>{{ item.nome }}</td>
+            <i class="bi bi-search"></i>
 
-      <td class="text-muted" 
-          style="white-space: normal; word-wrap: break-word; overflow-wrap: break-word;">
-          {{ item.comentario|truncatewords:12 }}
-      </td>
+            <input
+                id="campo-pesquisa-sugestao"
+                class="form-control"
+                type="search"
+                name="f"
+                value="{{ request.GET.f }}"
+                placeholder="Pesquisar por nome ou comentário...">
 
-        <td class="text-nowrap">
-          <a href="{% url 'dashboard:sugestoes_remover' item.id %}"
-            class="btn btn-danger remover">
-              Excluir
-          </a>
-        </td>
-      </tr>
-      {% empty %}
-      <tr>
-        <td colspan="3" class="text-center text-muted py-3">
-          Nenhuma sugestão enviada ainda.
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
+        </div>
 
-  </table>
+    </form>
+
 </div>
+
+
+<div class="table-responsive">
+
+    <table class="table tabela-crud tabela-sugestoes align-middle mb-0">
+
+        <thead>
+            <tr>
+
+                <th>
+                    <a href="{% querystring ordenar='nome' %}">
+                        Nome
+                    </a>
+                </th>
+
+                <th>
+                    <a href="{% querystring ordenar='comentario' %}">
+                        Comentário
+                    </a>
+                </th>
+
+                <th class="text-center">
+                    Ações
+                </th>
+
+            </tr>
+        </thead>
+
+
+        <tbody>
+
+        {% for item in sugestao %}
+
+        <tr>
+
+            <td>
+                <div class="nome-sugestao">
+                    {{ item.nome }}
+                </div>
+            </td>
+
+
+            <td class="comentario-sugestao">
+                {{ item.comentario|truncatewords:12 }}
+            </td>
+
+
+            <td>
+
+                <div class="acoes">
+
+                    <a
+                        href="{% url 'dashboard:sugestoes_remover' item.id %}"
+                        class="remover"
+                        title="Excluir">
+
+                        <i class="bi bi-trash"></i>
+
+                    </a>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+        {% empty %}
+
+        <tr>
+
+            <td colspan="3" class="text-center py-5">
+
+                <i class="bi bi-chat-left-text fs-1 text-muted mb-3 d-block"></i>
+
+                <p class="text-muted mb-0">
+                    Nenhuma sugestão enviada ainda.
+                </p>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+

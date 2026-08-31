@@ -1,32 +1,151 @@
 {% load static %}
-<div class="row g-4">
-  {% for item in programacao %}
-    <div class="col-md-4">
-      <div class="program-card p-3 border rounded shadow-sm h-100">
-        <h5 class="mb-2">{{ item.programa.nome_programa }}</h5>
-        <p class="text-muted mb-1"><strong>Horário:</strong> {{ item.horario }}</p>
-        <p class="text-muted mb-1"><strong>Dia:</strong> {{ item.dia }}</p>
-        <p class="mb-0"><strong>Artista:</strong> {{ item.programa.apresentador_programa }}</p>
-          <div class="d-flex gap-2 mt-3">
 
-              <a href="{% url 'dashboard:programacao_editar' item.id %}"
-                class="btn btn-outline-secondary btn-sm btn-editar">
-                  <i class="bi bi-pencil-square"></i>
-              </a>
+<div class="table-responsive">
 
-              <a href="{% url 'dashboard:programacao_remover' item.id %}"
-                class="btn btn-danger btn-sm remover">
-                  <i class="bi bi-trash"></i>
-              </a>
+    <table class="table tabela-programacao align-middle">
 
-          </div>
-      </div>
-    </div>
-  {% empty %}
-  <div class="d-flex flex-column align-items-center text-center">
-    <img src="{% static 'radio/img/waiting2.svg' %}" class="curtidaimg mb-3">
-    <p class="text-center text-muted">Nenhuma programação cadastrada ainda.</p>
-  </div>
-  </div>
-  {% endfor %}
+        <thead>
+
+            <tr>
+
+                <th>Programa</th>
+
+                <th>Apresentador</th>
+
+                <th>Dias</th>
+
+                <th>Horários</th>
+
+                <th>Ações</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for item in programacao %}
+
+                <tr>
+
+                    <!-- PROGRAMA -->
+
+                    <td>
+
+                        <strong>
+                            {{ item.programa.nome_programa }}
+                        </strong>
+
+                    </td>
+
+
+                    <!-- APRESENTADOR -->
+
+                    <td>
+
+                        {{ item.programa.apresentador_programa }}
+
+                    </td>
+
+
+                    <!-- DIAS -->
+
+                    <td>
+
+                        <div class="programacao-badges">
+
+                            {% for dia in item.dias %}
+
+                                <span class="dia-badge">
+                                    {{ dia.nome }}
+                                </span>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- HORÁRIOS -->
+
+                    <td>
+
+                        <div class="programacao-badges">
+
+                            {% for horario in item.horarios %}
+
+                                <span class="horario-badge">
+                                    {{ horario.nome }}
+                                </span>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- AÇÕES -->
+
+                    <td>
+
+                        <div class="d-flex gap-2">
+
+                            <a
+                                href="{% url 'dashboard:programacao_editar' item.id %}"
+                                class="btn btn-outline-secondary btn-sm btn-editar"
+                                title="Editar"
+                            >
+
+                                <i class="bi bi-pencil-square"></i>
+
+                            </a>
+
+
+                            <a
+                                href="{% url 'dashboard:programacao_remover' item.id %}"
+                                class="btn btn-danger btn-sm remover"
+                                title="Excluir"
+                            >
+
+                                <i class="bi bi-trash"></i>
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            {% empty %}
+
+                <tr>
+
+                    <td colspan="5">
+
+                        <div class="d-flex flex-column align-items-center text-center py-5">
+
+                            <img
+                                src="{% static 'radio/img/waiting2.svg' %}"
+                                class="curtidaimg mb-3"
+                            >
+
+                            <p class="text-muted mb-0">
+                                Nenhuma programação cadastrada ainda.
+                            </p>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
 </div>
