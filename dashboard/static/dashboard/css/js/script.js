@@ -1,4 +1,3 @@
-console.log("JS carregou");
 const modalElemento = document.querySelector("#modal");
 
 const meuModal = new bootstrap.Modal(modalElemento);

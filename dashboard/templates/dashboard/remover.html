@@ -1,12 +1,13 @@
-<div class="card shadow-sm">
+
+<div class="card card-remover shadow-sm">
 
     <div class="card-body">
 
-        <h3 class="mb-3">
+        <h3 class="titulo-remover mb-3">
             Remover {{ tipo }}
         </h3>
 
-        <p>
+        <p class="texto-remover">
             Tem certeza que deseja remover
             <strong>{{ objeto }}</strong>?
         </p>
@@ -20,6 +21,7 @@
             {% csrf_token %}
 
             <div class="modal-footer">
+
                 <button type="button"
                         class="btn btn-secondary"
                         data-bs-dismiss="modal">
@@ -28,8 +30,10 @@
 
                 <button type="button"
                         class="btn btn-danger confirmar">
+                    <i class="bi bi-trash3 me-1"></i>
                     Sim, remover
                 </button>
+
             </div>
 
         </form>

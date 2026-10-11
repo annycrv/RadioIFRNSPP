@@ -244,7 +244,7 @@ if (diasSemana.length && programacaoConteudo) {
 
 }
 
-// =========================
+/// =========================
 // PESQUISA DE PROGRAMAS
 // =========================
 
@@ -261,29 +261,55 @@ if (pesquisaProgramas && programasConteudo) {
             "input[name='f']"
         );
 
-        const filtro = input.value;
+        const filtro = input.value.trim();
 
-        const url = pesquisaProgramas.dataset.url;
+        // URL que retorna somente os cards
+        const urlAjax = pesquisaProgramas.dataset.url;
 
-        fetch(`${url}?f=${encodeURIComponent(filtro)}`)
-            .then(response => response.text())
+        // URL da página completa
+        const urlPagina = pesquisaProgramas.dataset.pagina;
+
+        fetch(`${urlAjax}?f=${encodeURIComponent(filtro)}`)
+            .then(response => {
+
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar programas.");
+                }
+
+                return response.text();
+            })
             .then(html => {
 
+                // Atualiza somente os cards
                 programasConteudo.innerHTML = html;
 
-                // Atualiza a URL sem recarregar a página
-                history.pushState(
-                    {},
-                    "",
-                    `${url}?f=${encodeURIComponent(filtro)}`
-                );
+                // Mantém a página normal na barra de endereço
+                if (filtro) {
+
+                    history.pushState(
+                        {},
+                        "",
+                        `${urlPagina}?f=${encodeURIComponent(filtro)}`
+                    );
+
+                } else {
+
+                    history.pushState(
+                        {},
+                        "",
+                        urlPagina
+                    );
+
+                }
 
             })
             .catch(error => {
+
                 console.error(
                     "Erro no AJAX da pesquisa:",
                     error
                 );
+
             });
 
     });

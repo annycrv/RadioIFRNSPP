@@ -1677,3 +1677,336 @@ form label {
 .horario-badge {
     min-width: 110px;
 }
+
+/* modal-novo */
+
+
+/* =========================================================
+   MODAIS GENÉRICOS — PADRÃO VISUAL DA PROGRAMAÇÃO
+   ========================================================= */
+
+.form-modal-generico {
+    color: #08253c;
+}
+
+/* Espaçamento entre os campos do Crispy */
+.form-modal-generico .mb-3 {
+    margin-bottom: 24px !important;
+}
+
+/* Labels */
+.form-modal-generico .form-label {
+    display: block;
+    margin-bottom: 10px;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Inputs, selects e textareas */
+.form-modal-generico .form-control,
+.form-modal-generico .form-select {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 14px;
+    border: 1px solid #d7e3e3;
+    border-radius: 12px;
+    background-color: #fff;
+    color: #475569;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(15, 23, 42, .03);
+    transition: border-color .2s, box-shadow .2s;
+}
+
+/* Campo de texto */
+.form-modal-generico textarea.form-control {
+    min-height: 110px;
+    resize: vertical;
+}
+
+/* Foco dos campos */
+.form-modal-generico .form-control:focus,
+.form-modal-generico .form-select:focus {
+    border-color: #158a7b;
+    box-shadow: 0 0 0 .15rem rgba(21, 138, 123, .12);
+    outline: none;
+}
+
+/* Campo para selecionar arquivos */
+.form-modal-generico input[type="file"].form-control {
+    padding: 6px;
+    overflow: hidden;
+}
+
+.form-modal-generico input[type="file"]::file-selector-button {
+    margin: -6px 12px -6px -6px;
+    padding: 12px 14px;
+    border: 0;
+    border-right: 1px solid #d7e3e3;
+    background: #eef7f6;
+    color: #334155;
+    cursor: pointer;
+}
+
+/* Textos auxiliares */
+.form-modal-generico .form-text {
+    margin-top: 7px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+/* Erros de validação */
+.form-modal-generico .invalid-feedback,
+.form-modal-generico .text-danger {
+    margin-top: 6px;
+    font-size: 12px;
+}
+
+/* Rodapé */
+.form-modal-generico .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 20px 0 0;
+    margin-top: 5px;
+    border-top: 1px solid #edf2f2;
+}
+
+/* Botões */
+.form-modal-generico .modal-footer .btn {
+    min-height: 44px;
+    padding: 8px 20px;
+    border-radius: 11px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color .2s, border-color .2s;
+}
+
+/* Botão salvar */
+.form-modal-generico .modal-footer .btn-salvar {
+    background-color: #158a7b;
+    border-color: #158a7b;
+    color: #fff;
+}
+
+.form-modal-generico .modal-footer .btn-salvar:hover {
+    background-color: #0f766e;
+    border-color: #0f766e;
+}
+
+/* Botão cancelar */
+.form-modal-generico .modal-footer .btn-secondary {
+    background-color: #fff;
+    border: 1px solid #d7e3e3;
+    color: #475569;
+}
+
+.form-modal-generico .modal-footer .btn-secondary:hover {
+    background-color: #f4faf9;
+    border-color: #9cc8c2;
+    color: #0f766e;
+}
+
+/* Responsividade */
+@media (max-width: 576px) {
+    .form-modal-generico .modal-footer {
+        flex-direction: column-reverse;
+    }
+
+    .form-modal-generico .modal-footer .btn {
+        width: 100%;
+    }
+}
+
+
+/* Refinamento dos formulários genéricos */
+
+.form-modal-generico .mb-3 {
+    margin-bottom: 20px !important;
+}
+
+.form-modal-generico .form-label {
+    margin-bottom: 8px;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-modal-generico .form-control,
+.form-modal-generico .form-select {
+    min-height: 44px;
+    border-radius: 11px;
+    border-color: #d7e3e3;
+    box-shadow: none;
+}
+
+.form-modal-generico .form-control:focus,
+.form-modal-generico .form-select:focus {
+    border-color: #158a7b;
+    box-shadow: 0 0 0 3px rgba(21, 138, 123, .10);
+}
+
+/* Campo de arquivo */
+.form-modal-generico input[type="file"].form-control {
+    min-height: 46px;
+    padding: 6px;
+    font-size: 13px;
+}
+
+/* Área do arquivo atualmente salvo */
+.form-modal-generico .form-check {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+/* Rodapé */
+.form-modal-generico .modal-footer {
+    padding-top: 16px;
+    margin-top: 0;
+    gap: 10px;
+}
+
+.form-modal-generico .modal-footer .btn {
+    min-height: 42px;
+    border-radius: 10px;
+    padding: 8px 20px;
+}
+
+/* form programação botao */
+
+/* Botões do modal de programação */
+
+#form-programacao-lote .modal-footer .btn-primary {
+    background-color: #158a7b;
+    border-color: #158a7b;
+    color: #fff;
+}
+
+#form-programacao-lote .modal-footer .btn-primary:hover {
+    background-color: #0f766e;
+    border-color: #0f766e;
+}
+
+/* Botão cancelar */
+#form-programacao-lote .modal-footer .btn-secondary {
+    background-color: #fff;
+    border: 1px solid #d7e3e3;
+    color: #475569;
+}
+
+#form-programacao-lote .modal-footer .btn-secondary:hover {
+    background-color: #f4faf9;
+    border-color: #9cc8c2;
+    color: #0f766e;
+}
+
+/* remover */
+
+
+/* =========================================================
+   MODAL DE REMOÇÃO
+   ========================================================= */
+
+.card-remover {
+    border: 1px solid #e2e8e5;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: none !important;
+}
+
+.card-remover .card-body {
+    padding: 24px;
+}
+
+/* Título */
+.card-remover .titulo-remover {
+    color: #334155;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Texto de confirmação */
+.card-remover .texto-remover {
+    margin-bottom: 24px;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.card-remover .texto-remover strong {
+    color: #334155;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+/* Rodapé */
+.card-remover .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 18px 0 0;
+    margin-top: 0;
+    border-top: 1px solid #edf2f2;
+}
+
+/* Botões */
+.card-remover .modal-footer .btn {
+    min-height: 44px;
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color .2s, border-color .2s;
+}
+
+/* Cancelar */
+.card-remover .btn-secondary {
+    background: #fff;
+    border: 1px solid #d7e3e3;
+    color: #475569;
+}
+
+.card-remover .btn-secondary:hover {
+    background: #f4faf9;
+    border-color: #9cc8c2;
+    color: #0f766e;
+}
+
+/* Remover */
+.card-remover .btn-danger {
+    background: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+}
+
+.card-remover .btn-danger:hover {
+    background: #bb2d3b;
+    border-color: #b02a37;
+}
+
+/* Responsividade */
+@media (max-width: 576px) {
+    .card-remover .card-body {
+        padding: 18px;
+    }
+
+    .card-remover .modal-footer {
+        flex-direction: column-reverse;
+    }
+
+    .card-remover .modal-footer .btn {
+        width: 100%;
+    }
+}
+
+.perfil-box .btn-primary {
+    background-color: #158a7b;
+    border-color: #158a7b;
+    color: #fff;
+}
+
+.perfil-box .btn-primary:hover {
+    background-color: #0f766e;
+    border-color: #0f766e;
+}
